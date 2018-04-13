@@ -1,0 +1,91 @@
+﻿### Beta 1.0.9 - 22.03.2018
+
+[FIXED] LinearSlicer now can make new slices from same hole (corner cases)
+[FIXED] ComplexSlicer failed to slice a new hole around the existing hole
+[CHANGED] Optimized Performance for ColliderLineRenderer
+[ADDED] Sprite sorting layer & order support when using Slicer2D component
+[ADDED] Z position parameter for SlicerController 
+[ADDED] Slicer2D (SpriteMesh) component now supports sprite color
+
+### Beta 1.0.8 - 01.03.2018
+
+ [FIXED] Slicing inside the holes game incorrect results (Complex Slicer)
+ [FIXED] Fixed some minor issues with circle vertices count in the demos
+ [FIXED] Polygon slicer was skipping some specific slices in Demo6
+ [CHANGED] Did a clean up for linear & complex slicers code
+ [CHANGED] Slightly improved ColliderLineRenderer2D performance
+ [ADDED] In Terrain Demo the floating pieces now falls on the ground
+ [ADDED] SlicerComponent.Explode() method
+ [ADDED] Slice2D.ExplodeAll() function
+
+
+### Beta 1.0.7 - 21.02.2018
+
+ [CHANGED] Improved triangulation performance
+ [CHANGED] Improved UI performance
+ [CHANGED] Improved Demos performance
+ [FIXED] Point slicer did not collided correctly with holes
+ [FIXED] Complex Slicer sometimes lost previous polygon holes
+ [FIXED] Polygon Creator objects were not removed after scene reset
+ [FIXED] Demo6 bombs were not removed after reseting the scene
+
+
+### Beta 1.0.6 - 13.02.2018
+
+ [CHANGED] Improved Linear Slicer performance
+ [FIXED] Force adjustments for Complex Slicer (still has an issue in 2017.03 due to bug)
+
+ [INFO] Demo Video - Showcase video is now available for the preview
+
+
+### Beta 1.0.5 - 12.02.2018
+
+ [CHANGED] Terrain destruction demo now uses desert visuals
+ [FIXED] Force was inconsistent if game object parent bodies had non-zero position
+ [FIXED] Terrain Destruction demo did not work (Regression from 1.0.4)
+ [ADDED] Desert scenery visuals for demos
+
+
+### Beta 1.0.4 - 11.02.2018
+
+ [CHANGED] Improved demo visuals
+ [CHANGED] Improved logo graphics
+ [CHANGED] Refactored & improved slicing algorithm
+ [ADDED] Day & Night demo scene transitions
+ [ADDED] Linear slicer controller
+ [ADDED] Complex slicer controller
+ [REMOVED] Events handling demo
+
+
+### Beta 1.0.3 - 09.02.2018
+
+ [CHANGED] SmartSlicer2D Logo
+ [CHANGED] Demo scenes UI & visual improvements
+ [ADDED] Slicer2D.LinearSliceAll() function
+ [ADDED] Slicer2D.ComplexSliceAll() function
+ [ADDED] Slicer2D.PointSliceAll() function
+ [ADDED] Slicer2D.PolygonSliceAll() function
+ [ADDED] Slicer2D.ExplodingSliceAll() function
+
+
+### Beta 1.0.2 - 08.02.2018
+
+ [CHANGED] "Simple Slice "is now renamed to "Linear Slice"
+ [CHANGED] Refactored some code to make Slicer API more user friendly
+
+ [INFO] API Documentation - early version available in Google Docs
+
+
+### Beta 1.0.1 - 07.02.2018
+
+ [FIXED] ColliderLineRenderer2D now uses drawn object Z coordinate
+ [FIXED] Minor issues when using create slicing mode new polygons
+ [CHANGED] Slicer API functions returns Slice2DResult object
+ [CHANGED] Optimized package size
+
+ [INFO] Support - Unity forum thread opened 
+
+
+### Beta 1.0.0 - 06.02.2018
+
+ [INFO] Initial beta release 
