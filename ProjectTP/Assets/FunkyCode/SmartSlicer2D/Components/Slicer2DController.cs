@@ -5,7 +5,7 @@ using UnityEngine;
 
 // Controller
 public class Slicer2DController : MonoBehaviour {
-	public enum SliceType {Linear, Complex, Point, Polygon, Explode, Create};
+	public enum SliceType {Linear, Complex, Point, Polygon, Explode, Create,Photo};
 	public enum SliceRotation {Random, Vertical, Horizontal}
 	public enum CreateType {Slice, PolygonType}
 
@@ -135,8 +135,12 @@ public class Slicer2DController : MonoBehaviour {
 
 				case SliceType.Polygon:
 					slicePolygon = Polygon.Create (polygonType, polygonSize);
-					Max2D.DrawStrippedLine (slicePolygon.pointsList, minVertsDistance, zPosition, false, pos);
+					//Max2D.DrawStrippedLine (slicePolygon.pointsList, minVertsDistance, zPosition, false, pos);
 					break;
+
+                case SliceType.Photo:
+                    
+                    break; 
 				
 				default:
 					break; 
