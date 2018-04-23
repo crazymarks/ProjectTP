@@ -661,6 +661,7 @@ GameObject:
   - component: {fileID: 1154937480}
   - component: {fileID: 1154937479}
   - component: {fileID: 1154937483}
+  - component: {fileID: 1154937484}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -784,6 +785,26 @@ MonoBehaviour:
   IsJumping: 0
   JumpForce: 350
   MaxSpeed: 7
+--- !u!114 &1154937484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1154937478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c1861b9d7da7540972c7f37f474261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sliceType: 0
+  polygonType: 1
+  polygonSize: 1
+  polygonDestroy: 0
+  createType: 0
+  drawSlicer: 1
+  lineWidth: 1
+  zPosition: 0
+  slicerColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1001 &1371660882
 Prefab:
   m_ObjectHideFlags: 0

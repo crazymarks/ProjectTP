@@ -126,6 +126,8 @@
     <Compile Include="Assets\Scripts\Pauser.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\ShotLensController.cs" />
+    <Compile Include="Assets\Scripts\Test.cs" />
+    <Compile Include="Assets\Scripts\Test2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FunkyCode\SmartSlicer2D\Changelog.txt" />

@@ -73,8 +73,10 @@ public class ComplexSlicerExtended {
 		
 		result = ComplexSlicer.Slice (polygon, new List<Vector2f> (polygonSlice.pointsList));
 
-		if (result.polygons.Count < 1)
-			Debug.LogError ("Slicer2D: Returns Empty Polygon Slice");
+
+        //if (result.polygons.Count < 1)
+            //debug用　消しても大丈夫そう
+          //  Debug.LogError ("Slicer2D: Returns Empty Polygon Slice");
 
 		Slicer2D.complexSliceType = tempSliceType;
 
