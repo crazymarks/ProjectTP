@@ -221,11 +221,13 @@ public class Slicer2D : MonoBehaviour {
 			Slicer2D slicer = gObject.GetComponent<Slicer2D> ();
 			slicer.sliceCounter = sliceCounter + 1;
 			slicer.maxSlices = maxSlices;
-
+            //オブジェクトの名前を変更
 			gObject.name = name + " (" + name_id + ")";
 			gObject.transform.parent = transform.parent;
 			gObject.transform.position = transform.position;
 			gObject.transform.rotation = transform.rotation;
+            gObject.AddComponent<Pauser>().Pause();
+            GameObject.Find("ShotLens").SendMessage("ItemListAdd",gObject);  
 		
 			switch (textureType) {
 				case TextureType.Sprite:

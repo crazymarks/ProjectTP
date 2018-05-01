@@ -62,8 +62,6 @@ public class Test2 : MonoBehaviour
         //この後点を追加する
 
         Polygon slicePolygonDestroy = null;
-        if (polygonDestroy == true)
-            slicePolygonDestroy = Polygon.Create(polygonType, polygonSize * 1.1f);
 
         Slicer2D.PolygonSliceAll(pos, Polygon.Create(polygonType, polygonSize), slicePolygonDestroy, sliceLayer);
     }
