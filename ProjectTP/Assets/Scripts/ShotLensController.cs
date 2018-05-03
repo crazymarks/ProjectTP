@@ -18,11 +18,12 @@ public class ShotLensController : MonoBehaviour {
     private Vector3 PhotoCameraCoordinate; //写真を表示するカメラの座標
     private bool CanShoted = true;     //写真が撮れるか
     private GameObject DeleteFrame;
+    static public bool CanTrace = true;   //写真が再現できるかどうか
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void Start()
     {
         PhotoCameraCoordinate = GameObject.Find("PhotoCamera").transform.position;
-       DeleteFrame= GameObject.Find("DeleteFrame");
+        DeleteFrame= GameObject.Find("DeleteFrame");
         DeleteFrame.SetActive(false);
     }
 
@@ -50,7 +51,7 @@ public class ShotLensController : MonoBehaviour {
         }
 
         //モノを再現する
-        if (Input.GetButtonDown("Trace"))
+        if (Input.GetButtonDown("Trace")&&CanTrace==true)
         {
             CameraCoordinate = this.transform.position;
             if (CopyList.Count > 0)
@@ -69,17 +70,24 @@ public class ShotLensController : MonoBehaviour {
                 CopyList.Clear();
             }
             IsShoted = false;
+            GameObject.Find("Overlap").SendMessage("DeleteTrigger");
         }
 	}
 
     //カメラレンズの範囲内のモノを記録
     void OnTriggerEnter2D(Collider2D TempObject)
     {
-        GameObject TempObject1 = TempObject.transform.gameObject;
-
+        for (int i = 0; i < ItemList.Count; i++)
+        {
+            if (TempObject.gameObject == ItemList[i].Items)
+            {
+                Debug.Log(i);
+                return;
+            }
+        }
         ShotItem NewShotObject;
-        NewShotObject.Items = TempObject1;
-        ItemList.Add(NewShotObject);         
+        NewShotObject.Items = TempObject.transform.gameObject;
+        ItemList.Add(NewShotObject);
     }
 
     //レンズ範囲に離れた時、ItemListから削除する
@@ -96,7 +104,6 @@ public class ShotLensController : MonoBehaviour {
     //切り枠を発動
     private void PolygonSlice()
     {
-
         Polygon newPolygon = new Polygon();
         GameObject Photo1 =  GameObject.Find("Photo1");
         Vector2f pos = new Vector2f(-40f,-15f);//Photo1.transform.position.x,Photo1.transform.position.y
@@ -117,6 +124,7 @@ public class ShotLensController : MonoBehaviour {
     private void HideDeleteFrame2()
     {
         DeleteFrame.SetActive(false);
+        GameObject.Find("Overlap").SendMessage("GetTrigger");
     }
 
     //カットしたモノをcopylistに追加する

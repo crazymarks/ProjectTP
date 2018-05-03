@@ -34,7 +34,12 @@ public class Pauser : MonoBehaviour
             (
             GetComponentsInChildren<Behaviour>(),
             (obj) => { return obj.enabled&&obj!=GetComponent<Slicer2D>()
-                &&obj!=GetComponent<Collider2D>()&&obj!=GetComponent<BeCutted>()&&obj!=GetComponent<SpriteMesh2D>(); }
+                &&obj!=GetComponent<BeCutted>()
+                && obj != GetComponent<Collider2D>()
+                && obj != GetComponent<BoxCollider2D>()
+                && obj != GetComponent<PolygonCollider2D>()
+                && obj != GetComponent<CircleCollider2D>()
+                && obj!=GetComponent<SpriteMesh2D>(); }
             );
         foreach (var com in pauseBehavs)
         {

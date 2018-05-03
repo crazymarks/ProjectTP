@@ -123,8 +123,8 @@
     <Compile Include="Assets\FunkyCode\SmartUtilities2D\Scripts\Utilities\TimeHelper.cs" />
     <Compile Include="Assets\FunkyCode\SmartUtilities2D\Scripts\Utilities\Vector2f.cs" />
     <Compile Include="Assets\FunkyCode\SmartUtilities2D\Scripts\Utilities\VectorList2f.cs" />
-    <Compile Include="Assets\Overlap.cs" />
     <Compile Include="Assets\Scripts\BeCutted.cs" />
+    <Compile Include="Assets\Scripts\Overlap.cs" />
     <Compile Include="Assets\Scripts\Pauser.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\ShotLensController.cs" />
