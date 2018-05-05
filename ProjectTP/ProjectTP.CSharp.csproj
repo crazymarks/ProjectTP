@@ -124,12 +124,11 @@
     <Compile Include="Assets\FunkyCode\SmartUtilities2D\Scripts\Utilities\Vector2f.cs" />
     <Compile Include="Assets\FunkyCode\SmartUtilities2D\Scripts\Utilities\VectorList2f.cs" />
     <Compile Include="Assets\Scripts\BeCutted.cs" />
-    <Compile Include="Assets\Scripts\Overlap.cs" />
     <Compile Include="Assets\Scripts\Pauser.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\ShotLensController.cs" />
-    <Compile Include="Assets\Scripts\Test.cs" />
-    <Compile Include="Assets\Scripts\Test2.cs" />
+    <Compile Include="Assets\Scripts\Player\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\ShotAndCut\Overlap.cs" />
+    <Compile Include="Assets\Scripts\ShotAndCut\ShotLensController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FunkyCode\SmartSlicer2D\Changelog.txt" />

@@ -31,6 +31,10 @@ public class PlayerController : MonoBehaviour {
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(move * MaxSpeed, GetComponent<Rigidbody2D>().velocity.y);
         }
+        else
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(move * MaxSpeed *0.4f, GetComponent<Rigidbody2D>().velocity.y);
+        }
         //change facing
         if ((move>0.0f && IsFacingRight==false) || (move<0.0f && IsFacingRight==true))
         {
@@ -40,7 +44,6 @@ public class PlayerController : MonoBehaviour {
         if (IsJumping == true && GetComponent<Rigidbody2D>().velocity.y == 0)
         {
             land_check();
-            Debug.Log(LandFlag);
         }      
 	}
     

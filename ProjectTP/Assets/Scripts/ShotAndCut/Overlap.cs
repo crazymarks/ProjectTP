@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Overlap : MonoBehaviour {
+
+    void Start()
+    {
+        this.transform.position = GameObject.Find("ShotLens").transform.position;
+
+    }
     /// <summary>
     /// 写真が再現できるかどうかを確認するため
     /// triggerをget

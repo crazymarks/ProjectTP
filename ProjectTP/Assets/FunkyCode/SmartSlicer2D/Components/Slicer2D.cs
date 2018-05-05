@@ -227,7 +227,8 @@ public class Slicer2D : MonoBehaviour {
 			gObject.transform.position = transform.position;
 			gObject.transform.rotation = transform.rotation;
             gObject.AddComponent<Pauser>().Pause();
-            GameObject.Find("ShotLens").SendMessage("ItemListAdd",gObject);  
+            GameObject.Find("ShotLens").SendMessage("ItemListAdd",gObject);
+            Invoke("Uncompleted", 2f);
 		
 			switch (textureType) {
 				case TextureType.Sprite:
@@ -374,4 +375,9 @@ public class Slicer2D : MonoBehaviour {
 
 		return(Polygon.CreateFromCollider (gameObject, colliderType).ToWorldSpace (gameObject.transform));
 	}
+
+    private void Uncompleted()
+    {
+        Destroy(this.gameObject);
+    }
 }
