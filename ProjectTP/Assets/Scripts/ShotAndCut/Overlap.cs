@@ -11,7 +11,7 @@ public class Overlap : MonoBehaviour {
     }
     /// <summary>
     /// 写真が再現できるかどうかを確認するため
-    /// triggerをget
+    /// triggerを生成する
     /// </summary>
     public void GetTrigger()
     {
@@ -86,6 +86,5 @@ public class Overlap : MonoBehaviour {
     void OnTriggerExit2D(Collider2D col)
     {
         ShotLensController.CanTrace = true;
-        Debug.Log(ShotLensController.CanTrace);
     }
 }

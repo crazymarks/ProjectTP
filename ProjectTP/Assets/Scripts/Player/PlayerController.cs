@@ -4,67 +4,64 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     [HideInInspector]
-    public bool IsFacingRight = true;
+    public bool isFacingRight = true;
     [HideInInspector]
-    public bool IsJumping = false;
+    public bool isJumping = false;
 
-    public float JumpForce = 650.0f;
-    public float MaxSpeed = 7.0f;
-    private int LandFlag=0;    //to show is it touch land
+    public float jumpVelocity = 6.0f;
+    public float maxSpeed = 7.0f;
+    private int landFlag=0;    //着陸かどうかを確認  連続５フレーム跳びスピードが同じなら、着陸した
+    private float jumpSpeedY = 0.0f; //今の跳びスピード
 
-
-	void Start () {
-    }
-    void Update()
-    {
-        if (Input.GetButtonDown("Jump")&&IsJumping==false)
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0);
-            this.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, JumpForce));
-            IsJumping = true;
-        }
-    }
-	
 	void FixedUpdate () {
         float move = Input.GetAxis("Horizontal");
-        if (IsJumping == false)
+       if (isJumping == false && move!=0f)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(move * MaxSpeed, GetComponent<Rigidbody2D>().velocity.y);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
         }
-        else
+        else if(isJumping == true && move != 0f)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(move * MaxSpeed *0.4f, GetComponent<Rigidbody2D>().velocity.y);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed *0.4f, GetComponent<Rigidbody2D>().velocity.y);
         }
-        //change facing
-        if ((move>0.0f && IsFacingRight==false) || (move<0.0f && IsFacingRight==true))
+       
+        //向きを変わる
+        if ((move>0.0f && isFacingRight==false) || (move<0.0f && isFacingRight==true))
         {
             player_flip();
         }
-        //jump check 
-        if (IsJumping == true && GetComponent<Rigidbody2D>().velocity.y == 0)
+
+        if (Input.GetButtonDown("Jump") && isJumping == false)
         {
-            land_check();
-        }      
-	}
-    
-    void land_check() {
-        LandFlag++;
-        if (LandFlag == 2)
-        {
-            LandFlag = 0;
-            IsJumping = false;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpVelocity);
+            isJumping = true;
         }
+        //跳びチェック
+        if (jumpSpeedY == GetComponent<Rigidbody2D>().velocity.y)
+        {
+            landFlag++;
+            if (landFlag == 5)
+            {
+                isJumping = false;
+            }
+        }
+        else
+        {
+            landFlag = 0;
+        }
+        jumpSpeedY = GetComponent<Rigidbody2D>().velocity.y;
     }
+    
     /// <summary>
     /// to flip player`s spirit
     /// </summary>
     
     void player_flip()
     {
-        IsFacingRight = !IsFacingRight;
+        isFacingRight = !isFacingRight;
         Vector3 PlayerScale = transform.localScale;
         PlayerScale.x = PlayerScale.x * (-1);
         transform.localScale = PlayerScale;
     }
+
 
 }

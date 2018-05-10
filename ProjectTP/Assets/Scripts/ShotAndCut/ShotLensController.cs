@@ -16,7 +16,6 @@ public class ShotLensController : MonoBehaviour {
     public Vector3 CameraCoordinate;      //カメラ座標
     private bool IsShoted=false;       //写真を撮った状態かどうか
     private Vector3 PhotoCameraCoordinate; //写真を表示するカメラの座標
-    private bool CanShoted = true;     //写真が撮れるか
     private GameObject DeleteFrame;
     static public bool CanTrace = true;   //写真が再現できるかどうか
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------

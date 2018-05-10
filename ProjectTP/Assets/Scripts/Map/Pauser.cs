@@ -34,7 +34,6 @@ public class Pauser : MonoBehaviour
             (
             GetComponentsInChildren<Behaviour>(),
             (obj) => { return obj.enabled&&obj!=GetComponent<Slicer2D>()
-                &&obj!=GetComponent<BeCutted>()
                 && obj != GetComponent<Collider2D>()
                 && obj != GetComponent<BoxCollider2D>()
                 && obj != GetComponent<PolygonCollider2D>()
@@ -54,7 +53,7 @@ public class Pauser : MonoBehaviour
             rg2dBodyVels[i] = rg2dBodies[i].velocity;
             rg2dBodyAVels[i] = rg2dBodies[i].angularVelocity;
             rg2dBodies[i].Sleep();
-            rg2dBodies[i].isKinematic=true;
+           // rg2dBodies[i].isKinematic=true;
         }
     }
 
@@ -74,7 +73,7 @@ public class Pauser : MonoBehaviour
 
         for (var i = 0; i < rg2dBodies.Length; ++i)
         {
-            rg2dBodies[i].isKinematic = false;
+           // rg2dBodies[i].isKinematic = false;
             rg2dBodies[i].WakeUp();
             rg2dBodies[i].velocity = rg2dBodyVels[i];
             rg2dBodies[i].angularVelocity = rg2dBodyAVels[i];

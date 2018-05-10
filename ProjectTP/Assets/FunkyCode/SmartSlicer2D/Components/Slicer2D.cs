@@ -220,7 +220,8 @@ public class Slicer2D : MonoBehaviour {
 
 			Slicer2D slicer = gObject.GetComponent<Slicer2D> ();
 			slicer.sliceCounter = sliceCounter + 1;
-			slicer.maxSlices = maxSlices;
+            slicer.maxSlices = maxSlices;
+
             //オブジェクトの名前を変更
 			gObject.name = name + " (" + name_id + ")";
 			gObject.transform.parent = transform.parent;
@@ -228,8 +229,8 @@ public class Slicer2D : MonoBehaviour {
 			gObject.transform.rotation = transform.rotation;
             gObject.AddComponent<Pauser>().Pause();
             GameObject.Find("ShotLens").SendMessage("ItemListAdd",gObject);
-            Invoke("Uncompleted", 2f);
-		
+            gObject.AddComponent<AfterCut>();
+
 			switch (textureType) {
 				case TextureType.Sprite:
 					if (gameObject.GetComponent<SpriteRenderer> () != null && gObject.GetComponent<SpriteMesh2D> () == null)
@@ -376,8 +377,4 @@ public class Slicer2D : MonoBehaviour {
 		return(Polygon.CreateFromCollider (gameObject, colliderType).ToWorldSpace (gameObject.transform));
 	}
 
-    private void Uncompleted()
-    {
-        Destroy(this.gameObject);
-    }
 }
