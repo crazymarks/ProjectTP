@@ -16,11 +16,13 @@ public class CheckFrame : MonoBehaviour {
             {
                 GameObject tempObject2 = Instantiate(leverOn,tempObject.transform.position,Quaternion.identity);
                 tempObject2.AddComponent<Slicer2D>();
+                Destroy(tempObject);
             }
             else
             {
                 GameObject tempObject2 = Instantiate(leverOff, tempObject.transform.position, Quaternion.identity);
                 tempObject2.AddComponent<Slicer2D>();
+                Destroy(tempObject);
             }
 
 
@@ -28,7 +30,7 @@ public class CheckFrame : MonoBehaviour {
         {
 
         }
-        Destroy(tempObject);
+       
     }
     void OnCollisionEnter2D(Collision2D TempObject)
     {

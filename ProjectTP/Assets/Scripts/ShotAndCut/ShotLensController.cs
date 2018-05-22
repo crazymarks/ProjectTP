@@ -136,7 +136,8 @@ public class ShotLensController : MonoBehaviour {
         ShotItem sItem;
         sItem.Items = obj;
         CopyList.Add(sItem);
-
+        obj.AddComponent<AfterCut>();
+        obj.GetComponent<Pauser>().Pause();
     }
 
 

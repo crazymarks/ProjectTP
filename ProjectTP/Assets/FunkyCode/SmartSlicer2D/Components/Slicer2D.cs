@@ -229,7 +229,6 @@ public class Slicer2D : MonoBehaviour {
 			gObject.transform.rotation = transform.rotation;
             gObject.AddComponent<Pauser>().Pause();
             GameObject.Find("ShotLens").SendMessage("ItemListAdd",gObject);
-            gObject.AddComponent<AfterCut>();
 
 			switch (textureType) {
 				case TextureType.Sprite:
