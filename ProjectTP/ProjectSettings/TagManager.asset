@@ -4,7 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - MoveItem
+  - MovingItem
+  - Terrain
+  - Spines
+  - BoxWood
+  - BoxIron
+  - Lever
+  - Button
   layers:
   - Default
   - TransparentFX
@@ -14,8 +20,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Door
+  - Lever
   - 
   - 
   - 
@@ -41,4 +47,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Door
+    uniqueID: 1451902837
+    locked: 0
+  - name: Lever
+    uniqueID: 3071739969
     locked: 0

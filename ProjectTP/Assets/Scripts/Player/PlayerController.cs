@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
 
     public float jumpVelocity = 6.0f;
     public float maxSpeed = 7.0f;
-    private int landFlag=0;    //着陸かどうかを確認  連続５フレーム跳びスピードが同じなら、着陸した
+    private int landFlag=0;    //着陸かどうかを確認  連続3フレーム跳びスピードが同じなら、着陸した
     private float jumpSpeedY = 0.0f; //今の跳びスピード
 
 	void FixedUpdate () {
@@ -36,10 +36,10 @@ public class PlayerController : MonoBehaviour {
             isJumping = true;
         }
         //跳びチェック
-        if (jumpSpeedY == GetComponent<Rigidbody2D>().velocity.y)
+        if (jumpSpeedY == (int)(GetComponent<Rigidbody2D>().velocity.y * 100))
         {
             landFlag++;
-            if (landFlag == 5)
+            if (landFlag == 3)
             {
                 isJumping = false;
             }
@@ -47,8 +47,9 @@ public class PlayerController : MonoBehaviour {
         else
         {
             landFlag = 0;
+            isJumping = true;
         }
-        jumpSpeedY = GetComponent<Rigidbody2D>().velocity.y;
+        jumpSpeedY =(int) (GetComponent<Rigidbody2D>().velocity.y*100);
     }
     
     /// <summary>

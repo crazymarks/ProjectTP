@@ -17,6 +17,7 @@ public class ShotLensController : MonoBehaviour {
     private bool IsShoted=false;       //写真を撮った状態かどうか
     private Vector3 PhotoCameraCoordinate; //写真を表示するカメラの座標
     private GameObject DeleteFrame;
+    private GameObject checkFrame;
     static public bool CanTrace = true;   //写真が再現できるかどうか
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void Start()
@@ -24,6 +25,7 @@ public class ShotLensController : MonoBehaviour {
         PhotoCameraCoordinate = GameObject.Find("PhotoCamera").transform.position;
         DeleteFrame= GameObject.Find("DeleteFrame");
         DeleteFrame.SetActive(false);
+        checkFrame = GameObject.Find("CheckFrame");
     }
 
     void Update () {
@@ -44,8 +46,11 @@ public class ShotLensController : MonoBehaviour {
                 TempItem.Items = TempObject;
                 CopyList.Add(TempItem);
             }
-            IsShoted = true;
-            Invoke("PolygonSlice", 0.2f);
+            if (CopyList.Count!=0)
+            {
+                IsShoted = true;
+            }
+            Invoke("PolygonSlice", 0.3f);
 
         }
 
@@ -62,7 +67,7 @@ public class ShotLensController : MonoBehaviour {
                         Vector3 pos2 = new Vector3(CopyList[i].Items.transform.position.x - PhotoCameraCoordinate.x + CameraCoordinate.x,
                             CopyList[i].Items.transform.position.y - PhotoCameraCoordinate.y + CameraCoordinate.y,
                             CopyList[i].Items.transform.position.z);
-                        CopyList[i].Items.transform.position = pos2;
+                        CopyList[i].Items.transform.position = pos2;                     
                     }
                 }
                 Pauser.Resume();
@@ -80,7 +85,6 @@ public class ShotLensController : MonoBehaviour {
         {
             if (TempObject.gameObject == ItemList[i].Items)
             {
-                Debug.Log(i);
                 return;
             }
         }
@@ -132,6 +136,7 @@ public class ShotLensController : MonoBehaviour {
         ShotItem sItem;
         sItem.Items = obj;
         CopyList.Add(sItem);
+
     }
 
 

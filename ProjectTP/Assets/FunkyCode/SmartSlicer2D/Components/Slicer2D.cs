@@ -197,7 +197,7 @@ public class Slicer2D : MonoBehaviour {
 		Destroy (gameObject);
 
 		int name_id = 1;
-		//float originMass = Polygon.CreateFromCollider (gameObject).GetArea();
+		float originMass = Polygon.CreateFromCollider (gameObject).GetArea();
 
 		foreach (Polygon id in result) {
 			GameObject gObject = Instantiate (gameObject);
@@ -212,7 +212,7 @@ public class Slicer2D : MonoBehaviour {
 					newRigidBody.velocity = originalRigidBody.velocity;
 					newRigidBody.angularVelocity = originalRigidBody.angularVelocity;
 
-					//newRigidBody.mass = originalRigidBody.mass * (id.ToLocalSpace(g.transform).GetArea () / originMass);
+					newRigidBody.mass = originalRigidBody.mass * (id.ToLocalSpace(newRigidBody.transform).GetArea () / originMass);
 				}
 
 			foreach (Behaviour childCompnent in gObject.GetComponentsInChildren<Behaviour>()) // Wrong

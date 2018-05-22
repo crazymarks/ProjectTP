@@ -53,7 +53,10 @@ public class Pauser : MonoBehaviour
             rg2dBodyVels[i] = rg2dBodies[i].velocity;
             rg2dBodyAVels[i] = rg2dBodies[i].angularVelocity;
             rg2dBodies[i].Sleep();
-           // rg2dBodies[i].isKinematic=true;
+            if (rg2dBodies[i].bodyType == RigidbodyType2D.Dynamic)
+            {
+                rg2dBodies[i].isKinematic = true;
+            }
         }
     }
 
@@ -73,7 +76,10 @@ public class Pauser : MonoBehaviour
 
         for (var i = 0; i < rg2dBodies.Length; ++i)
         {
-           // rg2dBodies[i].isKinematic = false;
+            if (rg2dBodies[i].transform.gameObject.tag != "MovingItem")
+            {
+                rg2dBodies[i].isKinematic = false;
+            }
             rg2dBodies[i].WakeUp();
             rg2dBodies[i].velocity = rg2dBodyVels[i];
             rg2dBodies[i].angularVelocity = rg2dBodyAVels[i];
