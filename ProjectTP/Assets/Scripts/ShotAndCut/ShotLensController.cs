@@ -50,8 +50,8 @@ public class ShotLensController : MonoBehaviour {
             {
                 IsShoted = true;
             }
-            Invoke("PolygonSlice", 0.3f);
-
+            Invoke("CheckFrameWork", 0.1f);  //チェックフレーム起動
+            Invoke("PolygonSlice", 0.3f);  //切り枠発動
         }
 
         //モノを再現する
@@ -75,6 +75,7 @@ public class ShotLensController : MonoBehaviour {
             }
             IsShoted = false;
             GameObject.Find("Overlap").SendMessage("DeleteTrigger");
+            checkFrame.SetActive(true);
         }
 	}
 
@@ -129,6 +130,17 @@ public class ShotLensController : MonoBehaviour {
         DeleteFrame.SetActive(false);
         GameObject.Find("Overlap").SendMessage("GetTrigger");
     }
+
+    /// <summary>
+    /// checkframe  消す　チェックした物を扱う
+    /// </summary>
+    /// <param name="obj"></param>
+    private void CheckFrameWork()
+    {
+        checkFrame.SetActive(false);
+        checkFrame.GetComponent<CheckFrame>().HandleItem();
+    }
+
 
     //カットしたモノをcopylistに追加する
     public void ItemListAdd(GameObject obj)

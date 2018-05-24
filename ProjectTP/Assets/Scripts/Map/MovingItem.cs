@@ -11,6 +11,10 @@ public class MovingItem : MonoBehaviour {
     private Vector2 movingVector= new Vector2 (0,0);
     private Vector3 initialPosition;
     private Vector3 changedPosition;
+    private int stopCount = 0;  //止まる時間を数える
+    private Vector3 lastPosition;//動いたか　を判断する
+    private bool canMove = true; //スイッチによって。移動するかどうかを確認
+    bool firstSwitch = true;　//一つ目のスイッチの状態
 
     void Start()
     {
@@ -24,7 +28,6 @@ public class MovingItem : MonoBehaviour {
         float movingVectorSize = Mathf.Sqrt(movingX * movingX + movingY * movingY);
         movingVector = new Vector2(movingX / movingVectorSize, movingY / movingVectorSize);
 
-
         if (Vector3.Distance(this.transform.position,pointA.transform.position)>Vector3.Distance(pointA.transform.position,pointB.transform.position)&&directionAB==true)
         {
             directionAB = !directionAB;
@@ -32,14 +35,34 @@ public class MovingItem : MonoBehaviour {
         {
             directionAB = !directionAB;
         }
-        if (directionAB == true)
+
+        if (true)    //スイッチによって、コントロールする
         {
-            this.GetComponent<Rigidbody2D>().velocity= (movingVector * speed);
-        }
-        else
-        {
-            this.GetComponent<Rigidbody2D>().velocity = -(movingVector * speed);
-        }
+            if (directionAB == true)
+            {
+                this.GetComponent<Rigidbody2D>().velocity = (movingVector * speed);
+            }
+            else
+            {
+                this.GetComponent<Rigidbody2D>().velocity = -(movingVector * speed);
+            }
+
+            if (lastPosition == this.transform.position)
+            {
+
+                stopCount++;
+                if (stopCount > 30)
+                {
+                    directionAB = !directionAB;
+                    stopCount = 0;
+                }
+            }
+            else
+            {
+                stopCount = 0;
+            }
+        }     
+        lastPosition = this.transform.position;
     }
 
 
@@ -53,9 +76,41 @@ public class MovingItem : MonoBehaviour {
     {
        if (col.transform.gameObject.tag == "Terrain")
        {
-            Debug.Log("get back!");
            directionAB = !directionAB;
        }
     }
 
+
+    /// <summary>
+    /// 各レバーとボタンnの　オン　状態　
+    /// 順番も付ける
+    /// </summary>
+    void SwitchHandleOn(int number)
+    {
+        Debug.Log("1");
+        switch (number)
+        {   
+            case 1:
+                firstSwitch = true;
+                canMove = firstSwitch;
+                break;
+
+        }
+    }
+    /// <summary>
+    /// 各レバーとボタンnの　オフ　状態　
+    /// 順番も付ける
+    /// </summary>
+    void SwitchHandleOff(int number)
+    {
+        Debug.Log("2");
+        switch (number)
+        {
+            case 1:
+                firstSwitch = false;
+                canMove = firstSwitch;
+                break;
+        }
+    }
 }
+

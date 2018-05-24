@@ -5,10 +5,17 @@ using UnityEngine;
 public class Lever : MonoBehaviour {
     public Sprite levelOn;
     public Sprite levelOff;
+    public GameObject Door;
 
     [HideInInspector]
     public bool isOpen=false;
     bool canPull = false;
+    public int idNumber = 1;//ドアの何番目のスイッチ
+
+    void Start()
+    {
+        Door.SendMessage("SwitchHandleOff", idNumber);
+    }
 
     void FixedUpdate()
     {
@@ -18,9 +25,12 @@ public class Lever : MonoBehaviour {
             if (isOpen == true)
             {
                 GetComponent<SpriteRenderer>().sprite = levelOn;
-            }else
+                Door.SendMessage("SwitchHandleOn", idNumber);
+            }
+            else
             {
                 GetComponent<SpriteRenderer>().sprite = levelOff;
+                Door.SendMessage("SwitchHandleOff", idNumber);
             }
 
         }

@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4364875327452176}
   - component: {fileID: 212932690938467888}
-  - component: {fileID: 68980388708375226}
   - component: {fileID: 61905755128623770}
   - component: {fileID: 50233882536737784}
   - component: {fileID: 114835258397599968}
+  - component: {fileID: 114935882645233216}
   m_Layer: 0
   m_Name: LeverOn
   m_TagString: Lever
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1164929829229034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.382263, y: 3.113112, z: 0}
+  m_LocalPosition: {x: -34.200977, y: -16.189865, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,23 +89,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.72474, y: 2.8790948}
   m_EdgeRadius: 0
---- !u!68 &68980388708375226
-EdgeCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1164929829229034}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -1.4, y: -1.38}
-  - {x: 1.4, y: -1.38}
 --- !u!114 &114835258397599968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,6 +100,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11251a8e85935b48a84770963f22e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114935882645233216
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1164929829229034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d57bfb5a556c741a71b82d65a1e10e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textureType: 0
+  slicingLayer: 0
+  slicingLimit: 0
+  sliceCounter: 0
+  maxSlices: 10
+  material: {fileID: 0}
 --- !u!212 &212932690938467888
 SpriteRenderer:
   m_ObjectHideFlags: 1

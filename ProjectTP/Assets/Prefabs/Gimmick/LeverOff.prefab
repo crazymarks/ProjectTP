@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4007325515508150}
   - component: {fileID: 212684062951464808}
-  - component: {fileID: 68029868066200848}
   - component: {fileID: 61882426631230206}
   - component: {fileID: 50150280814022472}
   - component: {fileID: 114682216608950764}
+  - component: {fileID: 114544971466637608}
   m_Layer: 0
   m_Name: LeverOff
   m_TagString: Lever
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1563977462225068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.382263, y: 3.113112, z: 0}
+  m_LocalPosition: {x: -37.400204, y: -16.43049, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,23 +89,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.72474, y: 2.8790948}
   m_EdgeRadius: 0
---- !u!68 &68029868066200848
-EdgeCollider2D:
+--- !u!114 &114544971466637608
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1563977462225068}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -1.4, y: -1.38}
-  - {x: 1.4, y: -1.38}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d57bfb5a556c741a71b82d65a1e10e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textureType: 0
+  slicingLayer: 0
+  slicingLimit: 0
+  sliceCounter: 0
+  maxSlices: 10
+  material: {fileID: 0}
 --- !u!114 &114682216608950764
 MonoBehaviour:
   m_ObjectHideFlags: 1

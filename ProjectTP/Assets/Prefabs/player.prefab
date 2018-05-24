@@ -117,7 +117,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1933067163095548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.17, y: 0.85, z: 0}
+  m_LocalPosition: {x: -8.14, y: 0.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4864585650334074}
@@ -198,7 +198,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06999999, y: 0.110673666}
+  m_Offset: {x: -0.06999999, y: 0.10207003}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -209,7 +209,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.14, y: 2.4735365}
+  m_Size: {x: 1.14, y: 2.4907436}
   m_EdgeRadius: 0
 --- !u!61 &61444911356544784
 BoxCollider2D:
@@ -234,7 +234,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.5, y: 2.6}
+  m_Size: {x: 4.6, y: 2.8}
   m_EdgeRadius: 0
 --- !u!61 &61720924561934142
 BoxCollider2D:
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFacingRight: 1
   isJumping: 0
-  jumpVelocity: 6
+  jumpVelocity: 8
   maxSpeed: 7
 --- !u!114 &114465681763731596
 MonoBehaviour:

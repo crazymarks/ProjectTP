@@ -5,6 +5,8 @@ using UnityEngine;
 public class Button : MonoBehaviour {
     public Sprite buttonOn;
     public Sprite buttonOff;
+    public GameObject Door;
+    public int idNumber = 1;//ドアの何番目のスイッチ
 
     [HideInInspector]
     public bool isOpen = false;
@@ -14,21 +16,22 @@ public class Button : MonoBehaviour {
             if (isOpen == true)
             {
                 GetComponent<SpriteRenderer>().sprite = buttonOn;
+                Door.SendMessage("SwitchHandleOn",idNumber);
             }
             else
             {
                 GetComponent<SpriteRenderer>().sprite = buttonOff;
-            }
+                Door.SendMessage("SwitchHandleOff", idNumber);
+        }
     }
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if(col.gameObject.name!="ShotLens")
+        if(col.gameObject.name!="ShotLens"&&col.gameObject.name!="Overlap")
         isOpen = true;
     }
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.name != "ShotLens")
             isOpen = false;
     }
 }
