@@ -41,10 +41,12 @@ public class ShotLensController : MonoBehaviour {
                     ItemList[i].Items.transform.position.y - CameraCoordinate.y + PhotoCameraCoordinate.y, 
                     ItemList[i].Items.transform.position.z),
                     Quaternion.Euler(ItemList[i].Items.transform.eulerAngles));
+
                 TempObject.GetComponent<Pauser>().Pause();
                 ShotItem TempItem;
                 TempItem.Items = TempObject;
                 CopyList.Add(TempItem);
+
             }
             if (CopyList.Count!=0)
             {
@@ -120,10 +122,13 @@ public class ShotLensController : MonoBehaviour {
         Slicer2D.PolygonSliceAll(pos, newPolygon, slicePolygonDestroy, sliceLayer);
         HideDeleteFrame();
     }
+    /// <summary>
+    /// deleteframeが出現する
+    /// </summary>
     private void HideDeleteFrame()
     {
         DeleteFrame.SetActive(true);
-        Invoke("HideDeleteFrame2", 0.5f);
+        Invoke("HideDeleteFrame2", 0.3f);
     }
     private void HideDeleteFrame2()
     {

@@ -73,7 +73,7 @@ public class Slicer2D : MonoBehaviour {
 			MeshRenderer meshRenderer = GetComponent<MeshRenderer> ();
 			meshRenderer.material = material;
 
-			break;
+            break;
 
 		case TextureType.Sprite:
 			if (GetComponent<SpriteRenderer> () != null) 
@@ -229,8 +229,12 @@ public class Slicer2D : MonoBehaviour {
 			gObject.transform.rotation = transform.rotation;
             gObject.AddComponent<Pauser>().Pause();
             GameObject.Find("ShotLens").SendMessage("ItemListAdd",gObject);
+            if (gameObject.GetComponent<MeshRenderer>() != null)
+            {
+                gObject.GetComponent<MeshRenderer>().material.color = new Vector4(1,1,1,0.1f); 
+            }
 
-			switch (textureType) {
+            switch (textureType) {
 				case TextureType.Sprite:
 					if (gameObject.GetComponent<SpriteRenderer> () != null && gObject.GetComponent<SpriteMesh2D> () == null)
 						gObject.AddComponent<SpriteMesh2D> ();

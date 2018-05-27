@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovingItem : MonoBehaviour {
     public GameObject pointA = null;
     public GameObject pointB = null;
+
     public float speed = 1f;
     [HideInInspector]
     public bool directionAB = true;
@@ -14,7 +15,13 @@ public class MovingItem : MonoBehaviour {
     private int stopCount = 0;  //止まる時間を数える
     private Vector3 lastPosition;//動いたか　を判断する
     private bool canMove = true; //スイッチによって。移動するかどうかを確認
-    bool firstSwitch = true;　//一つ目のスイッチの状態
+    bool firstSwitchState= false;　//一つ目のスイッチの状態
+    bool secondSwitchState = false;  //二つ目のスイッチの状態
+    [HideInInspector]
+    public List<GameObject> firstSwitch = null;
+    [HideInInspector]
+    public List<GameObject> secondSwitch = null;
+
 
     void Start()
     {
@@ -23,6 +30,7 @@ public class MovingItem : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate() {
+        Debug.Log(firstSwitch);
         float movingX = pointB.transform.position.x - pointA.transform.position.x;
         float movingY = pointB.transform.position.y - pointA.transform.position.y;
         float movingVectorSize = Mathf.Sqrt(movingX * movingX + movingY * movingY);
@@ -31,37 +39,36 @@ public class MovingItem : MonoBehaviour {
         if (Vector3.Distance(this.transform.position,pointA.transform.position)>Vector3.Distance(pointA.transform.position,pointB.transform.position)&&directionAB==true)
         {
             directionAB = !directionAB;
+            DirectionChange();           
         }else if(Vector3.Distance(this.transform.position, pointB.transform.position) > Vector3.Distance(pointA.transform.position, pointB.transform.position) && directionAB == false)
         {
             directionAB = !directionAB;
+            DirectionChange();
         }
 
-        if (true)    //スイッチによって、コントロールする
+        if (canMove)    //スイッチによって、コントロールする
         {
-            if (directionAB == true)
-            {
-                this.GetComponent<Rigidbody2D>().velocity = (movingVector * speed);
-            }
-            else
-            {
-                this.GetComponent<Rigidbody2D>().velocity = -(movingVector * speed);
-            }
-
+            DirectionChange();
             if (lastPosition == this.transform.position)
             {
 
                 stopCount++;
-                if (stopCount > 30)
+                if (stopCount > 20)
                 {
                     directionAB = !directionAB;
                     stopCount = 0;
+                    DirectionChange();
                 }
             }
             else
             {
                 stopCount = 0;
             }
-        }     
+        }
+        else
+        {
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+        }    
         lastPosition = this.transform.position;
     }
 
@@ -72,14 +79,18 @@ public class MovingItem : MonoBehaviour {
         return changedPosition;
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-       if (col.transform.gameObject.tag == "Terrain")
-       {
-           directionAB = !directionAB;
-       }
-    }
 
+    void DirectionChange()
+    {
+        if (directionAB == true)
+        {
+            this.GetComponent<Rigidbody2D>().velocity = (movingVector * speed);
+        }
+        else
+        {
+            this.GetComponent<Rigidbody2D>().velocity = -(movingVector * speed);
+        }
+    }
 
     /// <summary>
     /// 各レバーとボタンnの　オン　状態　
@@ -87,7 +98,7 @@ public class MovingItem : MonoBehaviour {
     /// </summary>
     void SwitchHandleOn(int number)
     {
-        Debug.Log("1");
+        Debug.Log("On");
         switch (number)
         {   
             case 1:
@@ -103,7 +114,7 @@ public class MovingItem : MonoBehaviour {
     /// </summary>
     void SwitchHandleOff(int number)
     {
-        Debug.Log("2");
+        Debug.Log("Off");
         switch (number)
         {
             case 1:

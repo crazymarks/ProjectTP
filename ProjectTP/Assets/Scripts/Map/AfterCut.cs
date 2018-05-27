@@ -5,12 +5,13 @@ using UnityEngine;
 public class AfterCut : MonoBehaviour {
 
     private MeshRenderer MR;
-    private float Transparency = 1.0f;
+    private float Transparency;
     private int count = 0;
 
     // 各オブジェクトの対応が違う
     void Start () {
         MR = this.gameObject.GetComponent<MeshRenderer>();
+        Transparency = MR.material.color.a;
         get_transparency();
     }
 	

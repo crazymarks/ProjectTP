@@ -10,9 +10,24 @@ public class Button : MonoBehaviour {
 
     [HideInInspector]
     public bool isOpen = false;
+    private bool isStay = false;
+    private int count = 0;
 
     void FixedUpdate()
     {
+        if (isStay == false)
+        {
+            count++;
+            if (count == 5)
+            {
+                isOpen = false;
+            }
+        }
+        else
+        {
+            count = 0;
+        }
+
             if (isOpen == true)
             {
                 GetComponent<SpriteRenderer>().sprite = buttonOn;
@@ -27,11 +42,16 @@ public class Button : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if(col.gameObject.name!="ShotLens"&&col.gameObject.name!="Overlap")
-        isOpen = true;
+        if (col.gameObject.name != "ShotLens" && col.gameObject.name != "Overlap")
+        {
+            isStay = true;
+            isOpen = true;
+        }
+
     }
     void OnTriggerExit2D(Collider2D col)
     {
-            isOpen = false;
+        if (col.gameObject.name != "ShotLens" && col.gameObject.name != "Overlap")
+            isStay = false;
     }
 }

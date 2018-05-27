@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
         }
         else if(isJumping == true && move != 0f)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed *0.4f, GetComponent<Rigidbody2D>().velocity.y);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed *0.6f, GetComponent<Rigidbody2D>().velocity.y);
         }
        
         //向きを変わる
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour {
         if (jumpSpeedY == (int)(GetComponent<Rigidbody2D>().velocity.y * 100))
         {
             landFlag++;
-            if (landFlag == 3)
+            if (landFlag == 1)
             {
                 isJumping = false;
             }

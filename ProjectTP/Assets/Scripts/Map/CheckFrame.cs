@@ -13,11 +13,9 @@ public class CheckFrame : MonoBehaviour {
 
      void OnTriggerEnter2D(Collider2D tempObject)
     {
-        Debug.Log("rua");
         if (checkList.Count == 0)
         {
             checkList.Add( tempObject.gameObject);
-            Debug.Log("da");
         }
 
         for (int i = 0; i < checkList.Count; i++)
@@ -78,25 +76,11 @@ public class CheckFrame : MonoBehaviour {
                         break;
 
 
-                    case "Door":
-                        if (checkList[i].GetComponent<Button>().isOpen == true)
-                        {
-                            GameObject tempObject2 = Instantiate(buttonOn, checkList[i].transform.position, Quaternion.identity);
-                            tempObject2.GetComponent<Pauser>().Pause();
-                            Destroy(checkList[i]);
-                        }
-                        else
-                        {
-                            GameObject tempObject2 = Instantiate(buttonOff, checkList[i].transform.position, Quaternion.identity);
-                            tempObject2.GetComponent<Pauser>().Pause();
-                            Destroy(checkList[i]);
-                        }
+                    case "Door"://未完成
+
                         break;
                 }
-
-
             }
-
             checkList.Clear();
         }
 
