@@ -129,13 +129,13 @@
     <Compile Include="Assets\Scripts\Map\Button.cs" />
     <Compile Include="Assets\Scripts\Map\CheckFrame.cs" />
     <Compile Include="Assets\Scripts\Map\Door.cs" />
-    <Compile Include="Assets\Scripts\Map\DoorOneSwitch.cs" />
     <Compile Include="Assets\Scripts\Map\Lever.cs" />
     <Compile Include="Assets\Scripts\Map\MovingItem.cs" />
     <Compile Include="Assets\Scripts\Map\Pauser.cs" />
     <Compile Include="Assets\Scripts\Map\PointA.cs" />
     <Compile Include="Assets\Scripts\Map\PointB.cs" />
     <Compile Include="Assets\Scripts\Map\Spines.cs" />
+    <Compile Include="Assets\Scripts\Map\SwitchID.cs" />
     <Compile Include="Assets\Scripts\Player\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\ShotAndCut\Cutter.cs" />
