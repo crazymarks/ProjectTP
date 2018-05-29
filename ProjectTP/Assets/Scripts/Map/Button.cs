@@ -45,7 +45,7 @@ public class Button : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.name != "ShotLens" && col.gameObject.name != "Overlap")
+        if (col.gameObject.name != "ShotLens" && col.gameObject.name != "Overlap"&&col.gameObject.tag!="Button")
         {
             isStay = true;
             isOpen = true;
@@ -54,7 +54,7 @@ public class Button : MonoBehaviour {
     }
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.name != "ShotLens" && col.gameObject.name != "Overlap")
+        if (col.gameObject.name != "ShotLens" && col.gameObject.name != "Overlap" && col.gameObject.tag != "Button")
             isStay = false;
     }
 }

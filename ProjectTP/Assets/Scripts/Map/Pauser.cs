@@ -38,7 +38,8 @@ public class Pauser : MonoBehaviour
                 && obj != GetComponent<BoxCollider2D>()
                 && obj != GetComponent<PolygonCollider2D>()
                 && obj != GetComponent<CircleCollider2D>()
-                && obj!=GetComponent<SpriteMesh2D>(); }
+                && obj!=GetComponent<SpriteMesh2D>()
+                && obj!=GetComponent<MeshRenderer>(); }
             );
         foreach (var com in pauseBehavs)
         {

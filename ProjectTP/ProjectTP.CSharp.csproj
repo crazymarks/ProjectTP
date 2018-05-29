@@ -123,6 +123,7 @@
     <Compile Include="Assets\FunkyCode\SmartUtilities2D\Resources\Scripts\Utilities\TimeHelper.cs" />
     <Compile Include="Assets\FunkyCode\SmartUtilities2D\Resources\Scripts\Utilities\Vector2f.cs" />
     <Compile Include="Assets\FunkyCode\SmartUtilities2D\Resources\Scripts\Utilities\VectorList2f.cs" />
+    <Compile Include="Assets\GameController.cs" />
     <Compile Include="Assets\Scripts\Damageable.cs" />
     <Compile Include="Assets\Scripts\Damager.cs" />
     <Compile Include="Assets\Scripts\Map\AfterCut.cs" />

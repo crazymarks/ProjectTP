@@ -30,7 +30,7 @@ public class ShotLensController : MonoBehaviour {
 
     void Update () {
         //写真を撮る
-        if (Input.GetButtonDown("Shot")&&IsShoted==false){
+        if (Input.GetButtonDown("Shot")&&IsShoted==false&&GameObject.Find("Player").GetComponent<PlayerController>().isJumping==false){
 
             CameraCoordinate = this.transform.position;
 
@@ -41,6 +41,13 @@ public class ShotLensController : MonoBehaviour {
                     ItemList[i].Items.transform.position.y - CameraCoordinate.y + PhotoCameraCoordinate.y, 
                     ItemList[i].Items.transform.position.z),
                     Quaternion.Euler(ItemList[i].Items.transform.eulerAngles));
+
+                if (ItemList[i].Items.GetComponent<MeshRenderer>()!=null)
+                {
+                    TempObject.GetComponent<MeshRenderer>().material.color = new Vector4(ItemList[i].Items.GetComponent<MeshRenderer>().material.color.r,
+                        ItemList[i].Items.GetComponent<MeshRenderer>().material.color.g, ItemList[i].Items.GetComponent<MeshRenderer>().material.color.b,
+                        ItemList[i].Items.GetComponent<MeshRenderer>().material.color.a);
+                }
 
                 TempObject.GetComponent<Pauser>().Pause();
                 ShotItem TempItem;
@@ -57,7 +64,7 @@ public class ShotLensController : MonoBehaviour {
         }
 
         //モノを再現する
-        if (Input.GetButtonDown("Trace")&&CanTrace==true)
+        if (Input.GetButtonDown("Trace")&&CanTrace==true&& GameObject.Find("Player").GetComponent<PlayerController>().isJumping == false)
         {
             CameraCoordinate = this.transform.position;
             if (CopyList.Count > 0)
@@ -112,7 +119,7 @@ public class ShotLensController : MonoBehaviour {
     {
         Polygon newPolygon = new Polygon();
         GameObject Photo1 =  GameObject.Find("Photo1");
-        Vector2f pos = new Vector2f(-40f,-15f);//Photo1.transform.position.x,Photo1.transform.position.y
+        Vector2f pos = new Vector2f(Photo1.transform.position.x, Photo1.transform.position.y);//-40f -15f
         newPolygon.AddPoint(-Photo1.GetComponent<BoxCollider2D>().size.x/2,Photo1.GetComponent<BoxCollider2D>().size.y/2);
         newPolygon.AddPoint(Photo1.GetComponent<BoxCollider2D>().size.x / 2,Photo1.GetComponent<BoxCollider2D>().size.y / 2);
         newPolygon.AddPoint(Photo1.GetComponent<BoxCollider2D>().size.x / 2,-Photo1.GetComponent<BoxCollider2D>().size.y / 2);
@@ -153,8 +160,8 @@ public class ShotLensController : MonoBehaviour {
         ShotItem sItem;
         sItem.Items = obj;
         CopyList.Add(sItem);
-        obj.AddComponent<AfterCut>();
-        obj.GetComponent<Pauser>().Pause();
+        obj.GetComponent<MeshRenderer>().material.color = new Vector4(1f, 1f, 1f, 0.3f);
+        //   obj.GetComponent<Pauser>().Pause();
     }
 
 

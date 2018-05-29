@@ -203,8 +203,13 @@ public class Slicer2D : MonoBehaviour {
 			GameObject gObject = Instantiate (gameObject);
 
 			resultGameObjects.Add (gObject);
+            //透明度変更
+            if (gameObject.GetComponent<MeshRenderer>() != null)
+            {
+                gObject.GetComponent<MeshRenderer>().material.color = new Vector4(1f,1f,1f,0.3f);
+            }
 
-			Component[] components = GetComponents<Component> ();
+            Component[] components = GetComponents<Component> ();
 			foreach (Component c in components) 
 				if (c.GetType () == typeof(Rigidbody2D)) {
 					Rigidbody2D originalRigidBody = (Rigidbody2D)c;
@@ -229,10 +234,6 @@ public class Slicer2D : MonoBehaviour {
 			gObject.transform.rotation = transform.rotation;
             gObject.AddComponent<Pauser>().Pause();
             GameObject.Find("ShotLens").SendMessage("ItemListAdd",gObject);
-            if (gameObject.GetComponent<MeshRenderer>() != null)
-            {
-                gObject.GetComponent<MeshRenderer>().material.color = new Vector4(1,1,1,0.1f); 
-            }
 
             switch (textureType) {
 				case TextureType.Sprite:

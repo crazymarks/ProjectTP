@@ -16,6 +16,12 @@ public class CheckFrame : MonoBehaviour {
         if (checkList.Count == 0)
         {
             checkList.Add( tempObject.gameObject);
+            //消えるスクリプトを追加
+            if (tempObject.gameObject.GetComponent<AfterCut>()==null)
+            {
+                tempObject.gameObject.AddComponent<AfterCut>();
+                tempObject.gameObject.GetComponent<Pauser>().Pause();
+            }
         }
 
         for (int i = 0; i < checkList.Count; i++)
@@ -26,15 +32,44 @@ public class CheckFrame : MonoBehaviour {
                 return;
             }
         }
-        checkList.Add(tempObject.gameObject);      
+        checkList.Add(tempObject.gameObject);
+        //消えるスクリプトを追加
+        if (tempObject.gameObject.GetComponent<AfterCut>() == null)
+        {
+            tempObject.gameObject.AddComponent<AfterCut>();
+            tempObject.gameObject.GetComponent<Pauser>().Pause();
+        }
     }
 
-
-    void OnCollisionEnter2D(Collision2D TempObject)
+    void OnCollisionEnter2D(Collision2D tempObject)
     {
-        Debug.Log(TempObject.gameObject.name);
-    }
+        if (checkList.Count == 0)
+        {
+            checkList.Add(tempObject.gameObject);
+            //消えるスクリプトを追加
+            if (tempObject.gameObject.GetComponent<AfterCut>() == null)
+            {
+                tempObject.gameObject.AddComponent<AfterCut>();
+                tempObject.gameObject.GetComponent<Pauser>().Pause();
+            }
+        }
 
+        for (int i = 0; i < checkList.Count; i++)
+        {
+
+            if (tempObject.gameObject == checkList[i])
+            {
+                return;
+            }
+        }
+        checkList.Add(tempObject.gameObject);
+        //消えるスクリプトを追加
+        if (tempObject.gameObject.GetComponent<AfterCut>() == null)
+        {
+            tempObject.gameObject.AddComponent<AfterCut>();
+            tempObject.gameObject.GetComponent<Pauser>().Pause();
+        }
+    }
 
     public void HandleItem()　　//チェックしたものを扱う
     {
@@ -49,12 +84,14 @@ public class CheckFrame : MonoBehaviour {
                         if (checkList[i].GetComponent<Lever>().isOpen == true)
                         {
                             GameObject tempObject2 = Instantiate(leverOn, checkList[i].transform.position, Quaternion.identity);
+                            tempObject2.gameObject.AddComponent<AfterCut>();
                             tempObject2.GetComponent<Pauser>().Pause();
                             Destroy(checkList[i]);
                         }
                         else
                         {
                             GameObject tempObject2 = Instantiate(leverOff, checkList[i].transform.position, Quaternion.identity);
+                            tempObject2.gameObject.AddComponent<AfterCut>();
                             tempObject2.GetComponent<Pauser>().Pause();
                             Destroy(checkList[i]);
                         }
@@ -63,22 +100,21 @@ public class CheckFrame : MonoBehaviour {
                     case "Button":
                         if (checkList[i].GetComponent<Button>().isOpen == true)
                         {
+
                             GameObject tempObject2 = Instantiate(buttonOn, checkList[i].transform.position, Quaternion.identity);
+                            tempObject2.gameObject.AddComponent<AfterCut>();
                             tempObject2.GetComponent<Pauser>().Pause();
                             Destroy(checkList[i]);
                         }
                         else
                         {
                             GameObject tempObject2 = Instantiate(buttonOff, checkList[i].transform.position, Quaternion.identity);
+                            tempObject2.gameObject.AddComponent<AfterCut>();
                             tempObject2.GetComponent<Pauser>().Pause();
                             Destroy(checkList[i]);
                         }
                         break;
 
-
-                    case "Door"://未完成
-
-                        break;
                 }
             }
             checkList.Clear();
