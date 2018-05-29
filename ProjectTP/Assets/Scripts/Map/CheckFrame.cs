@@ -41,36 +41,6 @@ public class CheckFrame : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter2D(Collision2D tempObject)
-    {
-        if (checkList.Count == 0)
-        {
-            checkList.Add(tempObject.gameObject);
-            //消えるスクリプトを追加
-            if (tempObject.gameObject.GetComponent<AfterCut>() == null)
-            {
-                tempObject.gameObject.AddComponent<AfterCut>();
-                tempObject.gameObject.GetComponent<Pauser>().Pause();
-            }
-        }
-
-        for (int i = 0; i < checkList.Count; i++)
-        {
-
-            if (tempObject.gameObject == checkList[i])
-            {
-                return;
-            }
-        }
-        checkList.Add(tempObject.gameObject);
-        //消えるスクリプトを追加
-        if (tempObject.gameObject.GetComponent<AfterCut>() == null)
-        {
-            tempObject.gameObject.AddComponent<AfterCut>();
-            tempObject.gameObject.GetComponent<Pauser>().Pause();
-        }
-    }
-
     public void HandleItem()　　//チェックしたものを扱う
     {
 

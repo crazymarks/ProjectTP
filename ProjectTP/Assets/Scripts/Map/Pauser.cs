@@ -77,10 +77,9 @@ public class Pauser : MonoBehaviour
 
         for (var i = 0; i < rg2dBodies.Length; ++i)
         {
-            if (rg2dBodies[i].transform.gameObject.tag != "MovingItem")
-            {
+
                 rg2dBodies[i].isKinematic = false;
-            }
+            
             rg2dBodies[i].WakeUp();
             rg2dBodies[i].velocity = rg2dBodyVels[i];
             rg2dBodies[i].angularVelocity = rg2dBodyAVels[i];

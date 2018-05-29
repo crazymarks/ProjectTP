@@ -160,8 +160,6 @@ public class ShotLensController : MonoBehaviour {
         ShotItem sItem;
         sItem.Items = obj;
         CopyList.Add(sItem);
-        obj.GetComponent<MeshRenderer>().material.color = new Vector4(1f, 1f, 1f, 0.3f);
-        //   obj.GetComponent<Pauser>().Pause();
     }
 
 
