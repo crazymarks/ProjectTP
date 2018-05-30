@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Overlap : MonoBehaviour {
+    public Color color = Color.white;
+    public float lineWidth = 0.5f;
+    public bool smooth = true;
+
+    private float lineOffset = -0.001f;
+    private Polygon poly = new Polygon();
+    public GameObject lineDot;
 
     void Start()
     {
         this.transform.position = GameObject.Find("ShotLens").transform.position+new Vector3(0f,0.05f,0f);
+        lineDot.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 0f);
     }
     /// <summary>
     /// 写真が再現できるかどうかを確認するため
@@ -14,6 +22,12 @@ public class Overlap : MonoBehaviour {
     /// </summary>
     public void GetTrigger()
     {
+        //線を描く
+        Max2D.SetLineWidth(lineWidth);
+        Max2D.SetColor(color);
+        Max2D.SetSmooth(smooth);
+        Max2D.SetBorder(false);
+
         if (GameObject.Find("Player").GetComponent<PlayerController>().isFacingRight == true)
         {
             GameObject Photo1 = GameObject.Find("Photo1");
@@ -32,7 +46,7 @@ public class Overlap : MonoBehaviour {
                         {
                             TempPoint[j].x = TempPoint[j].x * ShotLensController.CopyList[i].Items.transform.lossyScale.x;
                             TempPoint[j].y = TempPoint[j].y * ShotLensController.CopyList[i].Items.transform.lossyScale.y;
-
+                            
                         }
                         TempCollider.SetPath(0, TempPoint);
                         TempCollider.offset = new Vector2(ShotLensController.CopyList[i].Items.transform.position.x - Photo1.transform.position.x + ShotLensController.CopyList[i].Items.GetComponent<PolygonCollider2D>().offset.x,
@@ -51,6 +65,7 @@ public class Overlap : MonoBehaviour {
                         TempCollider.size = TempSize;
                         TempCollider.offset = new Vector2(ShotLensController.CopyList[i].Items.transform.position.x - Photo1.transform.position.x + ShotLensController.CopyList[i].Items.GetComponent<BoxCollider2D>().offset.x,
                             ShotLensController.CopyList[i].Items.transform.position.y - Photo1.transform.position.y + ShotLensController.CopyList[i].Items.GetComponent<BoxCollider2D>().offset.y);
+                        
                     }
                     if (ShotLensController.CopyList[i].Items.GetComponent<CircleCollider2D>() != null)  //circleの場合
                     {
@@ -136,7 +151,7 @@ public class Overlap : MonoBehaviour {
                 }
             }
         }
-       
+
     }
     public void DeleteTrigger()
     {
@@ -145,10 +160,12 @@ public class Overlap : MonoBehaviour {
     void OnTriggerStay2D(Collider2D col)
     {
             ShotLensController.CanTrace = false;
-
+           lineDot.GetComponent<SpriteRenderer>().color=new Vector4(1,1,1,0.4f);
+           
     }
     void OnTriggerExit2D(Collider2D col)
     {
         ShotLensController.CanTrace = true;
+        lineDot.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 0f);
     }
 }
