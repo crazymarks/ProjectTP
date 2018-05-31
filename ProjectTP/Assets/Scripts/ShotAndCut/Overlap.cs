@@ -3,12 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Overlap : MonoBehaviour {
-    public Color color = Color.white;
-    public float lineWidth = 0.5f;
-    public bool smooth = true;
 
-    private float lineOffset = -0.001f;
-    private Polygon poly = new Polygon();
     public GameObject lineDot;
 
     void Start()
@@ -22,11 +17,6 @@ public class Overlap : MonoBehaviour {
     /// </summary>
     public void GetTrigger()
     {
-        //線を描く
-        Max2D.SetLineWidth(lineWidth);
-        Max2D.SetColor(color);
-        Max2D.SetSmooth(smooth);
-        Max2D.SetBorder(false);
 
         if (GameObject.Find("Player").GetComponent<PlayerController>().isFacingRight == true)
         {
@@ -155,8 +145,15 @@ public class Overlap : MonoBehaviour {
     }
     public void DeleteTrigger()
     {
-        Destroy( this.gameObject.GetComponent<Collider2D>());
+        foreach(var component in gameObject.GetComponents<Component>())
+        {
+            if (component != GetComponent<Overlap>())
+            {
+                Destroy(component);
+            }
+        }
     }
+
     void OnTriggerStay2D(Collider2D col)
     {
             ShotLensController.CanTrace = false;

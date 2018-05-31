@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
         //向きを変わる
         if ((move>0.0f && isFacingRight==false) || (move<0.0f && isFacingRight==true))
         {
-            player_flip();
+            PlayerFlip();
         }
 
         if (Input.GetButtonDown("Jump") && isJumping == false)
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour {
     /// to flip player`s spirit
     /// </summary>
     
-    void player_flip()
+    void PlayerFlip()
     {
         isFacingRight = !isFacingRight;
         Vector3 PlayerScale = transform.localScale;
@@ -64,5 +64,11 @@ public class PlayerController : MonoBehaviour {
         transform.localScale = PlayerScale;
     }
 
-
+    public void PlayerDie()
+    {
+        Destroy(this.gameObject);
+        GameObject.Find("GameController").GetComponent<GameController>().ResetScene();
+   
+}
+        
 }

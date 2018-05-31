@@ -8,7 +8,7 @@ public class Spines : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player")
         {
-            Destroy(col.gameObject);
+            col.gameObject.GetComponent<PlayerController>().PlayerDie();
         }
         if(col.gameObject.tag == "BoxWood")
         {
