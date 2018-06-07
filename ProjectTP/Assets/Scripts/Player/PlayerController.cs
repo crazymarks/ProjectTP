@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour {
 
     public void PlayerDie()
     {
-        Destroy(this.gameObject);
+
         GameObject.Find("GameController").GetComponent<GameController>().ResetScene();
    
 }

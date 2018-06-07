@@ -18,7 +18,7 @@ public class ShotLensController : MonoBehaviour {
     private Vector3 PhotoCameraCoordinate; //写真を表示するカメラの座標
     private GameObject DeleteFrame;
     private GameObject checkFrame;
-    static public bool CanTrace = true;   //写真が再現できるかどうか
+    static public bool CanTrace = false;   //写真が再現できるかどうか
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void Start()
     {
@@ -60,14 +60,15 @@ public class ShotLensController : MonoBehaviour {
             if (CopyList.Count!=0)
             {
                 IsShoted = true;
+                Invoke("CheckFrameWork", 0.1f);  //チェックフレーム起動
+                Invoke("PolygonSlice", 0.3f);  //切り枠発動
             }
-            Invoke("CheckFrameWork", 0.1f);  //チェックフレーム起動
-            Invoke("PolygonSlice", 0.3f);  //切り枠発動
         }
 
         //モノを再現する
         if (Input.GetButtonDown("Trace")&&CanTrace==true&& GameObject.Find("Player").GetComponent<PlayerController>().isJumping == false)
         {
+            CanTrace = false;
             CameraCoordinate = this.transform.position;
             if (CopyList.Count > 0)
             {

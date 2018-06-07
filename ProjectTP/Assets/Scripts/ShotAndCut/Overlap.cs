@@ -141,13 +141,13 @@ public class Overlap : MonoBehaviour {
                 }
             }
         }
-
+        ShotLensController.CanTrace = true;
     }
     public void DeleteTrigger()
     {
         foreach(var component in gameObject.GetComponents<Component>())
         {
-            if (component != GetComponent<Overlap>())
+            if (component != GetComponent<Overlap>()&&component!=GetComponent<Transform>())
             {
                 Destroy(component);
             }
