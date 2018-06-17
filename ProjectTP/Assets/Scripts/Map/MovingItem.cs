@@ -13,7 +13,7 @@ public class MovingItem : MonoBehaviour {
     private Vector3 initialPosition;
     private Vector3 changedPosition;
     private int stopCount = 0;  //止まる時間を数える
-    private Vector3 lastPosition;//動いたか　を判断する
+    private Vector2 lastPosition;//動いたか　を判断する
     private bool canMove = true; //スイッチによって。移動するかどうかを確認
     bool firstSwitchState= false;　//一つ目のスイッチの状態
     bool secondSwitchState = false;  //二つ目のスイッチの状態
@@ -48,11 +48,11 @@ public class MovingItem : MonoBehaviour {
         if (canMove)    //スイッチによって、コントロールする
         {
             DirectionChange();
-            if (lastPosition == this.transform.position)
+            if (lastPosition == new Vector2((int)(this.transform.position.x * 100), (int)(this.transform.position.y * 100))) //移動出来なくなる場合
             {
 
                 stopCount++;
-                if (stopCount > 20)
+                if (stopCount > 10)
                 {
                     directionAB = !directionAB;
                     stopCount = 0;
@@ -67,8 +67,9 @@ public class MovingItem : MonoBehaviour {
         else
         {
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
-        }    
-        lastPosition = this.transform.position;
+        }
+       
+        lastPosition =new Vector2 ((int)(this.transform.position.x*100),(int)(this.transform.position.y*100));
     }
 
 
