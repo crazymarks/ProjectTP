@@ -21,7 +21,7 @@ public class MovingItem : MonoBehaviour {
     public List<GameObject> firstSwitch = null;
     [HideInInspector]
     public List<GameObject> secondSwitch = null;
-
+    public List<GameObject> attachedObj = null;
 
     void Start()
     {
@@ -38,11 +38,14 @@ public class MovingItem : MonoBehaviour {
         if (Vector3.Distance(this.transform.position,pointA.transform.position)>Vector3.Distance(pointA.transform.position,pointB.transform.position)&&directionAB==true)
         {
             directionAB = !directionAB;
-            DirectionChange();           
-        }else if(Vector3.Distance(this.transform.position, pointB.transform.position) > Vector3.Distance(pointA.transform.position, pointB.transform.position) && directionAB == false)
+            DirectionChange();
+            CancelInertance(); //慣性を消す
+        }
+        else if(Vector3.Distance(this.transform.position, pointB.transform.position) > Vector3.Distance(pointA.transform.position, pointB.transform.position) && directionAB == false)
         {
             directionAB = !directionAB;
             DirectionChange();
+            CancelInertance(); //慣性を消す
         }
 
         if (canMove)    //スイッチによって、コントロールする
@@ -57,6 +60,7 @@ public class MovingItem : MonoBehaviour {
                     directionAB = !directionAB;
                     stopCount = 0;
                     DirectionChange();
+                    CancelInertance(); //慣性を消す
                 }
             }
             else
@@ -81,7 +85,7 @@ public class MovingItem : MonoBehaviour {
 
 
     void DirectionChange()
-    {
+    {     
         if (directionAB == true)
         {
             this.GetComponent<Rigidbody2D>().velocity = (movingVector * speed);
@@ -217,5 +221,48 @@ public class MovingItem : MonoBehaviour {
             }
         } 
     }
+    /// <summary>
+    /// 接触したものを記録
+    /// </summary>
+    /// <param name="tempObject"></param>
+    void OnCollisionEnter2D(Collision2D tempObject)
+    {
+        for (int i = 0; i < attachedObj.Count; i++)
+        {
+            if (tempObject.gameObject == attachedObj[i])
+            {
+                return;
+            }
+        }
+
+        attachedObj.Add(tempObject.gameObject);
+    }
+
+    void OnColliderExit2D(Collider2D tempObject)
+    {
+        int Index1 = -1;
+        Index1 = attachedObj.FindIndex(x => x == tempObject.gameObject);
+        if (Index1 != -1)
+        {
+            attachedObj.RemoveAt(Index1);
+        }
+    }
+    /// <summary>
+    /// 慣性を消す
+    /// </summary>
+    void CancelInertance()
+    {
+        if (attachedObj.Count != 0)
+        {
+            for (int i = 0; i < attachedObj.Count; i++)
+            {
+                if (attachedObj[i].gameObject.GetComponent<Rigidbody2D>() != null&&attachedObj[i].tag!="Terrain")
+                {
+                    attachedObj[i].gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, -2f);
+                }
+            }
+        }
+    }
 }
+
 
