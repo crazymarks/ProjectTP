@@ -12,6 +12,8 @@ TagManager:
   - Lever
   - Button
   - Door
+  - Enemy
+  - Trigger
   layers:
   - Default
   - TransparentFX
