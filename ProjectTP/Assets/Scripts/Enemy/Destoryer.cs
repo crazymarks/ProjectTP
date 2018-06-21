@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Damager : MonoBehaviour {
+public class Destoryer : MonoBehaviour {
+
+
 
 	// Use this for initialization
 	void Start () {

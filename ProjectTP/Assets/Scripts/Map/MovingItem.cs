@@ -12,7 +12,7 @@ public class MovingItem : MonoBehaviour {
     private Vector2 movingVector= new Vector2 (0,0);
     private Vector3 initialPosition;
     private Vector3 changedPosition;
-    private int stopCount = 0;  //止まる時間を数える
+    private float stopCount = 0;  //止まる時間を数える
     private Vector2 lastPosition;//動いたか　を判断する
     private bool canMove = true; //スイッチによって。移動するかどうかを確認
     bool firstSwitchState= false;　//一つ目のスイッチの状態
@@ -22,6 +22,10 @@ public class MovingItem : MonoBehaviour {
     [HideInInspector]
     public List<GameObject> secondSwitch = null;
     public List<GameObject> attachedObj = null;
+    private bool reachFlag = false; //目標点に到着する
+    private float reachCount = 0;   //目標を到着後時間を計算する
+    public float stopTime = 2.0f;   //止まる時間
+    private bool changeFlag = false; //止まるから初めて動くフラグ　
 
     void Start()
     {
@@ -35,44 +39,55 @@ public class MovingItem : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate() {
         SwitchJudge();
+        // 目標に到着して、引き戻す
         if (Vector3.Distance(this.transform.position,pointA.transform.position)>Vector3.Distance(pointA.transform.position,pointB.transform.position)&&directionAB==true)
         {
             directionAB = !directionAB;
-            DirectionChange();
             CancelInertance(); //慣性を消す
+            reachFlag = true;
         }
         else if(Vector3.Distance(this.transform.position, pointB.transform.position) > Vector3.Distance(pointA.transform.position, pointB.transform.position) && directionAB == false)
         {
             directionAB = !directionAB;
-            DirectionChange();
             CancelInertance(); //慣性を消す
+            reachFlag = true;
         }
 
-        if (canMove)    //スイッチによって、コントロールする
+        if (canMove&&(!reachFlag))    //スイッチによって、コントロールする
         {
-            DirectionChange();
             if (lastPosition == new Vector2((int)(this.transform.position.x * 100), (int)(this.transform.position.y * 100))) //移動出来なくなる場合
             {
-
-                stopCount++;
-                if (stopCount > 10)
+                stopCount =stopCount+Time.deltaTime;
+                if (stopCount > stopTime)
                 {
                     directionAB = !directionAB;
-                    stopCount = 0;
+                    stopCount = 0f;
                     DirectionChange();
-                    CancelInertance(); //慣性を消す
+                    changeFlag = true;
                 }
             }
             else
             {
-                stopCount = 0;
+                stopCount = 0f;
             }
+            DirectionChange();
         }
         else
         {
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
         }
-       
+        if (reachFlag == true)  //目標に到着止まって、時間を計算する
+        {
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+            reachCount = reachCount + Time.deltaTime;
+            if (reachCount > stopTime)
+            { 
+                reachFlag = false;
+                changeFlag = true;
+                reachCount = 0f;
+            }
+        }
+
         lastPosition =new Vector2 ((int)(this.transform.position.x*100),(int)(this.transform.position.y*100));
     }
 
@@ -85,7 +100,12 @@ public class MovingItem : MonoBehaviour {
 
 
     void DirectionChange()
-    {     
+    {
+        if (changeFlag == true)
+        {
+            CancelInertance();
+            changeFlag = false;
+        }
         if (directionAB == true)
         {
             this.GetComponent<Rigidbody2D>().velocity = (movingVector * speed);
@@ -238,7 +258,7 @@ public class MovingItem : MonoBehaviour {
         attachedObj.Add(tempObject.gameObject);
     }
 
-    void OnColliderExit2D(Collider2D tempObject)
+    void OnCollisionExit2D(Collision2D tempObject)
     {
         int Index1 = -1;
         Index1 = attachedObj.FindIndex(x => x == tempObject.gameObject);
@@ -252,13 +272,14 @@ public class MovingItem : MonoBehaviour {
     /// </summary>
     void CancelInertance()
     {
+
         if (attachedObj.Count != 0)
         {
             for (int i = 0; i < attachedObj.Count; i++)
             {
                 if (attachedObj[i].gameObject.GetComponent<Rigidbody2D>() != null&&attachedObj[i].tag!="Terrain")
                 {
-                    attachedObj[i].gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, -2f);
+                    attachedObj[i].gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(attachedObj[i].gameObject.GetComponent<Rigidbody2D>().velocity.x, -2.5f);
                 }
             }
         }
