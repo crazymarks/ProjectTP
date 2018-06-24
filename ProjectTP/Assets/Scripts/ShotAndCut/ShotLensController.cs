@@ -94,6 +94,11 @@ public class ShotLensController : MonoBehaviour {
     //カメラレンズの範囲内のモノを記録
     void OnTriggerEnter2D(Collider2D TempObject)
     {
+        if (TempObject.gameObject.tag == "Trigger")
+        {
+            return;
+        }
+
         for (int i = 0; i < ItemList.Count; i++)
         {
             if (TempObject.gameObject == ItemList[i].Items)

@@ -124,8 +124,9 @@
     <Compile Include="Assets\FunkyCode\SmartUtilities2D\Resources\Scripts\Utilities\Vector2f.cs" />
     <Compile Include="Assets\FunkyCode\SmartUtilities2D\Resources\Scripts\Utilities\VectorList2f.cs" />
     <Compile Include="Assets\GameController.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Destoryer.cs" />
-    <Compile Include="Assets\Scripts\Enemy\DestoryerFall.cs" />
+    <Compile Include="Assets\Scripts\Enemy\AttackCheck.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Destroyer.cs" />
+    <Compile Include="Assets\Scripts\Enemy\ReturnCheck.cs" />
     <Compile Include="Assets\Scripts\Map\AfterCut.cs" />
     <Compile Include="Assets\Scripts\Map\Button.cs" />
     <Compile Include="Assets\Scripts\Map\CheckFrame.cs" />

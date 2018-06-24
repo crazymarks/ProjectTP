@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destoryer : MonoBehaviour {
+public class Destroyer : MonoBehaviour {
     private Vector2 lastPosition;//動いたか　を判断する
     private bool directionAB = true;
     public float speed = 2.0f;
@@ -49,5 +49,12 @@ public class Destoryer : MonoBehaviour {
         Vector3 enemyScale = transform.localScale;
         enemyScale.x = enemyScale.x * (-1);
         transform.localScale = enemyScale;
+    }
+    /// <summary>
+    /// directionAB つまり方向が変じる
+    /// </summary>
+   public void GetReturn() 
+    {
+        directionAB = !directionAB;
     }
 }
