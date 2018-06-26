@@ -152,6 +152,7 @@ public class Overlap : MonoBehaviour {
                 Destroy(component);
             }
         }
+        lineDot.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 0f);
     }
 
     void OnTriggerStay2D(Collider2D col)

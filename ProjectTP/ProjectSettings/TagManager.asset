@@ -14,6 +14,7 @@ TagManager:
   - Door
   - Enemy
   - Trigger
+  - SavePoint
   layers:
   - Default
   - TransparentFX
@@ -23,9 +24,9 @@ TagManager:
   - UI
   - 
   - 
-  - Door
+  - MovingItem
   - Lever
-  - 
+  - Destroyer
   - 
   - 
   - 
@@ -50,9 +51,6 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Door
-    uniqueID: 1451902837
     locked: 0
   - name: Lever
     uniqueID: 3071739969

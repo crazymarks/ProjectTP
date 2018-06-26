@@ -203,11 +203,6 @@ public class Slicer2D : MonoBehaviour {
 			GameObject gObject = Instantiate (gameObject);
 
 			resultGameObjects.Add (gObject);
-            //透明度変更
-            if (gameObject.GetComponent<MeshRenderer>() != null)
-            {
-                gObject.GetComponent<MeshRenderer>().material.color = new Vector4(1f,1f,1f,0.3f);
-            }
 
             Component[] components = GetComponents<Component> ();
 			foreach (Component c in components) 
@@ -233,7 +228,7 @@ public class Slicer2D : MonoBehaviour {
 			gObject.transform.position = transform.position;
 			gObject.transform.rotation = transform.rotation;
             gObject.AddComponent<Pauser>().Pause();
-            if (gObject.transform.position.y > -17.6)
+            if (gObject.transform.position.y > -17.6)//問題があるようだ
             {
                 GameObject.Find("ShotLens").SendMessage("ItemListAdd", gObject);
             }

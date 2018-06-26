@@ -8,6 +8,7 @@ public class CheckFrame : MonoBehaviour {
     public GameObject leverOn;
     public GameObject leverOff;
     public GameObject destroyerShot;
+    public GameObject savePointShot;
 
     public List<GameObject>  checkList=null;
     
@@ -89,6 +90,12 @@ public class CheckFrame : MonoBehaviour {
                         GameObject tempObject3 = Instantiate(destroyerShot, checkList[i].transform.position, Quaternion.identity);
                         tempObject3.gameObject.AddComponent<AfterCut>();
                         tempObject3.GetComponent<Pauser>().Pause();
+                        Destroy(checkList[i]);
+                        break;
+                    case "SavePoint":
+                        GameObject tempObject4 = Instantiate(savePointShot, checkList[i].transform.position, Quaternion.identity);
+                        tempObject4.gameObject.AddComponent<AfterCut>();
+                        tempObject4.GetComponent<Pauser>().Pause();
                         Destroy(checkList[i]);
                         break;
 

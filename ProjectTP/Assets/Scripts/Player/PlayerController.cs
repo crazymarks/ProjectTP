@@ -13,6 +13,11 @@ public class PlayerController : MonoBehaviour {
     private int landFlag=0;    //着陸かどうかを確認  連続3フレーム跳びスピードが同じなら、着陸した
     private float jumpSpeedY = 0.0f; //今の跳びスピード
 
+    void Start()
+    {
+            this.transform.position = GameObject.Find("GameController").GetComponent<GameController>().GetBornPosition();
+    }
+
 	void FixedUpdate () {
         float move = Input.GetAxis("Horizontal");
        if (isJumping == false && move!=0f)

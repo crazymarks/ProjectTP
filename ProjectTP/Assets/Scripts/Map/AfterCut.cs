@@ -15,7 +15,6 @@ public class AfterCut : MonoBehaviour {
         {
             MR = this.gameObject.GetComponent<MeshRenderer>();
             aa = MR.material.color;
-            //  get_transparency();
         }
     }	
     void Update()
@@ -38,7 +37,7 @@ public class AfterCut : MonoBehaviour {
         }
     }
 
-    void get_transparency() //透明化する
+    public　void GetTransparency() //透明値を継承する
     {
 
     }

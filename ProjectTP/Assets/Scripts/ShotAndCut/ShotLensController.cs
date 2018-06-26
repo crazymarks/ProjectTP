@@ -83,8 +83,9 @@ public class ShotLensController : MonoBehaviour {
                     }
                 }
                 Pauser.Resume();
-                CopyList.Clear();
             }
+            //写真を消す
+            CopyList.Clear();
             IsShoted = false;
             GameObject.Find("Overlap").GetComponent<Overlap>().DeleteTrigger();
             checkFrame.SetActive(true);
@@ -153,7 +154,7 @@ public class ShotLensController : MonoBehaviour {
 
     /// <summary>
     /// checkframe  消す　チェックした物を扱う
-    /// </summary>
+    /// </summary>g
     /// <param name="obj"></param>
     private void CheckFrameWork()
     {
@@ -169,6 +170,26 @@ public class ShotLensController : MonoBehaviour {
         sItem.Items = obj;
         CopyList.Add(sItem);
     }
-
-
+    /// <summary>
+    /// 写真を消します
+    /// </summary>
+    public void ShotClear()
+    {
+        CanTrace = false;
+        if (CopyList.Count > 0)
+        {
+            for (int i = 0; i < CopyList.Count; i++)
+            {
+                if (CopyList[i].Items != null)
+                {
+                    Destroy(CopyList[i].Items);
+                }
+            }
+        }
+        //写真を消す
+        CopyList.Clear();
+        IsShoted = false;
+        GameObject.Find("Overlap").GetComponent<Overlap>().DeleteTrigger();
+        checkFrame.SetActive(true);
+    }
 }

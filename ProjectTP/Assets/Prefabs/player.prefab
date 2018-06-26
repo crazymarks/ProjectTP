@@ -19,6 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4134618388964278}
+  - component: {fileID: 61446875672540246}
+  - component: {fileID: 114256663472280534}
   m_Layer: 0
   m_Name: DeathZone
   m_TagString: Untagged
@@ -156,8 +158,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1245875367854776}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.43, y: 5.32, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.45, y: 7.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.058982715}
   m_Children:
   - {fileID: 4290229601922526}
@@ -229,6 +231,31 @@ CircleCollider2D:
   m_Offset: {x: -0.02, y: -1.34}
   serializedVersion: 2
   m_Radius: 0.28264752
+--- !u!61 &61446875672540246
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1077926029039426}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.05509281, y: 0.18773246}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.31072044, y: 2.7949262}
+  m_EdgeRadius: 0
 --- !u!61 &61487885326690950
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -279,6 +306,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6092826, y: 3.3086143}
   m_EdgeRadius: 0
+--- !u!114 &114256663472280534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1077926029039426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 874a30c9062d89e48a7ee4cfc0a405f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114398497176006564
 MonoBehaviour:
   m_ObjectHideFlags: 1
