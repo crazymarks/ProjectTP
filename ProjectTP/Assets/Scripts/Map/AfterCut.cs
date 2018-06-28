@@ -23,7 +23,8 @@ public class AfterCut : MonoBehaviour {
         {
             //地形、ボタンすぐ消える
             if (this.gameObject.tag=="Terrain"||
-                this.gameObject.tag == "Button")
+                this.gameObject.tag == "Button"||
+                this.gameObject.tag=="Destroyer")
             {
                 MR.material.color = new Vector4(MR.material.color.r, MR.material.color.g, MR.material.color.b, MR.material.color.a - 0.01f);
             }

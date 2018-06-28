@@ -19,7 +19,7 @@ public class CheckFrame : MonoBehaviour {
         {
             checkList.Add( tempObject.gameObject);
             //消えるスクリプトを追加
-            if (tempObject.gameObject.GetComponent<AfterCut>()==null)
+            if (tempObject.gameObject.GetComponent<AfterCut>()==null&&tempObject.gameObject.name!="DeleteFrame")
             {
                 tempObject.gameObject.AddComponent<AfterCut>();
                 tempObject.gameObject.GetComponent<Pauser>().Pause();

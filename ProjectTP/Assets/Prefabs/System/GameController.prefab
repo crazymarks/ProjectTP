@@ -51,3 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d065ce3e2824b54ba86938301ba7de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1007018626884216, guid: 19c50683261431d4984f7de3d96baf81, type: 2}
+  stageName: Stage01

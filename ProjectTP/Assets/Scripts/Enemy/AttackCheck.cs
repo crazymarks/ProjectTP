@@ -27,5 +27,10 @@ public class AttackCheck : MonoBehaviour {
         {
             Destroy(col.gameObject);
         }
+        if (col.gameObject.tag == "SavePoint")
+        {
+            Destroy(col.gameObject);
+            GameObject.Find("GameController").GetComponent<GameController>().SavePointDestroy(col.transform.position);
+        }
     }
 }
