@@ -21,13 +21,15 @@ public class AfterCut : MonoBehaviour {
     {
         if (MR != null)
         {
-            if (false)
+            //地形、ボタンすぐ消える
+            if (this.gameObject.tag=="Terrain"||
+                this.gameObject.tag == "Button")
             {
-                MR.material.color = aa;
+                MR.material.color = new Vector4(MR.material.color.r, MR.material.color.g, MR.material.color.b, MR.material.color.a - 0.01f);
             }
             else
             {
-                MR.material.color = new Vector4(MR.material.color.r, MR.material.color.g, MR.material.color.b, MR.material.color.a - 0.01f);
+                MR.material.color = new Vector4(MR.material.color.r, MR.material.color.g, MR.material.color.b, MR.material.color.a - 0.003f);
             }
 
             if (MR.material.color.a < 0)

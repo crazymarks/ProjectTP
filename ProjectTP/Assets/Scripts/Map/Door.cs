@@ -21,15 +21,17 @@ public class Door : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         SwitchJudge();
-        if (canOpen == true)
+        if (canOpen == true&&this.transform.position.y<(oldPosition.y+4))
         {
-            float step = 5 * Time.deltaTime;
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, oldPosition-new Vector3(0,gameObject.GetComponent<BoxCollider2D>().size.y*gameObject.transform.localScale.y,0), step);
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(0,8);
+        }
+        else if(canOpen ==false && this.transform.position.y > oldPosition.y )
+        {
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -8);
         }
         else
         {
-            float step = 5 * Time.deltaTime;
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, oldPosition , step);
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
         }
 	}
 

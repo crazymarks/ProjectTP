@@ -14,5 +14,22 @@ public class Spines : MonoBehaviour {
         {
             Destroy(col.gameObject);
         }
+        if (col.gameObject.tag == "MovingItem"&&(this.transform.localPosition.y-1.3f)>col.transform.localPosition.y)
+        {
+            this.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezeRotation);
+
+        }
+        if (col.gameObject.tag == "Destroyer")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "MovingItem")
+        {
+            this.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezePositionX) | (RigidbodyConstraints2D.FreezeRotation);
+
+        }
     }
 }

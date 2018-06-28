@@ -24,9 +24,9 @@ GameObject:
   - component: {fileID: 61906961018560076}
   - component: {fileID: 114351669311381502}
   - component: {fileID: 114243346237013510}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DestroyerShot
-  m_TagString: Enemy
+  m_TagString: Destroyer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

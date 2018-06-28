@@ -188,8 +188,16 @@ public class ShotLensController : MonoBehaviour {
         }
         //写真を消す
         CopyList.Clear();
-        IsShoted = false;
+        IsShoted = true;//範囲内写真をとれなくなる
         GameObject.Find("Overlap").GetComponent<Overlap>().DeleteTrigger();
         checkFrame.SetActive(true);
+        //uiを追加します
+    }
+    /// <summary>
+    /// SavePointから出たら、写真が撮れる
+    /// </summary>
+    public void ShotRecovery()
+    {
+        IsShoted = false;
     }
 }

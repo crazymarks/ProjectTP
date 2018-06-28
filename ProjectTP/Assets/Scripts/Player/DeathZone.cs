@@ -8,7 +8,8 @@ public class DeathZone : MonoBehaviour {
         if (col.tag == "Trigger" || 
             col.tag =="SavePoint"||
             col.tag=="Lever"||
-            col.tag=="Button")
+            col.tag=="Button"||
+            col.tag=="Ladder")
         {
             return;
         }

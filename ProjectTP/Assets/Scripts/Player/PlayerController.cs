@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour {
     public float maxSpeed = 7.0f;
     private int landFlag=0;    //着陸かどうかを確認  連続3フレーム跳びスピードが同じなら、着陸した
     private float jumpSpeedY = 0.0f; //今の跳びスピード
+    private bool canClimb = false;
+    private bool isClimbing = false;
 
     void Start()
     {
@@ -55,6 +57,13 @@ public class PlayerController : MonoBehaviour {
             isJumping = true;
         }
         jumpSpeedY =(int) (GetComponent<Rigidbody2D>().velocity.y*100);
+
+        //梯子を登る
+        if(canClimb==true&& Input.GetAxis("Vertical") !=0)
+        {
+            this.GetComponent<Rigidbody2D>().gravityScale = 0;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, Input.GetAxis("Vertical"));
+        }
     }
     
     /// <summary>
@@ -72,8 +81,21 @@ public class PlayerController : MonoBehaviour {
     public void PlayerDie()
     {
 
-        GameObject.Find("GameController").GetComponent<GameController>().ResetScene();
-   
-}
+        GameObject.Find("GameController").GetComponent<GameController>().ResetScene();   
+    }
         
+    public void ClimbLadder(float positionX)
+    {
+        canClimb = true;
+    }
+    public void OutLadder()
+    {
+        canClimb = false;
+        this.GetComponent<Rigidbody2D>().gravityScale = 1;
+    }
+
+    public void FobidShot()
+    {
+
+    }
 }

@@ -228,14 +228,14 @@ public class Slicer2D : MonoBehaviour {
 			gObject.transform.position = transform.position;
 			gObject.transform.rotation = transform.rotation;
             gObject.AddComponent<Pauser>().Pause();
-            if (gObject.transform.position.y > -17.6)//問題があるようだ
-            {
+          //  if (gObject.transform.position.y > -17.6)//問題があるようだ
+           // {
                 GameObject.Find("ShotLens").SendMessage("ItemListAdd", gObject);
-            }
-            else
-            {
-                Destroy(gObject);
-            }          
+            //}
+          //  else
+            //{
+              //  Destroy(gObject);
+           // }          
 
             switch (textureType) {
 				case TextureType.Sprite:

@@ -8,7 +8,7 @@ public class Overlap : MonoBehaviour {
 
     void Start()
     {
-        this.transform.position = GameObject.Find("ShotLens").transform.position+new Vector3(0f,0.05f,0f);
+        this.transform.position = GameObject.Find("ShotLens").transform.position+new Vector3(0f,0.06f,0f);
         lineDot.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 0f);
     }
     /// <summary>

@@ -47,4 +47,23 @@ public class Lever : MonoBehaviour {
             canPull = false;
         }
     }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "MovingItem" && (this.transform.localPosition.y - 1.3f) > col.transform.localPosition.y)
+        {
+            this.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezeRotation);
+        }
+        if (col.gameObject.tag == "Destroyer" && (this.transform.localPosition.y - 1.3f) > col.transform.localPosition.y)
+        {
+            this.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezeRotation);
+        }
+    }
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "MovingItem"|| col.gameObject.tag == "Destroyer")
+        {
+            this.GetComponent<Rigidbody2D>().constraints = (RigidbodyConstraints2D.FreezePositionX) | (RigidbodyConstraints2D.FreezeRotation);
+
+        }
+    }
 }
