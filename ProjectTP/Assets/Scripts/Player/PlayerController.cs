@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour {
     private float jumpSpeedY = 0.0f; //今の跳びスピード
     private bool canClimb = false;
     private bool isClimbing = false;
-    private float climbPositonX = 0;
+    private float climbPositionX = 0;//梯子のX位置
+    private float climbPositionY = 0;
     private GameObject overlap;
     private GameObject shotLens;
     private GameObject lineDot;
@@ -50,14 +51,19 @@ public class PlayerController : MonoBehaviour {
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpVelocity);
             isJumping = true;
             isClimbing = false;
+            FobidShot();
         }
         //着陸チェック
-        if (jumpSpeedY == (int)(GetComponent<Rigidbody2D>().velocity.y * 100))
+        if ( jumpSpeedY == (int)(GetComponent<Rigidbody2D>().velocity.y * 100))
         {
             landFlag++;
             if (landFlag == 1)
             {
                 isJumping = false;
+                if(isClimbing == false)
+                {
+                    ResumeShot();
+                }
             }
         }
         else
@@ -66,26 +72,30 @@ public class PlayerController : MonoBehaviour {
             isJumping = true;
         }
         jumpSpeedY =(int) (GetComponent<Rigidbody2D>().velocity.y*100);
-
-        //梯子を登る
-        if(canClimb==true&& Input.GetAxis("Vertical") !=0)
+        //梯子で下がる
+        if (isClimbing == false && canClimb == true && Input.GetAxis("Vertical") < 0&&this.transform.position.y>climbPositionY)
         {
-            isClimbing = true;
-            this.transform.position =new Vector3( climbPositonX,this.transform.position.y,this.transform.position.z);
-            this.GetComponent<Rigidbody2D>().gravityScale = 0;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, Input.GetAxis("Vertical")*3f);
-        }
-        if (isClimbing == false)
-        {
+            this.gameObject.layer = LayerMask.NameToLayer("LadderFall");
+            Invoke("LadderFall", 0.5f);
             
         }
-        if(canClimb == true &&isClimbing==false&& Input.GetAxis("Vertical") < 0)
+        //梯子を登る
+        if (canClimb==true&& Input.GetAxis("Vertical") !=0)
         {
-            Physics2D.IgnoreCollision(ladderCol,GetComponent<Collider2D>());
             isClimbing = true;
-            this.transform.position = new Vector3(climbPositonX, this.transform.position.y, this.transform.position.z);
-            this.GetComponent<Rigidbody2D>().gravityScale = 0;
+            FobidShot();         
         }
+        if(isClimbing==true&& Input.GetAxis("Vertical") == 0)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0,0f);
+        }
+        else if(isClimbing == true && Input.GetAxis("Vertical") != 0)
+        {
+            this.transform.position = new Vector3(climbPositionX, this.transform.position.y, this.transform.position.z);
+            this.GetComponent<Rigidbody2D>().gravityScale = 0;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, Input.GetAxis("Vertical") * 3f);
+        }
+
     }
     
     /// <summary>
@@ -105,22 +115,57 @@ public class PlayerController : MonoBehaviour {
 
         GameObject.Find("GameController").GetComponent<GameController>().ResetScene();   
     }
-        
-    public void ClimbLadder(float positionX,Collider2D col)
+   //梯子の位置をゲット     
+    public void ClimbLadder(float positionX,float positionY)
     {
         canClimb = true;
-        climbPositonX = positionX;
-        ladderCol = col;
+        climbPositionX = positionX;
+        climbPositionY = positionY;
     }
+    //梯子の範囲外に出る
     public void OutLadder()
     {
         canClimb = false;
         this.GetComponent<Rigidbody2D>().gravityScale = 1;
         isClimbing = false;
+        if (isJumping == false&&this.transform.position.y>climbPositionY)
+        {
+            ResumeShot();
+        }
     }
-
+    //写真を禁止する
     public void FobidShot()
     {
+        overlap.SetActive(false);
+        shotLens.SetActive(false);
+        lineDot.SetActive(false);
+    }
+    //写真を回復する
+    public void ResumeShot()
+    {
+        overlap.SetActive(true);
+        shotLens.SetActive(true);
+        lineDot.SetActive(true);
+    }
+    //上から梯子で移動する
+    public void LadderFall()
+    {
+        this.gameObject.layer = LayerMask.NameToLayer("Default");
+        isClimbing = true;
+        this.transform.position = new Vector3(climbPositionX, this.transform.position.y, this.transform.position.z);
+        this.GetComponent<Rigidbody2D>().gravityScale = 0;
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, Input.GetAxis("Vertical") * 3f);
+    }
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Terrain")
+        {
+            isClimbing = false;
+            if (isJumping == false)
+            {
+                ResumeShot();
+            }
+        }
 
     }
 }

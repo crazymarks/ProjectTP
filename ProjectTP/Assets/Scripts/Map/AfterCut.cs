@@ -28,6 +28,10 @@ public class AfterCut : MonoBehaviour {
             {
                 MR.material.color = new Vector4(MR.material.color.r, MR.material.color.g, MR.material.color.b, MR.material.color.a - 0.01f);
             }
+            else if(this.gameObject.tag == "Ladder")//一瞬消える
+            {
+                MR.material.color = new Vector4(MR.material.color.r, MR.material.color.g, MR.material.color.b, MR.material.color.a - 0.02f);
+            }
             else
             {
                 MR.material.color = new Vector4(MR.material.color.r, MR.material.color.g, MR.material.color.b, MR.material.color.a - 0.003f);

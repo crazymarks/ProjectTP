@@ -10,8 +10,7 @@ public class CheckFrame : MonoBehaviour {
     public GameObject destroyerShot;
     public GameObject savePointShot;
 
-    public List<GameObject>  checkList=null;
-    
+    public List<GameObject>  checkList=null;  
 
      void OnTriggerEnter2D(Collider2D tempObject)
     {

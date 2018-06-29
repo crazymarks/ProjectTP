@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Ladder : MonoBehaviour {
 
-    void  OnCollisionEnter2D(Collision2D col)
+    void  OnCollisionStay2D(Collision2D col)
     {
         if (col.gameObject.tag == "Player")
         {
-            col.gameObject.GetComponent<PlayerController>().ClimbLadder(this.transform.position.x,this.gameObject.GetComponent<Collider2D>());
+            col.gameObject.GetComponent<PlayerController>().ClimbLadder(this.transform.position.x,this.transform.position.y);
         }
     }
     void OnCollisionExit2D(Collision2D col)
