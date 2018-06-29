@@ -14,19 +14,27 @@ public class PlayerController : MonoBehaviour {
     private float jumpSpeedY = 0.0f; //今の跳びスピード
     private bool canClimb = false;
     private bool isClimbing = false;
+    private float climbPositonX = 0;
+    private GameObject overlap;
+    private GameObject shotLens;
+    private GameObject lineDot;
+    private Collider2D ladderCol;
 
     void Start()
     {
             this.transform.position = GameObject.Find("GameController").GetComponent<GameController>().GetBornPosition();
+        overlap = GameObject.Find("Overlap");
+        shotLens = GameObject.Find("ShotLens");
+        lineDot = GameObject.Find("LineDot");
     }
 
 	void FixedUpdate () {
         float move = Input.GetAxis("Horizontal");
-       if (isJumping == false && move!=0f)
+       if (isJumping == false && move!=0f && isClimbing==false)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
         }
-        else if(isJumping == true && move != 0f)
+        else if(isJumping == true && move != 0f && isClimbing == false)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed *0.6f, GetComponent<Rigidbody2D>().velocity.y);
         }
@@ -41,8 +49,9 @@ public class PlayerController : MonoBehaviour {
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpVelocity);
             isJumping = true;
+            isClimbing = false;
         }
-        //跳びチェック
+        //着陸チェック
         if (jumpSpeedY == (int)(GetComponent<Rigidbody2D>().velocity.y * 100))
         {
             landFlag++;
@@ -61,8 +70,21 @@ public class PlayerController : MonoBehaviour {
         //梯子を登る
         if(canClimb==true&& Input.GetAxis("Vertical") !=0)
         {
+            isClimbing = true;
+            this.transform.position =new Vector3( climbPositonX,this.transform.position.y,this.transform.position.z);
             this.GetComponent<Rigidbody2D>().gravityScale = 0;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, Input.GetAxis("Vertical"));
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, Input.GetAxis("Vertical")*3f);
+        }
+        if (isClimbing == false)
+        {
+            
+        }
+        if(canClimb == true &&isClimbing==false&& Input.GetAxis("Vertical") < 0)
+        {
+            Physics2D.IgnoreCollision(ladderCol,GetComponent<Collider2D>());
+            isClimbing = true;
+            this.transform.position = new Vector3(climbPositonX, this.transform.position.y, this.transform.position.z);
+            this.GetComponent<Rigidbody2D>().gravityScale = 0;
         }
     }
     
@@ -84,14 +106,17 @@ public class PlayerController : MonoBehaviour {
         GameObject.Find("GameController").GetComponent<GameController>().ResetScene();   
     }
         
-    public void ClimbLadder(float positionX)
+    public void ClimbLadder(float positionX,Collider2D col)
     {
         canClimb = true;
+        climbPositonX = positionX;
+        ladderCol = col;
     }
     public void OutLadder()
     {
         canClimb = false;
         this.GetComponent<Rigidbody2D>().gravityScale = 1;
+        isClimbing = false;
     }
 
     public void FobidShot()
