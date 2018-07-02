@@ -108,6 +108,12 @@ public class PlayerController : MonoBehaviour {
         Vector3 PlayerScale = transform.localScale;
         PlayerScale.x = PlayerScale.x * (-1);
         transform.localScale = PlayerScale;
+        if (overlap.GetComponent<Collider2D>() != null)
+        {
+            Vector3 overlapScale = overlap.transform.localScale;
+            overlapScale.x = overlapScale.x * (-1);
+            overlap.transform.localScale = overlapScale;
+        }
     }
 
     public void PlayerDie()
