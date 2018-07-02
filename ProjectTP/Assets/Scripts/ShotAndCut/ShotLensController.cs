@@ -19,6 +19,7 @@ public class ShotLensController : MonoBehaviour {
     private GameObject DeleteFrame;
     private GameObject checkFrame;
     static public bool CanTrace = false;   //写真が再現できるかどうか
+    public GameObject overlap;
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void Start()
     {
@@ -149,7 +150,7 @@ public class ShotLensController : MonoBehaviour {
     private void HideDeleteFrame2()
     {
         DeleteFrame.SetActive(false);
-        GameObject.Find("Overlap").SendMessage("GetTrigger");
+        overlap.GetComponent<Overlap>().GetTrigger();
     }
 
     /// <summary>
@@ -189,7 +190,7 @@ public class ShotLensController : MonoBehaviour {
         //写真を消す
         CopyList.Clear();
         IsShoted = true;//範囲内写真をとれなくなる
-        GameObject.Find("Overlap").GetComponent<Overlap>().DeleteTrigger();
+        overlap.GetComponent<Overlap>().DeleteTrigger();
         checkFrame.SetActive(true);
         //uiを追加します
     }

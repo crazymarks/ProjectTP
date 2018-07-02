@@ -128,7 +128,6 @@
     <Compile Include="Assets\Scripts\Enemy\Destroyer.cs" />
     <Compile Include="Assets\Scripts\Enemy\ReturnCheck.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
-    <Compile Include="Assets\Scripts\Map\AfterCut.cs" />
     <Compile Include="Assets\Scripts\Map\Button.cs" />
     <Compile Include="Assets\Scripts\Map\CheckFrame.cs" />
     <Compile Include="Assets\Scripts\Map\Door.cs" />
@@ -145,6 +144,7 @@
     <Compile Include="Assets\Scripts\Player\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Player\DeathZone.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\ShotAndCut\AfterCut.cs" />
     <Compile Include="Assets\Scripts\ShotAndCut\Cutter.cs" />
     <Compile Include="Assets\Scripts\ShotAndCut\Overlap.cs" />
     <Compile Include="Assets\Scripts\ShotAndCut\ShotLensController.cs" />
