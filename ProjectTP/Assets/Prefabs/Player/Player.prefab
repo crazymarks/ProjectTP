@@ -318,6 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraCoordinate: {x: 0, y: 0, z: 0}
+  overlap: {fileID: 1196765997800004}
 --- !u!114 &114108177622716852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -331,6 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFacingRight: 1
   isJumping: 0
+  canMove: 1
   jumpVelocity: 8
   maxSpeed: 7
 --- !u!114 &114471861360136148

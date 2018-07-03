@@ -28,8 +28,13 @@ public class GameController : MonoBehaviour {
         }
     }
     public void ResetScene () {
-        SceneManager.LoadScene(stageName);
-        GameObject.Find("Player").transform.position = bornPosition;      
+        GameObject.Find("FadeManager").GetComponent<FadeManager>().Fade(stageName, 1f);
+        Invoke("Reborn", 1f); 
+    }
+    private void Reborn()
+    {
+        GameObject.Find("Player").transform.position = bornPosition;
+        GameObject.Find("Player").GetComponent<PlayerController>().canMove = true;
     }
 
     public void PlayerSave(Vector3 pos)
