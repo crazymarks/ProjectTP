@@ -151,6 +151,7 @@
     <Compile Include="Assets\Scripts\ShotAndCut\Cutter.cs" />
     <Compile Include="Assets\Scripts\ShotAndCut\Overlap.cs" />
     <Compile Include="Assets\Scripts\ShotAndCut\ShotLensController.cs" />
+    <Compile Include="Assets\test.cs" />
     <Compile Include="Assets\WallConnectJudgeSpine.cs" />
   </ItemGroup>
   <ItemGroup>

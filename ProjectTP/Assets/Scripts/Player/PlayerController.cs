@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
 
             if (Input.GetButtonDown("Jump") && isJumping == false)
             {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpVelocity);
+                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, GetComponent<Rigidbody2D>().velocity.y + jumpVelocity);
                 isJumping = true;
                 isClimbing = false;
                 FobidShot();
@@ -106,17 +106,20 @@ public class PlayerController : MonoBehaviour {
     /// to flip player`s spirit
     /// </summary>
     
-    void PlayerFlip()
+    public void PlayerFlip()
     {
         isFacingRight = !isFacingRight;
         Vector3 PlayerScale = transform.localScale;
         PlayerScale.x = PlayerScale.x * (-1);
         transform.localScale = PlayerScale;
-        if (overlap.GetComponent<Collider2D>() != null)
+        if (overlap != null)
         {
-            Vector3 overlapScale = overlap.transform.localScale;
-            overlapScale.x = overlapScale.x * (-1);
-            overlap.transform.localScale = overlapScale;
+            if (overlap.GetComponent<Collider2D>() != null)
+            {
+                Vector3 overlapScale = overlap.transform.localScale;
+                overlapScale.x = overlapScale.x * (-1);
+                overlap.transform.localScale = overlapScale;
+            }
         }
     }
 

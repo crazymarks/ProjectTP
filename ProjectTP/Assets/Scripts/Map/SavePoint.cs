@@ -6,6 +6,7 @@ public class SavePoint : MonoBehaviour {
     public int INDEX_reborn=0;
     GameObject gameController;
     GameObject shotLens;
+    public bool faceRight = true;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class SavePoint : MonoBehaviour {
     {
         if (TempObject.gameObject.tag == "Player")
         {
-            gameController.GetComponent<GameController>().PlayerSave(this.transform.position);
+            gameController.GetComponent<GameController>().PlayerSave(this.transform.position,faceRight);
             shotLens.GetComponent<ShotLensController>().ShotClear();
         }    
     }

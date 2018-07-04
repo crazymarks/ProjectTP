@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour {
     public GameObject bornPositionObject;
     private static bool created = false;
     public string stageName;
+    public bool playerFaceRight=true;
 
     void Awake()
     {
@@ -17,6 +18,7 @@ public class GameController : MonoBehaviour {
         {
             DontDestroyOnLoad(this.gameObject);
             created = true;
+
         }
     }
     void Start()
@@ -25,6 +27,10 @@ public class GameController : MonoBehaviour {
         if (bornPosition == new Vector3(0f, 0f, 0f))
         {
             bornPosition = firstBornPosition;
+        }
+        if (!playerFaceRight)
+        {
+            GameObject.Find("Player").GetComponent<PlayerController>().PlayerFlip();
         }
     }
     public void ResetScene () {
@@ -35,11 +41,16 @@ public class GameController : MonoBehaviour {
     {
         GameObject.Find("Player").transform.position = bornPosition;
         GameObject.Find("Player").GetComponent<PlayerController>().canMove = true;
+        if (!playerFaceRight)
+        {
+            GameObject.Find("Player").GetComponent<PlayerController>().PlayerFlip();
+        }
     }
 
-    public void PlayerSave(Vector3 pos)
+    public void PlayerSave(Vector3 pos,bool faceRight)
     {
         bornPosition = pos;
+        playerFaceRight = faceRight;
     }
 
     public Vector3 GetBornPosition()

@@ -25,11 +25,16 @@ public class ReturnCheck : MonoBehaviour {
     //モノがあるかどうかを確認する
     void OnTriggerStay2D(Collider2D tempObject)
     {
-        count1++;
-
+        if (tempObject.gameObject.tag != "Trigger")
+        {
+            count1++;
+        }
     }
     void OnTriggerExit2D(Collider2D tempObject)
     {
-        count1 = 0;
+        if (tempObject.gameObject.tag != "Trigger")
+        {
+            count1=0;
+        }
     }
 }

@@ -6,6 +6,7 @@ public class Button : MonoBehaviour {
     public Sprite buttonOn;
     public Sprite buttonOff;
     public GameObject target;
+    public GameObject target2;
 
     [HideInInspector]
     public bool isOpen = false;
@@ -15,6 +16,10 @@ public class Button : MonoBehaviour {
     void Start()
     {
         target.SendMessage("SwitchHandle", this.gameObject);
+        if (target2 != null)
+        {
+            target2.SendMessage("SwitchHandle", this.gameObject);
+        }
     }
 
     void FixedUpdate()

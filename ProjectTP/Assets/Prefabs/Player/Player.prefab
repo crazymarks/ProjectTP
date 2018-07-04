@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114108177622716852}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114838974110325442}
   m_Layer: 0
   m_Name: Overlap
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 114471861360136148}
   m_Layer: 0
   m_Name: ShotLens
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,7 +146,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1402619201658234}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.4, z: 0}
+  m_LocalPosition: {x: 0, y: 12, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 0.05898}
   m_Children: []
   m_Father: {fileID: 4587381118710332}
@@ -172,7 +172,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1007018626884216}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.498, y: 3.49, z: 0}
+  m_LocalPosition: {x: 13.87, y: 13.969999, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children:
   - {fileID: 4401619839800204}
@@ -268,7 +268,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07725546, y: 0.09329176}
+  m_Offset: {x: -0.07084672, y: 0.09329176}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -279,7 +279,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2264781, y: 2.4101672}
+  m_Size: {x: 0.11966589, y: 2.4101672}
   m_EdgeRadius: 0
 --- !u!61 &61839566228756080
 BoxCollider2D:
@@ -289,7 +289,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1007018626884216}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3fcf91efbddd8c14d9129808fda15394, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -333,7 +333,7 @@ MonoBehaviour:
   isFacingRight: 1
   isJumping: 0
   canMove: 1
-  jumpVelocity: 8
+  jumpVelocity: 6.5
   maxSpeed: 7
 --- !u!114 &114471861360136148
 MonoBehaviour:

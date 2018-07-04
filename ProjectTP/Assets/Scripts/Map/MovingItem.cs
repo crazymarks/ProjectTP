@@ -277,7 +277,7 @@ public class MovingItem : MonoBehaviour {
         {
             for (int i = 0; i < attachedObj.Count; i++)
             {
-                if (attachedObj[i].gameObject.GetComponent<Rigidbody2D>() != null&&attachedObj[i].tag!="Terrain")
+                if (attachedObj[i].gameObject.GetComponent<Rigidbody2D>() != null&&attachedObj[i].tag!="Terrain"&& attachedObj[i].tag != "Spines")
                 {
                     attachedObj[i].gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(attachedObj[i].gameObject.GetComponent<Rigidbody2D>().velocity.x, -2.5f);
                 }
