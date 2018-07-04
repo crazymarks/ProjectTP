@@ -179,6 +179,5 @@ public class PlayerController : MonoBehaviour {
                 ResumeShot();
             }
         }
-
     }
 }

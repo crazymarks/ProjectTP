@@ -18,26 +18,25 @@ public class GameController : MonoBehaviour {
         {
             DontDestroyOnLoad(this.gameObject);
             created = true;
-
         }
     }
     void Start()
     {
         firstBornPosition = bornPositionObject.transform.position;
-        if (bornPosition == new Vector3(0f, 0f, 0f))
-        {
-            bornPosition = firstBornPosition;
-        }
-        if (!playerFaceRight)
-        {
-            GameObject.Find("Player").GetComponent<PlayerController>().PlayerFlip();
-        }
+
+        bornPosition = firstBornPosition;
+        Reborn();
     }
+
     public void ResetScene () {
+        Time.timeScale = 1;
         GameObject.Find("FadeManager").GetComponent<FadeManager>().Fade(stageName, 1f);
-        Invoke("Reborn", 1f); 
     }
-    private void Reborn()
+
+    /// <summary>
+    /// プレイヤ死亡後復活
+    /// </summary>
+    public void Reborn()
     {
         GameObject.Find("Player").transform.position = bornPosition;
         GameObject.Find("Player").GetComponent<PlayerController>().canMove = true;
@@ -46,7 +45,11 @@ public class GameController : MonoBehaviour {
             GameObject.Find("Player").GetComponent<PlayerController>().PlayerFlip();
         }
     }
-
+    /// <summary>
+    /// セーブポイントに触った
+    /// </summary>
+    /// <param name="pos">位置</param>
+    /// <param name="faceRight">方向</param>
     public void PlayerSave(Vector3 pos,bool faceRight)
     {
         bornPosition = pos;
@@ -57,12 +60,19 @@ public class GameController : MonoBehaviour {
     {          
         return new Vector3(bornPosition.x,bornPosition.y,0);
     }
-
+    /// <summary>
+    /// セーブポイントが破壊された
+    /// </summary>
+    /// <param name="pos"></param>
     public void SavePointDestroy(Vector3 pos)
     {
         if (pos == bornPosition)
         {
             bornPosition = firstBornPosition;
         }
+    }
+    public void ResetCreated()
+    {
+        created = false;
     }
 }

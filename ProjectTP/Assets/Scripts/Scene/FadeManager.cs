@@ -57,6 +57,10 @@ public class FadeManager : MonoBehaviour {
         if (scene !="null")
         {
             SceneManager.LoadScene(scene);
+            if(GameObject.Find("GameController") != null)
+            {
+                GameObject.Find("GameController").GetComponent<GameController>().Reborn();
+            }
         }
         //だんだん明るく
         time = 0;
