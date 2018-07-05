@@ -40,6 +40,7 @@ public class UIcontroller : MonoBehaviour {
     {
         if (!isSaving)
         {
+            GameObject.Find("SEPlayer").GetComponent<PlaySE>().CameraShot();    //SE再生
             isSaving = true;
             UI_Autosave.SetActive(true);
             Invoke("AutosaveEnd", 1f);

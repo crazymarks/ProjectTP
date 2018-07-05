@@ -33,10 +33,10 @@ public class ShotLensController : MonoBehaviour {
 
     void Update () {
         //写真を撮る
-        if (Input.GetButtonDown("Shot")&&IsShoted==false&&GameObject.Find("Player").GetComponent<PlayerController>().isJumping==false){
-
+        if (Input.GetButtonDown("Shot")&&IsShoted==false&&GameObject.Find("Player").GetComponent<PlayerController>().isJumping==false)
+        {
+            GameObject.Find("SEPlayer").GetComponent<PlaySE>().CameraShot();    //SE再生
             CameraCoordinate = this.transform.position;
-
             for (int i = 0; i < ItemList.Count; i++)
             {
                 GameObject TempObject = Instantiate(ItemList[i].Items,

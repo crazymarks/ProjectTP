@@ -175,3 +175,4 @@ e6c9219facf84848d8ab78dc2fc1de37 Assembly-CSharp.dll:.MovingItem
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Ladder
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Spines
 97a407e2d6158c004ffc44c074914f8b Assembly-CSharp.dll:.Demo6Manager
+3483e9027adebaf2bb195dc570456036 Assembly-CSharp.dll:.PlaySE
