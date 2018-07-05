@@ -144,8 +144,11 @@ public class Overlap : MonoBehaviour {
         ShotLensController.CanTrace = true;
     }
     public void DeleteTrigger()
-    {
-        foreach(var component in gameObject.GetComponents<Component>())
+    {      
+        Vector3 overlapScale = this.transform.localScale;
+        overlapScale.x = Mathf.Abs (overlapScale.x );
+        this.transform.localScale = overlapScale;
+        foreach (var component in gameObject.GetComponents<Component>())
         {
             if (component != GetComponent<Overlap>()&&component!=GetComponent<Transform>())
             {

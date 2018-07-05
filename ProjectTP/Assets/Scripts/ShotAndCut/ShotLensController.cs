@@ -56,7 +56,6 @@ public class ShotLensController : MonoBehaviour {
                 ShotItem TempItem;
                 TempItem.Items = TempObject;
                 CopyList.Add(TempItem);
-
             }
             if (CopyList.Count!=0)
             {

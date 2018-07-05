@@ -122,7 +122,6 @@ public class MovingItem : MonoBehaviour {
     /// </summary>
     void SwitchHandle(GameObject obj)
     {
-
         switch (obj.GetComponent<SwitchID>().idNumber)
         {   
             case 1:    //一番目のスイッチ
@@ -272,17 +271,32 @@ public class MovingItem : MonoBehaviour {
     /// </summary>
     void CancelInertance()
     {
-
-        if (attachedObj.Count != 0)
+        if (this.GetComponent<Rigidbody2D>().constraints == (RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation))
         {
-            for (int i = 0; i < attachedObj.Count; i++)
+            if (attachedObj.Count != 0)
             {
-                if (attachedObj[i].gameObject.GetComponent<Rigidbody2D>() != null&&attachedObj[i].tag!="Terrain"&& attachedObj[i].tag != "Spines")
+                for (int i = 0; i < attachedObj.Count; i++)
                 {
-                    attachedObj[i].gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(attachedObj[i].gameObject.GetComponent<Rigidbody2D>().velocity.x, -2.5f);
+                    if (attachedObj[i].gameObject.GetComponent<Rigidbody2D>() != null && attachedObj[i].tag != "Terrain" && attachedObj[i].tag != "Spines")
+                    {
+                        attachedObj[i].gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(attachedObj[i].gameObject.GetComponent<Rigidbody2D>().velocity.x, -2f * speed);
+                    }
                 }
             }
         }
+        else if (this.GetComponent<Rigidbody2D>().constraints == (RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation))
+        {
+            if (attachedObj.Count != 0)
+            {
+                for (int i = 0; i < attachedObj.Count; i++)
+                {
+                    if (attachedObj[i].gameObject.GetComponent<Rigidbody2D>() != null && attachedObj[i].tag != "Terrain" && attachedObj[i].tag != "Spines")
+                    {
+                        attachedObj[i].gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, attachedObj[i].gameObject.GetComponent<Rigidbody2D>().velocity.y);
+                    }
+                }
+            }
+        }      
     }
 }
 
