@@ -21,6 +21,10 @@ public class GameController : MonoBehaviour {
             firstBornPosition = bornPositionObject.transform.position;
             bornPosition = firstBornPosition;
             GameObject.Find("Player").GetComponent<PlayerController>().canMove = false;
+            if (!playerFaceRight)
+            {
+                GameObject.Find("Player").GetComponent<PlayerController>().PlayerFlip();
+            }
             Invoke("SetCanMove",2f);
         }
     }

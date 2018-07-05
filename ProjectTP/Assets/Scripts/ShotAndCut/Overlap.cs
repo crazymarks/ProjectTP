@@ -11,6 +11,13 @@ public class Overlap : MonoBehaviour {
         this.transform.position = GameObject.Find("ShotLens").transform.position+new Vector3(0f,0.06f,0f);
         lineDot.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 0f);
     }
+    void Update()
+    {
+        if (this.GetComponent<Collider2D>() == null)
+        {
+            lineDot.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 0f);
+        }
+    }
     /// <summary>
     /// 写真が再現できるかどうかを確認するため
     /// triggerを生成する
@@ -154,8 +161,7 @@ public class Overlap : MonoBehaviour {
             {
                 Destroy(component);
             }
-        }
-        lineDot.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 0f);
+        }        
     }
 
     void OnTriggerStay2D(Collider2D col)

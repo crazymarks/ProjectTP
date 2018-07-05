@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour {
             }
             if ( move == 0f)
             {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x*0.8f, GetComponent<Rigidbody2D>().velocity.y);
+                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x*0.90f, GetComponent<Rigidbody2D>().velocity.y);
             }
 
             //向きを変わる
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour {
 
             if (Input.GetButtonDown("Jump") && isJumping == false)
             {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, GetComponent<Rigidbody2D>().velocity.y + jumpVelocity);
+                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, GetComponent<Rigidbody2D>().velocity.y*0.7f + jumpVelocity);
                 isJumping = true;
                 isClimbing = false;
                 FobidShot();
