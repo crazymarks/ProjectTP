@@ -8,6 +8,7 @@ public class ClearZone : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player")
         {
+            GameObject.Find("GameController").GetComponent<GameController>().ResetCreated();
             Destroy(GameObject.Find("GameController"));
             GameObject.Find("FadeManager").GetComponent<FadeManager>().Fade(stageName, 1f);
         }

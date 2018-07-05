@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class FadeManager : MonoBehaviour {
     private Texture2D blackTexture;//暗転用黒エフェクト
     private float fadeAlpha = 0;　　//フィード中の透明度
-    private bool isFading = false;　　//フェード中かどうかを確認する
+    public bool isFading = false;　　//フェード中かどうかを確認する
     private static bool created = false;
 
     public void Awake()

@@ -20,6 +20,7 @@ public class SavePoint : MonoBehaviour {
         {
             gameController.GetComponent<GameController>().PlayerSave(this.transform.position,faceRight);
             shotLens.GetComponent<ShotLensController>().ShotClear();
+            GameObject.Find("UIcontroller").GetComponent<UIcontroller>().AutosaveShow();
         }    
     }
 

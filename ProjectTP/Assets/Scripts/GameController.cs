@@ -18,14 +18,10 @@ public class GameController : MonoBehaviour {
         {
             DontDestroyOnLoad(this.gameObject);
             created = true;
+            firstBornPosition = bornPositionObject.transform.position;
+            bornPosition = firstBornPosition;
+            Reborn();
         }
-    }
-    void Start()
-    {
-        firstBornPosition = bornPositionObject.transform.position;
-
-        bornPosition = firstBornPosition;
-        Reborn();
     }
 
     public void ResetScene () {
