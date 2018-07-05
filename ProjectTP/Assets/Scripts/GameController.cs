@@ -20,7 +20,8 @@ public class GameController : MonoBehaviour {
             created = true;
             firstBornPosition = bornPositionObject.transform.position;
             bornPosition = firstBornPosition;
-            Reborn();
+            GameObject.Find("Player").GetComponent<PlayerController>().canMove = false;
+            Invoke("SetCanMove",2f);
         }
     }
 
@@ -29,6 +30,10 @@ public class GameController : MonoBehaviour {
         GameObject.Find("FadeManager").GetComponent<FadeManager>().Fade(stageName, 1f);
     }
 
+    public void SetCanMove()
+    {
+        GameObject.Find("Player").GetComponent<PlayerController>().canMove = true;
+    }
     /// <summary>
     /// プレイヤ死亡後復活
     /// </summary>
