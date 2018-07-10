@@ -212,8 +212,9 @@ public class Slicer2D : MonoBehaviour {
 					newRigidBody.velocity = originalRigidBody.velocity;
 					newRigidBody.angularVelocity = originalRigidBody.angularVelocity;
 
-					newRigidBody.mass = originalRigidBody.mass * (id.ToLocalSpace(newRigidBody.transform).GetArea () / originMass);
-				}
+					newRigidBody.mass = originalRigidBody.mass * (id.ToLocalSpace(newRigidBody.transform).GetArea () / originMass); // 再現したものの重さを撮った比例に応じて変化する
+
+                }
 
 			foreach (Behaviour childCompnent in gObject.GetComponentsInChildren<Behaviour>()) // Wrong
 				childCompnent.enabled = true;
@@ -228,14 +229,14 @@ public class Slicer2D : MonoBehaviour {
 			gObject.transform.position = transform.position;
 			gObject.transform.rotation = transform.rotation;
             gObject.AddComponent<Pauser>().Pause();
-            if (gObject.transform.position.y > -16.4)//問題があるようだ
+            if (id.ToLocalSpace(gObject.transform).GetArea()/originMass>0.02f) //切ったモノの比例を計算して、２パーセント以下の場合は消します
             {
                 GameObject.Find("ShotLens").SendMessage("ItemListAdd", gObject);
             }
             else
             {
                 Destroy(gObject);
-            }          
+            }
 
             switch (textureType) {
 				case TextureType.Sprite:

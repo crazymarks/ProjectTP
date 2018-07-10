@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Destroyer : MonoBehaviour {
     private Vector2 lastPosition;//動いたか　を判断する
-    private bool directionAB = true;
+    public bool directionAB = true; //右へ向いている
     public float speed = 2.0f;
     private float stopCount = 0;
     [HideInInspector]

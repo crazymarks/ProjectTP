@@ -85,7 +85,7 @@ public class CheckFrame : MonoBehaviour {
                             Destroy(checkList[i]);
                         }
                         break;
-                    case "Enemy":
+                    case "Destroyer":
                         GameObject tempObject3 = Instantiate(destroyerShot, checkList[i].transform.position, Quaternion.identity);
                         tempObject3.gameObject.AddComponent<AfterCut>();
                         tempObject3.GetComponent<Pauser>().Pause();

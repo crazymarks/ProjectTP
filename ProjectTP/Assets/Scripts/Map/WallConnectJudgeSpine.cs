@@ -29,6 +29,13 @@ public class WallConnectJudgeSpine : MonoBehaviour {
         {
             terrainCount = terrainCount + 1;
         }
+    }
 
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Terrain")
+        {
+            terrainCount = terrainCount - 1;
+        }
     }
 }

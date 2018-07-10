@@ -44,6 +44,11 @@ public class ShotLensController : MonoBehaviour {
                     ItemList[i].Items.transform.position.y - CameraCoordinate.y + PhotoCameraCoordinate.y, 
                     ItemList[i].Items.transform.position.z),
                     Quaternion.Euler(ItemList[i].Items.transform.eulerAngles));
+                //移動敵の進行方向を継承
+                if (TempObject.tag == "Destroyer")
+                {
+                    TempObject.GetComponent<Destroyer>().directionAB = ItemList[i].Items.GetComponent<Destroyer>().directionAB;
+                }
 
                 if (ItemList[i].Items.GetComponent<MeshRenderer>()!=null)
                 {

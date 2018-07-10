@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour {
             }
             if ( move == 0f)
             {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x*0.90f, GetComponent<Rigidbody2D>().velocity.y);
+                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x*0.85f, GetComponent<Rigidbody2D>().velocity.y);
             }
 
             //向きを変わる

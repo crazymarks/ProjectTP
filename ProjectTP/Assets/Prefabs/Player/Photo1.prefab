@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114118155042286578}
   m_Layer: 0
   m_Name: CheckFrame
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 114924102319647214}
   m_Layer: 0
   m_Name: DeleteFrame
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

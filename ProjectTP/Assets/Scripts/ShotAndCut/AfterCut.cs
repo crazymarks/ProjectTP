@@ -8,6 +8,7 @@ public class AfterCut : MonoBehaviour {
     private float Transparency;
     private int count = 0;
     Vector4 aa;
+    private bool RigidbodyChanged = false;
 
     // 各オブジェクトの対応が違う
     void Start () {
@@ -42,7 +43,13 @@ public class AfterCut : MonoBehaviour {
             {
                 Destroy(gameObject);
             }
+            if (this.gameObject.tag == "Terrain"&&!RigidbodyChanged)   //切られた地形の鋼体タイプを変わる
+            {
+                RigidbodyChanged = true;
+                this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            }
         }
+        
     }
 
     public　void GetTransparency() //透明値を継承する
