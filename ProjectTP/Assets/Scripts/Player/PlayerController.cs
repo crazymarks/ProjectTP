@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     public bool isFacingRight = true;
     [HideInInspector]
     public bool isJumping = false;
+    public bool canJump　= true;
     [HideInInspector]
     public bool canMove = true;
 
@@ -54,10 +55,10 @@ public class PlayerController : MonoBehaviour {
                 PlayerFlip();
             }
 
-            if (Input.GetButtonDown("Jump") && isJumping == false)
+            if (Input.GetButtonDown("Jump") && canJump == true)
             {
                 GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, GetComponent<Rigidbody2D>().velocity.y*0.7f + jumpVelocity);
-                isJumping = true;
+                canJump = false;
                 isClimbing = false;
                 FobidShot();
             }
@@ -183,5 +184,10 @@ public class PlayerController : MonoBehaviour {
                 ResumeShot();
             }
         }
+    }
+
+    public void ResumeJump()
+    {
+        canJump = true;
     }
 }

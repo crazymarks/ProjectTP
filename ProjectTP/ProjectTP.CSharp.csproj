@@ -147,6 +147,7 @@
     <Compile Include="Assets\Scripts\Player\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Player\DeathZone.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerFoot.cs" />
     <Compile Include="Assets\Scripts\Scene\FadeManager.cs" />
     <Compile Include="Assets\Scripts\Scene\TitleManager.cs" />
     <Compile Include="Assets\Scripts\ShotAndCut\AfterCut.cs" />
