@@ -25,7 +25,7 @@ public class MovingItem : MonoBehaviour {
     private bool reachFlag = false; //目標点に到着する
     private float reachCount = 0;   //目標を到着後時間を計算する
     public float stopTime = 2.0f;   //止まる時間
-    private bool changeFlag = false; //止まるから初めて動くフラグ　
+    private bool changeFlag = true; //止まるから初めて動くフラグ　
 
     void Start()
     {
@@ -43,19 +43,17 @@ public class MovingItem : MonoBehaviour {
         if (Vector3.Distance(this.transform.position,pointA.transform.position)>Vector3.Distance(pointA.transform.position,pointB.transform.position)&&directionAB==true)
         {
             directionAB = !directionAB;
-            CancelInertance(); //慣性を消す
             reachFlag = true;
         }
         else if(Vector3.Distance(this.transform.position, pointB.transform.position) > Vector3.Distance(pointA.transform.position, pointB.transform.position) && directionAB == false)
         {
             directionAB = !directionAB;
-            CancelInertance(); //慣性を消す
             reachFlag = true;
         }
 
         if (canMove&&(!reachFlag))    //スイッチによって、コントロールする
         {
-            if (lastPosition == new Vector2((int)(this.transform.position.x * 100), (int)(this.transform.position.y * 100))) //移動出来なくなる場合
+            if (lastPosition == new Vector2((int)(this.transform.position.x * 10), (int)(this.transform.position.y * 10))) //移動出来なくなる場合
             {
                 stopCount =stopCount+Time.deltaTime;
                 if (stopCount > stopTime)
@@ -74,11 +72,11 @@ public class MovingItem : MonoBehaviour {
         }
         else
         {
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+            this.GetComponent<Rigidbody2D>().velocity *=0.9f ;
         }
         if (reachFlag == true)  //目標に到着止まって、時間を計算する
         {
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+            this.GetComponent<Rigidbody2D>().velocity *= 0.96f;
             reachCount = reachCount + Time.deltaTime;
             if (reachCount > stopTime)
             { 
@@ -88,7 +86,7 @@ public class MovingItem : MonoBehaviour {
             }
         }
 
-        lastPosition =new Vector2 ((int)(this.transform.position.x*100),(int)(this.transform.position.y*100));
+        lastPosition =new Vector2 ((int)(this.transform.position.x*10),(int)(this.transform.position.y*10));
     }
 
 
@@ -101,18 +99,55 @@ public class MovingItem : MonoBehaviour {
 
     void DirectionChange()
     {
-        if (changeFlag == true)
-        {
-            CancelInertance();
-            changeFlag = false;
-        }
         if (directionAB == true)
         {
-            this.GetComponent<Rigidbody2D>().velocity = (movingVector * speed);
+             if(this.GetComponent<Rigidbody2D>().velocity.magnitude == 0&&changeFlag==true)
+             {           
+                 this.GetComponent<Rigidbody2D>().velocity = (movingVector * 0.05f);
+             }
+            else if (this.GetComponent<Rigidbody2D>().velocity.magnitude < (movingVector * speed).magnitude&&
+                Vector2.Dot(this.GetComponent<Rigidbody2D>().velocity, movingVector) > 0)
+            {
+                    this.GetComponent<Rigidbody2D>().velocity *= 1.1f;
+            }
+            else
+            {
+                if(Vector2.Dot(this.GetComponent<Rigidbody2D>().velocity, movingVector) < 0)
+                {
+                    this.GetComponent<Rigidbody2D>().velocity = (movingVector * speed*0.1f);
+                }
+                else
+                {
+                    this.GetComponent<Rigidbody2D>().velocity = (movingVector * speed);
+                }
+            }
         }
         else
         {
-            this.GetComponent<Rigidbody2D>().velocity = -(movingVector * speed);
+            if (this.GetComponent<Rigidbody2D>().velocity.magnitude == 0 && changeFlag == true)
+            {
+                this.GetComponent<Rigidbody2D>().velocity = -(movingVector * 0.05f);
+            }
+            else if (this.GetComponent<Rigidbody2D>().velocity.magnitude < (movingVector * speed).magnitude 
+                && Vector2.Dot(this.GetComponent<Rigidbody2D>().velocity, movingVector) < 0)
+            {
+                    this.GetComponent<Rigidbody2D>().velocity *= 1.1f;
+            }
+            else
+            {
+                if (Vector2.Dot(this.GetComponent<Rigidbody2D>().velocity, movingVector) > 0)
+                {
+                    this.GetComponent<Rigidbody2D>().velocity =- (movingVector * speed * 0.1f);
+                }
+                else
+                {
+                    this.GetComponent<Rigidbody2D>().velocity = -(movingVector * speed);
+                }
+            }
+        }
+        if (changeFlag == true)
+        {
+            changeFlag = false;
         }
     }
 
@@ -239,65 +274,7 @@ public class MovingItem : MonoBehaviour {
                 canMove = firstSwitchState && secondSwitchState;
             }
         } 
-    }
-    /// <summary>
-    /// 接触したものを記録
-    /// </summary>
-    /// <param name="tempObject"></param>
-    void OnCollisionEnter2D(Collision2D tempObject)
-    {
-        for (int i = 0; i < attachedObj.Count; i++)
-        {
-            if (tempObject.gameObject == attachedObj[i])
-            {
-                return;
-            }
-        }
-
-        attachedObj.Add(tempObject.gameObject);
-    }
-
-    void OnCollisionExit2D(Collision2D tempObject)
-    {
-        int Index1 = -1;
-        Index1 = attachedObj.FindIndex(x => x == tempObject.gameObject);
-        if (Index1 != -1)
-        {
-            attachedObj.RemoveAt(Index1);
-        }
-    }
-    /// <summary>
-    /// 慣性を消す
-    /// </summary>
-    void CancelInertance()
-    {
-        if (this.GetComponent<Rigidbody2D>().constraints == (RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation))
-        {
-            if (attachedObj.Count != 0)
-            {
-                for (int i = 0; i < attachedObj.Count; i++)
-                {
-                    if (attachedObj[i].gameObject.GetComponent<Rigidbody2D>() != null && attachedObj[i].tag != "Terrain" && attachedObj[i].tag != "Spines")
-                    {
-                        attachedObj[i].gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(attachedObj[i].gameObject.GetComponent<Rigidbody2D>().velocity.x, -2f * speed);
-                    }
-                }
-            }
-        }
-        else if (this.GetComponent<Rigidbody2D>().constraints == (RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation))
-        {
-            if (attachedObj.Count != 0)
-            {
-                for (int i = 0; i < attachedObj.Count; i++)
-                {
-                    if (attachedObj[i].gameObject.GetComponent<Rigidbody2D>() != null && attachedObj[i].tag != "Terrain" && attachedObj[i].tag != "Spines")
-                    {
-                        attachedObj[i].gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, attachedObj[i].gameObject.GetComponent<Rigidbody2D>().velocity.y);
-                    }
-                }
-            }
-        }      
-    }
+    }  
 }
 
 

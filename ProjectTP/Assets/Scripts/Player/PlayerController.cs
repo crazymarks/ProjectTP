@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour {
     private GameObject shotLens;
     private GameObject lineDot;
     private Collider2D ladderCol;
+    private GameObject movingItem=null;//立っている移動床
 
     void Start()
     {
@@ -38,11 +39,17 @@ public class PlayerController : MonoBehaviour {
             float move = Input.GetAxis("Horizontal");
             if (isJumping == false && move != 0f && isClimbing == false)
             {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
+                if (movingItem != null)  //移動床のスピードを追加
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed+movingItem.GetComponent<Rigidbody2D>().velocity.x*0.5f, GetComponent<Rigidbody2D>().velocity.y);
+                }
+                else {
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
+                }             
             }
             else if (isJumping == true && move != 0f && isClimbing == false)
             {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed * 0.6f, GetComponent<Rigidbody2D>().velocity.y);
+                GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed * 0.5f, GetComponent<Rigidbody2D>().velocity.y);
             }
             if ( move == 0f)
             {
@@ -103,10 +110,10 @@ public class PlayerController : MonoBehaviour {
             {
                 this.GetComponent<Rigidbody2D>().gravityScale = 1;
             }
-
+            //ジャンプの入力
             if (Input.GetButtonDown("Jump") && canJump == true)
             {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, GetComponent<Rigidbody2D>().velocity.y * 0.7f + jumpVelocity);
+                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, GetComponent<Rigidbody2D>().velocity.y * 0.8f + jumpVelocity);
                 canJump = false;
                 isClimbing = false;
             }
@@ -190,10 +197,22 @@ public class PlayerController : MonoBehaviour {
                 ResumeShot();
             }
         }
+        if (col.gameObject.tag == "MovingItem")
+        {
+            movingItem = col.gameObject;
+        }
     }
 
     public void ResumeJump()
     {
         canJump = true;
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "MovingItem")
+        {
+            movingItem = null;
+        }
     }
 }
