@@ -233,6 +233,9 @@ public class MovingItem : MonoBehaviour {
                 if (firstSwitch[i] != null && i == firstSwitch.Count - 1)
                 {
                     firstSwitchState = false;
+                }else if(firstSwitch[i] == null && i == firstSwitch.Count - 1)
+                {                   
+                    firstSwitchState = false;
                 }
             }
             //二つ目のスイッチ判定
@@ -255,6 +258,10 @@ public class MovingItem : MonoBehaviour {
                     }
                 }
                 if (secondSwitch[i] != null && i == secondSwitch.Count - 1)
+                {
+                    secondSwitchState = false;
+                }
+                else if (secondSwitch[i] == null && i == secondSwitch.Count - 1)
                 {
                     secondSwitchState = false;
                 }
