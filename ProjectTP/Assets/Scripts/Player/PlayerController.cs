@@ -54,19 +54,11 @@ public class PlayerController : MonoBehaviour {
             {
                 PlayerFlip();
             }
-
-            if (Input.GetButtonDown("Jump") && canJump == true)
-            {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, GetComponent<Rigidbody2D>().velocity.y*0.7f + jumpVelocity);
-                canJump = false;
-                isClimbing = false;
-                FobidShot();
-            }
             //着陸チェック
             if (jumpSpeedY == (int)(GetComponent<Rigidbody2D>().velocity.y * 100))
             {
                 landFlag++;
-                if (landFlag == 1)
+                if (landFlag == 2)
                 {
                     isJumping = false;
                     if (isClimbing == false)
@@ -79,6 +71,7 @@ public class PlayerController : MonoBehaviour {
             {
                 landFlag = 0;
                 isJumping = true;
+                FobidShot();
             }
             jumpSpeedY = (int)(GetComponent<Rigidbody2D>().velocity.y * 100);
             //梯子で下がる
@@ -96,13 +89,26 @@ public class PlayerController : MonoBehaviour {
             }
             if (isClimbing == true && Input.GetAxis("Vertical") == 0)
             {
+                canJump = false;
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0f);
             }
             else if (isClimbing == true && Input.GetAxis("Vertical") != 0)
             {
+                canJump = false;
                 this.transform.position = new Vector3(climbPositionX, this.transform.position.y, this.transform.position.z);
                 this.GetComponent<Rigidbody2D>().gravityScale = 0;
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0, Input.GetAxis("Vertical") * 3f);
+            }
+            if (isClimbing == false)
+            {
+                this.GetComponent<Rigidbody2D>().gravityScale = 1;
+            }
+
+            if (Input.GetButtonDown("Jump") && canJump == true)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, GetComponent<Rigidbody2D>().velocity.y * 0.7f + jumpVelocity);
+                canJump = false;
+                isClimbing = false;
             }
         }       
     }
