@@ -76,7 +76,7 @@ public class MovingItem : MonoBehaviour {
         }
         if (reachFlag == true)  //目標に到着止まって、時間を計算する
         {
-            this.GetComponent<Rigidbody2D>().velocity *= 0.96f;
+            this.GetComponent<Rigidbody2D>().velocity *= 0.95f;
             reachCount = reachCount + Time.deltaTime;
             if (reachCount > stopTime)
             { 
@@ -118,7 +118,7 @@ public class MovingItem : MonoBehaviour {
                 }
                 else
                 {
-                    this.GetComponent<Rigidbody2D>().velocity = (movingVector * speed);
+                   // this.GetComponent<Rigidbody2D>().velocity = (movingVector * speed);
                 }
             }
         }
@@ -128,7 +128,7 @@ public class MovingItem : MonoBehaviour {
             {
                 this.GetComponent<Rigidbody2D>().velocity = -(movingVector * 0.05f);
             }
-            else if (this.GetComponent<Rigidbody2D>().velocity.magnitude < (movingVector * speed).magnitude 
+            else if (this.GetComponent<Rigidbody2D>().velocity.magnitude < ((movingVector * speed).magnitude) 
                 && Vector2.Dot(this.GetComponent<Rigidbody2D>().velocity, movingVector) < 0)
             {
                     this.GetComponent<Rigidbody2D>().velocity *= 1.1f;
@@ -141,7 +141,7 @@ public class MovingItem : MonoBehaviour {
                 }
                 else
                 {
-                    this.GetComponent<Rigidbody2D>().velocity = -(movingVector * speed);
+                  //  this.GetComponent<Rigidbody2D>().velocity = -(movingVector * speed);
                 }
             }
         }
