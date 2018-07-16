@@ -6,12 +6,15 @@ public class UIcontroller : MonoBehaviour {
     GameObject UI_Pause;
     GameObject UI_Autosave;
     public bool isSaving = false;
+    ShotLensController shotLensController;
+
     // Use this for initialization
     void Start () {
         UI_Pause = GameObject.Find("UI");
         UI_Pause.SetActive(false);
         UI_Autosave = GameObject.Find("Autosave");
         UI_Autosave.SetActive(false);
+        shotLensController = GameObject.Find("ShotLens").GetComponent<ShotLensController>();
     }
 	
 	// Update is called once per frame
@@ -19,12 +22,14 @@ public class UIcontroller : MonoBehaviour {
         if (Input.GetButtonDown("Pause") && UI_Pause != null&& GameObject.Find("FadeManager").GetComponent<FadeManager>().isFading==false)
         {
             UI_Pause.SetActive(true);
+            shotLensController.canWork = false;
             Time.timeScale = 0;
         }
     }
     public void BackToGame()
     {
         Time.timeScale = 1;
+        shotLensController.canWork = true;
         UI_Pause.SetActive(false);
     }
 

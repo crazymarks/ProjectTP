@@ -25,18 +25,22 @@ public class PlayerController : MonoBehaviour {
     private Collider2D ladderCol;
     private GameObject movingItem=null;//立っている移動床
 
+    private Animator anim; //アニメーション
+
     void Start()
     {
             this.transform.position = GameObject.Find("GameController").GetComponent<GameController>().GetBornPosition();
         overlap = GameObject.Find("Overlap");
         shotLens = GameObject.Find("ShotLens");
         lineDot = GameObject.Find("LineDot");
+        anim = this.GetComponent<Animator>();
     }
 
 	void FixedUpdate () {
         if (canMove)
         {
             float move = Input.GetAxis("Horizontal");
+            anim.SetFloat("speed",Mathf.Abs( move)); //移動のアニメへ遷移
             if (isJumping == false && move != 0f && isClimbing == false)
             {
                 if (movingItem != null)  //移動床のスピードを追加
@@ -117,6 +121,8 @@ public class PlayerController : MonoBehaviour {
                 canJump = false;
                 isClimbing = false;
             }
+            anim.SetBool("isJump",isJumping);
+            anim.SetBool("isClimb",isClimbing);
         }       
     }
     

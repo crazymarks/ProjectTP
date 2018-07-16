@@ -20,6 +20,7 @@ public class ShotLensController : MonoBehaviour {
     private GameObject checkFrame;
     static public bool CanTrace = false;   //写真が再現できるかどうか
     public GameObject overlap;
+    public bool canWork=true;    //pause用
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void Start()
     {
@@ -32,69 +33,72 @@ public class ShotLensController : MonoBehaviour {
 }
 
     void Update () {
-        //写真を撮る
-        if (Input.GetButtonDown("Shot")&&IsShoted==false&&GameObject.Find("Player").GetComponent<PlayerController>().isJumping==false)
+        if (canWork == true)
         {
-            GameObject.Find("SEPlayer").GetComponent<PlaySE>().CameraShot();    //SE再生
-            CameraCoordinate = this.transform.position;
-            for (int i = 0; i < ItemList.Count; i++)
+            //写真を撮る
+            if (Input.GetButtonDown("Shot") && IsShoted == false && GameObject.Find("Player").GetComponent<PlayerController>().isJumping == false)
             {
-                GameObject TempObject = Instantiate(ItemList[i].Items,
-                    new Vector3(ItemList[i].Items.transform.position.x - CameraCoordinate.x + PhotoCameraCoordinate.x, 
-                    ItemList[i].Items.transform.position.y - CameraCoordinate.y + PhotoCameraCoordinate.y, 
-                    ItemList[i].Items.transform.position.z),
-                    Quaternion.Euler(ItemList[i].Items.transform.eulerAngles));
-                //移動敵の進行方向を継承
-                if (TempObject.tag == "Destroyer")
+                GameObject.Find("SEPlayer").GetComponent<PlaySE>().CameraShot();    //SE再生
+                CameraCoordinate = this.transform.position;
+                for (int i = 0; i < ItemList.Count; i++)
                 {
-                    TempObject.GetComponent<Destroyer>().directionAB = ItemList[i].Items.GetComponent<Destroyer>().directionAB;
-                }
-
-                if (ItemList[i].Items.GetComponent<MeshRenderer>()!=null)
-                {
-                    TempObject.GetComponent<MeshRenderer>().material.color = new Vector4(ItemList[i].Items.GetComponent<MeshRenderer>().material.color.r,
-                        ItemList[i].Items.GetComponent<MeshRenderer>().material.color.g, ItemList[i].Items.GetComponent<MeshRenderer>().material.color.b,
-                        ItemList[i].Items.GetComponent<MeshRenderer>().material.color.a);
-                }
-
-                TempObject.GetComponent<Pauser>().Pause();
-                ShotItem TempItem;
-                TempItem.Items = TempObject;
-                CopyList.Add(TempItem);
-            }
-            if (CopyList.Count!=0)
-            {
-                IsShoted = true;
-                Invoke("CheckFrameWork", 0.1f);  //チェックフレーム起動
-                Invoke("PolygonSlice", 0.3f);  //切り枠発動
-            }
-        }
-
-        //モノを再現する
-        if (Input.GetButtonDown("Trace")&&CanTrace==true&& GameObject.Find("Player").GetComponent<PlayerController>().isJumping == false)
-        {
-            CanTrace = false;
-            CameraCoordinate = this.transform.position;
-            if (CopyList.Count > 0)
-            {
-                for (int i = 0; i < CopyList.Count; i++)
-                {
-                    if (CopyList[i].Items != null)
+                    GameObject TempObject = Instantiate(ItemList[i].Items,
+                        new Vector3(ItemList[i].Items.transform.position.x - CameraCoordinate.x + PhotoCameraCoordinate.x,
+                        ItemList[i].Items.transform.position.y - CameraCoordinate.y + PhotoCameraCoordinate.y,
+                        ItemList[i].Items.transform.position.z),
+                        Quaternion.Euler(ItemList[i].Items.transform.eulerAngles));
+                    //移動敵の進行方向を継承
+                    if (TempObject.tag == "Destroyer")
                     {
-                        Vector3 pos2 = new Vector3(CopyList[i].Items.transform.position.x - PhotoCameraCoordinate.x + CameraCoordinate.x,
-                            CopyList[i].Items.transform.position.y - PhotoCameraCoordinate.y + CameraCoordinate.y,
-                            CopyList[i].Items.transform.position.z);
-                        CopyList[i].Items.transform.position = pos2;                     
+                        TempObject.GetComponent<Destroyer>().directionAB = ItemList[i].Items.GetComponent<Destroyer>().directionAB;
                     }
+
+                    if (ItemList[i].Items.GetComponent<MeshRenderer>() != null)
+                    {
+                        TempObject.GetComponent<MeshRenderer>().material.color = new Vector4(ItemList[i].Items.GetComponent<MeshRenderer>().material.color.r,
+                            ItemList[i].Items.GetComponent<MeshRenderer>().material.color.g, ItemList[i].Items.GetComponent<MeshRenderer>().material.color.b,
+                            ItemList[i].Items.GetComponent<MeshRenderer>().material.color.a);
+                    }
+
+                    TempObject.GetComponent<Pauser>().Pause();
+                    ShotItem TempItem;
+                    TempItem.Items = TempObject;
+                    CopyList.Add(TempItem);
                 }
-                Pauser.Resume();
+                if (CopyList.Count != 0)
+                {
+                    IsShoted = true;
+                    Invoke("CheckFrameWork", 0.1f);  //チェックフレーム起動
+                    Invoke("PolygonSlice", 0.3f);  //切り枠発動
+                }
             }
-            //写真を消す
-            CopyList.Clear();
-            IsShoted = false;
-            GameObject.Find("Overlap").GetComponent<Overlap>().DeleteTrigger();
-            checkFrame.SetActive(true);
-        }
+
+            //モノを再現する
+            if (Input.GetButtonDown("Trace") && CanTrace == true && GameObject.Find("Player").GetComponent<PlayerController>().isJumping == false)
+            {
+                CanTrace = false;
+                CameraCoordinate = this.transform.position;
+                if (CopyList.Count > 0)
+                {
+                    for (int i = 0; i < CopyList.Count; i++)
+                    {
+                        if (CopyList[i].Items != null)
+                        {
+                            Vector3 pos2 = new Vector3(CopyList[i].Items.transform.position.x - PhotoCameraCoordinate.x + CameraCoordinate.x,
+                                CopyList[i].Items.transform.position.y - PhotoCameraCoordinate.y + CameraCoordinate.y,
+                                CopyList[i].Items.transform.position.z);
+                            CopyList[i].Items.transform.position = pos2;
+                        }
+                    }
+                    Pauser.Resume();
+                }
+                //写真を消す
+                CopyList.Clear();
+                IsShoted = false;
+                GameObject.Find("Overlap").GetComponent<Overlap>().DeleteTrigger();
+                checkFrame.SetActive(true);
+            }
+        }  
 	}
 
     //カメラレンズの範囲内のモノを記録

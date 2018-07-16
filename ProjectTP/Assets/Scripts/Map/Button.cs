@@ -59,7 +59,6 @@ public class Button : MonoBehaviour {
             isStay = true;
             isOpen = true;
         }
-
     }
     void OnTriggerExit2D(Collider2D col)
     {
