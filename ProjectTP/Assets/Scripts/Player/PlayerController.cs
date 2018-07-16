@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour {
                 PlayerFlip();
             }
             //着陸チェック
-            if (jumpSpeedY == (int)(GetComponent<Rigidbody2D>().velocity.y * 100))
+            if (jumpSpeedY == (int)(GetComponent<Rigidbody2D>().velocity.y * 10))
             {
                 landFlag++;
                 if (landFlag == 2)
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour {
                 isJumping = true;
                 FobidShot();
             }
-            jumpSpeedY = (int)(GetComponent<Rigidbody2D>().velocity.y * 100);
+            jumpSpeedY = (int)(GetComponent<Rigidbody2D>().velocity.y * 10);
             //梯子で下がる
             if (isClimbing == false && canClimb == true && Input.GetAxis("Vertical") < 0 && this.transform.position.y > climbPositionY)
             {
@@ -123,6 +123,7 @@ public class PlayerController : MonoBehaviour {
             }
             anim.SetBool("isJump",isJumping);
             anim.SetBool("isClimb",isClimbing);
+            anim.SetFloat("climbing", Mathf.Abs( Input.GetAxis("Vertical")));
         }       
     }
     
