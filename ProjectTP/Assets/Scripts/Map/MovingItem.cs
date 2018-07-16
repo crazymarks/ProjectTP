@@ -72,7 +72,7 @@ public class MovingItem : MonoBehaviour {
         }
         else
         {
-            this.GetComponent<Rigidbody2D>().velocity *=0.9f ;
+            this.GetComponent<Rigidbody2D>().velocity *=0.95f ;
         }
         if (reachFlag == true)  //目標に到着止まって、時間を計算する
         {

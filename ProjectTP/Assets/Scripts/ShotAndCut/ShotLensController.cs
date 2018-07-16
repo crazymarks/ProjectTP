@@ -21,6 +21,7 @@ public class ShotLensController : MonoBehaviour {
     static public bool CanTrace = false;   //写真が再現できるかどうか
     public GameObject overlap;
     public bool canWork=true;    //pause用
+    private Animator anim; //アニメーション
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void Start()
     {
@@ -30,15 +31,18 @@ public class ShotLensController : MonoBehaviour {
         checkFrame = GameObject.Find("CheckFrame");
         ItemList.Clear();    // 撮ったモノのリスト
         CopyList.Clear();    //コピーするモノのリスト
-}
+        anim =GameObject.Find("Player").GetComponent<Animator>();
+    }
 
     void Update () {
         if (canWork == true)
         {
+            anim.SetBool("isShot", false);//姿勢を戻る
             //写真を撮る
             if (Input.GetButtonDown("Shot") && IsShoted == false && GameObject.Find("Player").GetComponent<PlayerController>().isJumping == false)
             {
                 GameObject.Find("SEPlayer").GetComponent<PlaySE>().CameraShot();    //SE再生
+                anim.SetBool("isShot", true);//写真撮る姿勢になる
                 CameraCoordinate = this.transform.position;
                 for (int i = 0; i < ItemList.Count; i++)
                 {
@@ -76,6 +80,7 @@ public class ShotLensController : MonoBehaviour {
             //モノを再現する
             if (Input.GetButtonDown("Trace") && CanTrace == true && GameObject.Find("Player").GetComponent<PlayerController>().isJumping == false)
             {
+                anim.SetBool("isShot", true);//写真撮る姿勢になる
                 CanTrace = false;
                 CameraCoordinate = this.transform.position;
                 if (CopyList.Count > 0)
