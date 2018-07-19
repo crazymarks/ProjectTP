@@ -22,6 +22,7 @@ public class ShotLensController : MonoBehaviour {
     public GameObject overlap;
     public bool canWork=true;    //pause用
     private Animator anim; //アニメーション
+    private SpriteRenderer photoFrameSR;
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void Start()
     {
@@ -32,6 +33,8 @@ public class ShotLensController : MonoBehaviour {
         ItemList.Clear();    // 撮ったモノのリスト
         CopyList.Clear();    //コピーするモノのリスト
         anim =GameObject.Find("Player").GetComponent<Animator>();
+        photoFrameSR = GameObject.Find("PhotoFrame").GetComponent<SpriteRenderer>();
+        photoFrameSR.material.color = new Vector4(1f, 1f, 1f, 0.1f); //写真枠が見えなくなる状態
     }
 
     void Update () {
@@ -72,6 +75,7 @@ public class ShotLensController : MonoBehaviour {
                 if (CopyList.Count != 0)
                 {
                     IsShoted = true;
+                    photoFrameSR.material.color = new Vector4(1f, 1f, 1f, 1f);   //写真枠が見えるようになる
                     Invoke("CheckFrameWork", 0.1f);  //チェックフレーム起動
                     Invoke("PolygonSlice", 0.3f);  //切り枠発動
                 }
@@ -100,6 +104,7 @@ public class ShotLensController : MonoBehaviour {
                 //写真を消す
                 CopyList.Clear();
                 IsShoted = false;
+                photoFrameSR.material.color = new Vector4(1f, 1f, 1f, 0.1f); //写真枠が見えなくなる状態
                 GameObject.Find("Overlap").GetComponent<Overlap>().DeleteTrigger();
                 checkFrame.SetActive(true);
             }
@@ -203,6 +208,7 @@ public class ShotLensController : MonoBehaviour {
         //写真を消す
         CopyList.Clear();
         IsShoted = true;//範囲内写真をとれなくなる
+        photoFrameSR.material.color = new Vector4(1f, 1f, 1f, 0.1f); //写真枠が見えなくなる状態
         overlap.GetComponent<Overlap>().DeleteTrigger();
         checkFrame.SetActive(true);
         //uiを追加します

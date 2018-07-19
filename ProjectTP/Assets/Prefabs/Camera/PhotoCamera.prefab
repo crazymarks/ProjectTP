@@ -50,19 +50,19 @@ Camera:
   m_GameObject: {fileID: 1171241844911636}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 3
   m_BackGroundColor: {r: 0.6397059, g: 1, b: 0.4745098, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.06
-    y: 0.06
-    width: 0.2
+    x: 0.1
+    y: 0.02
+    width: 0.12
     height: 0.2
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 1
   orthographic: 1
-  orthographic size: 1.27
+  orthographic size: 2.02
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
