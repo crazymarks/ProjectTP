@@ -40,12 +40,14 @@ public class MovingItem : MonoBehaviour {
     void FixedUpdate() {
         SwitchJudge();
         // 目標に到着して、引き戻す
-        if (Vector3.Distance(this.transform.position,pointA.transform.position)>Vector3.Distance(pointA.transform.position,pointB.transform.position)&&directionAB==true)
+        if (Vector3.Distance(this.transform.position,pointA.transform.position)>(Vector3.Distance(pointA.transform.position,pointB.transform.position)-0.19f*speed)
+            &&directionAB==true)
         {
             directionAB = !directionAB;
             reachFlag = true;
         }
-        else if(Vector3.Distance(this.transform.position, pointB.transform.position) > Vector3.Distance(pointA.transform.position, pointB.transform.position) && directionAB == false)
+        else if(Vector3.Distance(this.transform.position, pointB.transform.position) >( Vector3.Distance(pointA.transform.position, pointB.transform.position)-0.19f*speed)
+            && directionAB == false)
         {
             directionAB = !directionAB;
             reachFlag = true;
