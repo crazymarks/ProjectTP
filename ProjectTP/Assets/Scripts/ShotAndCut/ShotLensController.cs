@@ -19,6 +19,8 @@ public class ShotLensController : MonoBehaviour {
     private GameObject DeleteFrame;
     private GameObject checkFrame;
     static public bool CanTrace = false;   //写真が再現できるかどうか
+    private bool CanTrace2 = false;
+    private int CanTraceCount = 0;
     public GameObject overlap;
     public bool canWork=true;    //pause用
     private Animator anim; //アニメーション
@@ -82,7 +84,7 @@ public class ShotLensController : MonoBehaviour {
             }
 
             //モノを再現する
-            if (Input.GetButtonDown("Trace") && CanTrace == true && GameObject.Find("Player").GetComponent<PlayerController>().isJumping == false)
+            if (Input.GetButtonDown("Trace") && CanTrace2 == true && GameObject.Find("Player").GetComponent<PlayerController>().isJumping == false)
             {
                 anim.SetBool("isShot", true);//写真撮る姿勢になる
                 CanTrace = false;
@@ -107,6 +109,21 @@ public class ShotLensController : MonoBehaviour {
                 photoFrameSR.material.color = new Vector4(1f, 1f, 1f, 0.1f); //写真枠が見えなくなる状態
                 GameObject.Find("Overlap").GetComponent<Overlap>().DeleteTrigger();
                 checkFrame.SetActive(true);
+            }
+
+            //再現チェックのバグ修正　連続3フレームモノがない場合　ｏｋ
+            if (CanTrace == true)
+            {
+                CanTraceCount++;
+                if (CanTraceCount == 3)
+                {
+                    CanTrace2 = true;
+                }
+            }
+            else
+            {
+                CanTraceCount = 0;
+                CanTrace2 = false;
             }
         }  
 	}

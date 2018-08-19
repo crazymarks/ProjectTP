@@ -288,7 +288,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: speed
-    m_EventTreshold: 0.1
+    m_EventTreshold: 0.4
   - m_ConditionMode: 2
     m_ConditionEvent: isJump
     m_EventTreshold: 0
@@ -298,9 +298,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.24999999
+  m_TransitionDuration: 0.24999997
   m_TransitionOffset: 0
-  m_ExitTime: 0.000000044276923
+  m_ExitTime: 0.000000056846396
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -584,6 +584,29 @@ AnimatorState:
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: speed
+--- !u!1102 &1102666346849100774
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Dead
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: a966819d01e79d043be22aef223d1edb, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: speed
 --- !u!1102 &1102695838841628926
 AnimatorState:
   serializedVersion: 5
@@ -651,7 +674,7 @@ AnimatorStateMachine:
     m_Position: {x: 48, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102749058194612806}
-    m_Position: {x: 336, y: 0, z: 0}
+    m_Position: {x: 372, y: -12, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102485408231935570}
     m_Position: {x: -12, y: -108, z: 0}
@@ -664,12 +687,15 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 1102339753646195712}
     m_Position: {x: 288, y: 72, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102666346849100774}
+    m_Position: {x: 552, y: -156, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 396, y: -216, z: 0}
+  m_AnyStatePosition: {x: 360, y: -240, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

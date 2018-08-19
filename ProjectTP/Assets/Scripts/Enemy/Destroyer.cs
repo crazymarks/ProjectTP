@@ -7,6 +7,7 @@ public class Destroyer : MonoBehaviour {
     public bool directionAB = true; //右へ向いている
     public float speed = 2.0f;
     private float stopCount = 0;
+    public bool stopReturn = false;
     [HideInInspector]
     public bool isFacingLeft = false;
 
@@ -21,18 +22,23 @@ public class Destroyer : MonoBehaviour {
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, this.GetComponent<Rigidbody2D>().velocity.y);
         }
 
-        if (lastPosition == new Vector2((int)(this.transform.position.x * 100), (int)(this.transform.position.y * 100))) //移動出来なくなる場合
+        if (stopReturn == false)
         {
-            stopCount = stopCount + 1f;
-            if (stopCount > 20f)
+            if (lastPosition == new Vector2((int)(this.transform.position.x * 100), (int)(this.transform.position.y * 100))) //移動出来なくなる場合
             {
-                directionAB = !directionAB;
+                stopCount = stopCount + 1f;
+                if (stopCount > 20f)
+                {
+                    directionAB = !directionAB;
+                    stopCount = 0f;
+                }
+            }
+            else
+            {
                 stopCount = 0f;
             }
-        }else
-        {
-            stopCount = 0f;
         }
+              
         lastPosition = new Vector2((int)(this.transform.position.x * 100), (int)(this.transform.position.y * 100));
 
         float move = this.GetComponent<Rigidbody2D>().velocity.x;

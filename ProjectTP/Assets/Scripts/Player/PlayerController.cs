@@ -146,10 +146,16 @@ public class PlayerController : MonoBehaviour {
                 overlap.transform.localScale = overlapScale;
             }
         }
+        //移動のアニメーション中断
+        if (isJumping==false)
+        {
+            anim.Play("Idle");
+        }
     }
 
     public void PlayerDie()
     {
+        anim.Play("Dead", 0, 0);
         canMove = false;
         GameObject.Find("GameController").GetComponent<GameController>().ResetScene();   
     }
