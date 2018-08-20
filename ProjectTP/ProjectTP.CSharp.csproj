@@ -129,9 +129,12 @@
     <Compile Include="Assets\Scripts\Enemy\Destroyer.cs" />
     <Compile Include="Assets\Scripts\Enemy\ReturnCheck.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\Map\BoardStand.cs" />
     <Compile Include="Assets\Scripts\Map\Button.cs" />
     <Compile Include="Assets\Scripts\Map\CheckFrame.cs" />
     <Compile Include="Assets\Scripts\Map\Door.cs" />
+    <Compile Include="Assets\Scripts\Map\Door2.cs" />
+    <Compile Include="Assets\Scripts\Map\Door3.cs" />
     <Compile Include="Assets\Scripts\Map\Guideboard.cs" />
     <Compile Include="Assets\Scripts\Map\Ladder.cs" />
     <Compile Include="Assets\Scripts\Map\Lever.cs" />
