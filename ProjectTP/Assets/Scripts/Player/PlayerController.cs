@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
     private GameObject lineDot;
     private Collider2D ladderCol;
     private GameObject movingItem=null;//立っている移動床
+    private bool turnBack = false;  //転向用
 
     private Animator anim; //アニメーション
 
@@ -40,26 +41,31 @@ public class PlayerController : MonoBehaviour {
         if (canMove)
         {
             float move = Input.GetAxis("Horizontal");
-            anim.SetFloat("speed",Mathf.Abs( move)); //移動のアニメへ遷移
-            if (isJumping == false && move != 0f && isClimbing == false)
-            {
-                if (movingItem != null)  //移動床のスピードを追加
-                {
-                    GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed+movingItem.GetComponent<Rigidbody2D>().velocity.x*0.5f, GetComponent<Rigidbody2D>().velocity.y);
-                }
-                else {
-                    GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
-                }             
-            }
-            else if (isJumping == true && move != 0f && isClimbing == false)
-            {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed * 0.5f, GetComponent<Rigidbody2D>().velocity.y);
-            }
-            if ( move == 0f)
-            {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x*0.85f, GetComponent<Rigidbody2D>().velocity.y);
-            }
 
+            if (turnBack == false)　　//転向したら、暫く動かなくなる
+            {
+                anim.SetFloat("speed", Mathf.Abs(move)); //移動のアニメへ遷移
+                if (isJumping == false && move != 0f && isClimbing == false)
+                {
+                    if (movingItem != null)  //移動床のスピードを追加
+                    {
+                        GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed + movingItem.GetComponent<Rigidbody2D>().velocity.x * 0.5f, GetComponent<Rigidbody2D>().velocity.y);
+                    }
+                    else
+                    {
+                        GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
+                    }
+                }
+                else if (isJumping == true && move != 0f && isClimbing == false)
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed * 0.5f, GetComponent<Rigidbody2D>().velocity.y);
+                }
+                if (move == 0f)
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x * 0.85f, GetComponent<Rigidbody2D>().velocity.y);
+                }
+            }
+           
             //向きを変わる
             if ((move > 0.0f && isFacingRight == false) || (move < 0.0f && isFacingRight == true))
             {
@@ -147,10 +153,17 @@ public class PlayerController : MonoBehaviour {
             }
         }
         //移動のアニメーション中断
-        if (isJumping==false)
+        if (isJumping==false&&isClimbing==false)
         {
             anim.Play("Idle");
         }
+        turnBack = true;
+        Invoke("TurnBackJudge",0.2f);
+    }
+
+    public void TurnBackJudge()
+    {
+        turnBack = false;
     }
 
     public void PlayerDie()
