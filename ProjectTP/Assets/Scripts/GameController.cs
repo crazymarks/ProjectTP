@@ -23,9 +23,10 @@ public class GameController : MonoBehaviour {
             GameObject.Find("Player").GetComponent<PlayerController>().canMove = false;
             if (!playerFaceRight)
             {
-                GameObject.Find("Player").GetComponent<PlayerController>().PlayerFlip();
+                GameObject.Find("Player").GetComponent<PlayerController>().PlayerFlip2();
             }
-            Invoke("SetCanMove",2f);
+            Invoke("SetCanMove",5f);
+            this.GetComponent<AudioSource>().Play();
         }
     }
 
@@ -37,6 +38,8 @@ public class GameController : MonoBehaviour {
     public void SetCanMove()
     {
         GameObject.Find("Player").GetComponent<PlayerController>().canMove = true;
+        GameObject.Find("MainCamera").GetComponent<CameraFollow>().setFirstMove();
+
     }
     /// <summary>
     /// プレイヤ死亡後復活

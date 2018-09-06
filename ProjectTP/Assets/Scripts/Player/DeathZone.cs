@@ -9,7 +9,8 @@ public class DeathZone : MonoBehaviour {
             col.tag =="SavePoint"||
             col.tag=="Lever"||
             col.tag=="Button"||
-            col.tag=="Ladder")
+            col.tag=="Ladder"||
+            col.tag=="Guideboard")
         {
             return;
         }

@@ -17,6 +17,8 @@ TagManager:
   - SavePoint
   - Ladder
   - Destroyer
+  - Guideboard
+  - ReadBoard
   layers:
   - Default
   - TransparentFX

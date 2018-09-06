@@ -19,7 +19,10 @@ public class UIcontroller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("Pause") && UI_Pause != null&& GameObject.Find("FadeManager").GetComponent<FadeManager>().isFading==false)
+        if (Input.GetButtonDown("Pause") && UI_Pause != null
+            && GameObject.Find("FadeManager").GetComponent<FadeManager>().isFading==false
+            && GameObject.Find("Player").GetComponent<PlayerController>().canMove==true
+            && GameObject.FindGameObjectWithTag("ReadBoard")==null)
         {
             UI_Pause.SetActive(true);
             shotLensController.canWork = false;

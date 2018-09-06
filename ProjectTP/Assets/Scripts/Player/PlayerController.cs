@@ -155,10 +155,18 @@ public class PlayerController : MonoBehaviour {
         //移動のアニメーション中断
         if (isJumping==false&&isClimbing==false)
         {
-            anim.Play("Idle");
+          //  anim.Play("Idle");
         }
         turnBack = true;
         Invoke("TurnBackJudge",0.2f);
+    }
+    //起動する時使う反転
+    public void PlayerFlip2()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 PlayerScale = transform.localScale;
+        PlayerScale.x = PlayerScale.x * (-1);
+        transform.localScale = PlayerScale;
     }
 
     public void TurnBackJudge()
