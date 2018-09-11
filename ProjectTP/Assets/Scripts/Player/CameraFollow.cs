@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour
 {
     public GameObject followItem;
     public GameObject targetItem;
-    public bool firstMove = true;
+    public bool firstMove = false;
     public float speed=0.0f;
     float timecount = 0.0f;
     public float waitTime = 0.0f;
@@ -31,9 +31,31 @@ public class CameraFollow : MonoBehaviour
             }
         }
     }
-    public void setFirstMove()
+    public void setFirstMove(bool firstTime)
     {
-        firstMove = false;
+        firstMove = firstTime;
+        if (firstTime == true)
+        {
+            GameObject[] destroyer= GameObject.FindGameObjectsWithTag("Destroyer");
+            if (destroyer.Length != 0)
+            {
+                for(int i=0; i < destroyer.Length;i++)
+                {
+                    destroyer[i].GetComponent<Destroyer>().canMove = false;
+                }
+            }
+        }
+        else
+        {
+            GameObject[] destroyer = GameObject.FindGameObjectsWithTag("Destroyer");
+            if (destroyer.Length != 0)
+            {
+                for (int i = 0; i < destroyer.Length; i++)
+                {
+                    destroyer[i].GetComponent<Destroyer>().canMove = true;
+                }
+            }
+        }
     }
 
 }

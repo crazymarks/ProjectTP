@@ -8,7 +8,8 @@ public class Guideboard : MonoBehaviour {
     bool isReading = false;
     private void FixedUpdate()
     {
-        if (Input.GetButtonDown("Pull") && canRead == true)
+        if (Input.GetButtonDown("Pull") && canRead == true
+            && GameObject.Find("Player").GetComponent<PlayerController>().canMove == true)
         {
             if (Readboard != null)
             {
@@ -16,6 +17,8 @@ public class Guideboard : MonoBehaviour {
                 Time.timeScale = 0;
                 canRead = false;
                 isReading = true;
+                GameObject.Find("ShotLens").GetComponent<ShotLensController>().canWork = false;
+                GameObject.Find("UIcontroller").GetComponent<UIcontroller>().setReading (isReading);
             }
 
         }
@@ -30,6 +33,8 @@ public class Guideboard : MonoBehaviour {
                 Time.timeScale = 1;
                 isReading = false;
                 canRead = true;
+                GameObject.Find("ShotLens").GetComponent<ShotLensController>().canWork = true;
+                GameObject.Find("UIcontroller").GetComponent<UIcontroller>().setReading(isReading);
             }
 
         }

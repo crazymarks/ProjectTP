@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     private Collider2D ladderCol;
     private GameObject movingItem=null;//立っている移動床
     private bool turnBack = false;  //転向用
+    public GameObject UI_takephoto; //写真が取れるかを確認するUI
 
     private Animator anim; //アニメーション
 
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour {
         overlap = GameObject.Find("Overlap");
         shotLens = GameObject.Find("ShotLens");
         lineDot = GameObject.Find("LineDot");
+        UI_takephoto = GameObject.Find("UI_Takephoto");
         anim = this.GetComponent<Animator>();
     }
 
@@ -204,6 +206,7 @@ public class PlayerController : MonoBehaviour {
         overlap.SetActive(false);
         shotLens.SetActive(false);
         lineDot.SetActive(false);
+        UI_takephoto.SetActive(false);
     }
     //写真を回復する
     public void ResumeShot()
@@ -211,6 +214,7 @@ public class PlayerController : MonoBehaviour {
         overlap.SetActive(true);
         shotLens.SetActive(true);
         lineDot.SetActive(true);
+        UI_takephoto.SetActive(true);
     }
     //上から梯子で移動する
     public void LadderFall()
@@ -249,4 +253,6 @@ public class PlayerController : MonoBehaviour {
             movingItem = null;
         }
     }
+
+
 }

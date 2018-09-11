@@ -10,43 +10,53 @@ public class Destroyer : MonoBehaviour {
     public bool stopReturn = false;
     [HideInInspector]
     public bool isFacingLeft = false;
+    public bool canMove = true;
+    public float waitTime = 0.0f;
+
 
     // Update is called once per frame
     void FixedUpdate () {
-        if (directionAB == true)
+        if (canMove == true)
         {
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(speed,this.GetComponent<Rigidbody2D>().velocity.y);
-        }
-        else
-        {
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, this.GetComponent<Rigidbody2D>().velocity.y);
-        }
-
-        if (stopReturn == false)
-        {
-            if (lastPosition == new Vector2((int)(this.transform.position.x * 100), (int)(this.transform.position.y * 100))) //移動出来なくなる場合
+            if (directionAB == true)
             {
-                stopCount = stopCount + 1f;
-                if (stopCount > 20f)
-                {
-                    directionAB = !directionAB;
-                    stopCount = 0f;
-                }
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(speed, this.GetComponent<Rigidbody2D>().velocity.y);
             }
             else
             {
-                stopCount = 0f;
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, this.GetComponent<Rigidbody2D>().velocity.y);
+            }
+
+            if (stopReturn == false)
+            {
+                if (lastPosition == new Vector2((int)(this.transform.position.x * 100), (int)(this.transform.position.y * 100))) //移動出来なくなる場合
+                {
+                    stopCount = stopCount + 1f;
+                    if (stopCount > 20f)
+                    {
+                        directionAB = !directionAB;
+                        stopCount = 0f;
+                    }
+                }
+                else
+                {
+                    stopCount = 0f;
+                }
+            }
+
+            lastPosition = new Vector2((int)(this.transform.position.x * 100), (int)(this.transform.position.y * 100));
+
+            float move = this.GetComponent<Rigidbody2D>().velocity.x;
+            //向きを変わる
+            if ((move > 0.0f && isFacingLeft == false) || (move < 0.0f && isFacingLeft == true))
+            {
+                EnemyFlip();
             }
         }
-              
-        lastPosition = new Vector2((int)(this.transform.position.x * 100), (int)(this.transform.position.y * 100));
-
-        float move = this.GetComponent<Rigidbody2D>().velocity.x;
-        //向きを変わる
-        if ((move > 0.0f && isFacingLeft == false) || (move < 0.0f && isFacingLeft == true))
+        else
         {
-            EnemyFlip();
-        }
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(0f,0f);
+        }      
     }
 
     void EnemyFlip()

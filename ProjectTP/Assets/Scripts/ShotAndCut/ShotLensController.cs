@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShotLensController : MonoBehaviour {
 
@@ -25,6 +26,9 @@ public class ShotLensController : MonoBehaviour {
     public bool canWork=true;    //pause用
     private Animator anim; //アニメーション
     private SpriteRenderer photoFrameSR;
+    public GameObject UI_takephoto; //写真が取れるかを確認するUI
+    public Sprite takephoto;
+    public Sprite tracephoto;
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void Start()
     {
@@ -37,6 +41,7 @@ public class ShotLensController : MonoBehaviour {
         anim =GameObject.Find("Player").GetComponent<Animator>();
         photoFrameSR = GameObject.Find("PhotoFrame").GetComponent<SpriteRenderer>();
         photoFrameSR.material.color = new Vector4(1f, 1f, 1f, 0.1f); //写真枠が見えなくなる状態
+        UI_takephoto = GameObject.Find("UI_Takephoto");
     }
 
     void Update () {
@@ -109,6 +114,7 @@ public class ShotLensController : MonoBehaviour {
                 photoFrameSR.material.color = new Vector4(1f, 1f, 1f, 0.1f); //写真枠が見えなくなる状態
                 GameObject.Find("Overlap").GetComponent<Overlap>().DeleteTrigger();
                 checkFrame.SetActive(true);
+                UI_takephoto.GetComponent<Image>().sprite = takephoto;
             }
 
             //再現チェックのバグ修正　連続3フレームモノがない場合　ｏｋ
@@ -118,6 +124,7 @@ public class ShotLensController : MonoBehaviour {
                 if (CanTraceCount == 3)
                 {
                     CanTrace2 = true;
+                    UI_takephoto.GetComponent<Image>().sprite = tracephoto;
                 }
             }
             else
@@ -125,8 +132,8 @@ public class ShotLensController : MonoBehaviour {
                 CanTraceCount = 0;
                 CanTrace2 = false;
             }
-        }  
-	}
+        }
+    }
 
     //カメラレンズの範囲内のモノを記録
     void OnTriggerEnter2D(Collider2D TempObject)

@@ -7,6 +7,7 @@ public class UIcontroller : MonoBehaviour {
     GameObject UI_Autosave;
     public bool isSaving = false;
     ShotLensController shotLensController;
+    public bool isReading=false;
 
     // Use this for initialization
     void Start () {
@@ -18,15 +19,15 @@ public class UIcontroller : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if (Input.GetButtonDown("Pause") && UI_Pause != null
             && GameObject.Find("FadeManager").GetComponent<FadeManager>().isFading==false
             && GameObject.Find("Player").GetComponent<PlayerController>().canMove==true
-            && GameObject.FindGameObjectWithTag("ReadBoard")==null)
+            )
         {
-            UI_Pause.SetActive(true);
-            shotLensController.canWork = false;
-            Time.timeScale = 0;
+                UI_Pause.SetActive(true);
+                shotLensController.canWork = false;
+                Time.timeScale = 0;
         }
     }
     public void BackToGame()
@@ -58,5 +59,13 @@ public class UIcontroller : MonoBehaviour {
     {
         UI_Autosave.SetActive(false);
         isSaving = false;
+    }
+    /// <summary>
+    /// 看板消してかを確認
+    /// </summary>
+    /// <param name="isRead"></param>
+    public void setReading(bool isRead)
+    {
+        isReading = isRead;
     }
 }

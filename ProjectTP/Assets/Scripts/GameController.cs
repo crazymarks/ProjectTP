@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour {
     private static bool created = false;
     public string stageName;
     public bool playerFaceRight=true;
+    public float startWaitTime = 5.0f;
 
     void Awake()
     {
@@ -25,7 +26,9 @@ public class GameController : MonoBehaviour {
             {
                 GameObject.Find("Player").GetComponent<PlayerController>().PlayerFlip2();
             }
-            Invoke("SetCanMove",5f);
+            GameObject.Find("MainCamera").GetComponent<CameraFollow>().setFirstMove(true);
+            GameObject.Find("ShotLens").GetComponent<ShotLensController>().canWork = false;
+            Invoke("SetCanMove", startWaitTime);
             this.GetComponent<AudioSource>().Play();
         }
     }
@@ -38,8 +41,8 @@ public class GameController : MonoBehaviour {
     public void SetCanMove()
     {
         GameObject.Find("Player").GetComponent<PlayerController>().canMove = true;
-        GameObject.Find("MainCamera").GetComponent<CameraFollow>().setFirstMove();
-
+        GameObject.Find("MainCamera").GetComponent<CameraFollow>().setFirstMove(false);
+        GameObject.Find("ShotLens").GetComponent<ShotLensController>().canWork = true;
     }
     /// <summary>
     /// プレイヤ死亡後復活
