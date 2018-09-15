@@ -35,6 +35,7 @@ public class SavePoint : MonoBehaviour {
         {
             GetComponent<SpriteRenderer>().sprite = SavePointOpen;
             shotLens.GetComponent<ShotLensController>().ShotRecovery();
+
         }
     }
 }

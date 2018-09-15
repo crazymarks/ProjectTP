@@ -124,12 +124,12 @@
     <Compile Include="Assets\FunkyCode\SmartUtilities2D\Resources\Scripts\Utilities\TimeHelper.cs" />
     <Compile Include="Assets\FunkyCode\SmartUtilities2D\Resources\Scripts\Utilities\Vector2f.cs" />
     <Compile Include="Assets\FunkyCode\SmartUtilities2D\Resources\Scripts\Utilities\VectorList2f.cs" />
-    <Compile Include="Assets\Scripts\ClearZone.cs" />
-    <Compile Include="Assets\Scripts\Constants.cs" />
+    <Compile Include="Assets\Scripts\Ending\EndingController.cs" />
+    <Compile Include="Assets\Scripts\Ending\EndingZone.cs" />
+    <Compile Include="Assets\Scripts\Ending\ImageFading.cs" />
     <Compile Include="Assets\Scripts\Enemy\AttackCheck.cs" />
     <Compile Include="Assets\Scripts\Enemy\Destroyer.cs" />
     <Compile Include="Assets\Scripts\Enemy\ReturnCheck.cs" />
-    <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Map\BoardStand.cs" />
     <Compile Include="Assets\Scripts\Map\Button.cs" />
     <Compile Include="Assets\Scripts\Map\CheckFrame.cs" />
@@ -152,15 +152,16 @@
     <Compile Include="Assets\Scripts\Player\DeathZone.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerFoot.cs" />
-    <Compile Include="Assets\Scripts\PlaySE.cs" />
+    <Compile Include="Assets\Scripts\Scene\ClearZone.cs" />
     <Compile Include="Assets\Scripts\Scene\FadeManager.cs" />
+    <Compile Include="Assets\Scripts\Scene\GameController.cs" />
+    <Compile Include="Assets\Scripts\Scene\PlaySE.cs" />
     <Compile Include="Assets\Scripts\Scene\TitleManager.cs" />
+    <Compile Include="Assets\Scripts\Scene\UIcontroller.cs" />
     <Compile Include="Assets\Scripts\ShotAndCut\AfterCut.cs" />
     <Compile Include="Assets\Scripts\ShotAndCut\Cutter.cs" />
     <Compile Include="Assets\Scripts\ShotAndCut\Overlap.cs" />
     <Compile Include="Assets\Scripts\ShotAndCut\ShotLensController.cs" />
-    <Compile Include="Assets\Scripts\test.cs" />
-    <Compile Include="Assets\Scripts\UIcontroller.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FunkyCode\SmartSlicer2D\Changelog.txt" />

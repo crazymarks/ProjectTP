@@ -29,6 +29,7 @@ public class ShotLensController : MonoBehaviour {
     public GameObject UI_takephoto; //写真が取れるかを確認するUI
     public Sprite takephoto;
     public Sprite tracephoto;
+
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void Start()
     {
@@ -47,6 +48,7 @@ public class ShotLensController : MonoBehaviour {
     void Update () {
         if (canWork == true)
         {
+            UI_takephoto.SetActive(true);
             anim.SetBool("isShot", false);//姿勢を戻る
             //写真を撮る
             if (Input.GetButtonDown("Shot") && IsShoted == false && GameObject.Find("Player").GetComponent<PlayerController>().isJumping == false)
@@ -132,6 +134,10 @@ public class ShotLensController : MonoBehaviour {
                 CanTraceCount = 0;
                 CanTrace2 = false;
             }
+        }
+        else
+        {
+            UI_takephoto.SetActive(false);
         }
     }
 
@@ -236,6 +242,9 @@ public class ShotLensController : MonoBehaviour {
         overlap.GetComponent<Overlap>().DeleteTrigger();
         checkFrame.SetActive(true);
         //uiを追加します
+        UI_takephoto.GetComponent<Image>().sprite = takephoto;
+        canWork = false;
+
     }
     /// <summary>
     /// SavePointから出たら、写真が撮れる
@@ -243,5 +252,6 @@ public class ShotLensController : MonoBehaviour {
     public void ShotRecovery()
     {
         IsShoted = false;
+        canWork = true;
     }
 }

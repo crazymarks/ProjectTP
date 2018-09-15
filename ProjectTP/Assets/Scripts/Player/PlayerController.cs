@@ -254,5 +254,18 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    public void EndingMove()
+    {
+        canMove = false;
+        this.GetComponent<Rigidbody2D>().velocity = new Vector3(0f, 0f, 0f);
+        
+        this.transform.position = new Vector3(41.4f, 13.5f, 0f);
+        anim.SetFloat("speed",0f);
+        anim.SetBool("isJump", false);
+    }
+    public void EndingShot()
+    {
+        anim.Play("Shot");
+    }
 
 }

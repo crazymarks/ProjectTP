@@ -7,7 +7,7 @@ public class AfterCut : MonoBehaviour {
     private MeshRenderer MR;
     private float Transparency;
     private int count = 0;
-    Vector4 aa;
+
     private bool RigidbodyChanged = false;
 
     // 各オブジェクトの対応が違う
@@ -15,7 +15,6 @@ public class AfterCut : MonoBehaviour {
         if (this.gameObject.GetComponent<MeshRenderer>() != null)
         {
             MR = this.gameObject.GetComponent<MeshRenderer>();
-            aa = MR.material.color;
         }
     }	
     void Update()
