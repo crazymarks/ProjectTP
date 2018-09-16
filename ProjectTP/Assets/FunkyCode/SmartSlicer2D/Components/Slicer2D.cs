@@ -52,10 +52,14 @@ public class Slicer2D : MonoBehaviour {
 		return(new List<Slicer2D>(slicer2DList));
 	}
 
+    GameObject ShotLens;
+
 	void Start()
 	{
 		Initialize ();
-	}
+        ShotLens = GameObject.Find("ShotLens");
+
+    }
 
 	// Check Before Each Function - Then This Could Be Private
 	public void Initialize() {
@@ -231,7 +235,8 @@ public class Slicer2D : MonoBehaviour {
             gObject.AddComponent<Pauser>().Pause();
             if (id.ToLocalSpace(gObject.transform).GetArea()/originMass>0.02f) //切ったモノの比例を計算して、２パーセント以下の場合は消します
             {
-                GameObject.Find("ShotLens").SendMessage("ItemListAdd", gObject);
+                ShotLens.GetComponent<ShotLensController>().ItemListAdd(gObject);
+                // GameObject.Find("ShotLens").GetComponent<ShotLensController>().ItemListAdd(gObject);
             }
             else
             {

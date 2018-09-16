@@ -28,21 +28,4 @@ public class ImageFading : MonoBehaviour {
             GameObject.Find("EndingTrigger").GetComponent<EndingController>().canInput = true;
         }
     }
-
-
-    /// <summary>
-    /// 0 ゴーグル出現
-    /// 1 文字１出現
-    /// 2 文字１消すと文字２出現
-    /// 3 文字2消す　文字３と写真出現
-    /// ４　文字３消す　文字４出現
-    /// ５　文字４　グーグル　写真消す　
-    ///　　　右下の写真出現　
-    ///６　ヒロイン出現
-    ///７　ｃｇ
-    ///8  文字５出現
-    ///9　文字５消す　文字６と黒幕出現
-    ///10　文字６消す　ロゴ出現
-    ///11　タイトル画面に戻る
-    /// </summary>
 }

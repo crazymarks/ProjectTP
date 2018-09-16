@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class ClearZone : MonoBehaviour {
     public string stageName;
+    GameObject GameController;
+    GameObject FadeManager;
+
+    private void Start()
+    {
+        GameController = GameObject.Find("GameController");
+        FadeManager = GameObject.Find("FadeManager");
+
+    }
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
         {
             GameObject.Find("GameController").GetComponent<GameController>().ResetCreated();
             Destroy(GameObject.Find("GameController"));
-            GameObject.Find("FadeManager").GetComponent<FadeManager>().Fade(stageName, 1f);
+            FadeManager.GetComponent<FadeManager>().Fade(stageName, 1f);
         }
 
     }

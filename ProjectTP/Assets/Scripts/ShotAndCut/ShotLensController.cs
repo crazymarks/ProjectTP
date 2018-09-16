@@ -119,11 +119,11 @@ public class ShotLensController : MonoBehaviour {
                 UI_takephoto.GetComponent<Image>().sprite = takephoto;
             }
 
-            //再現チェックのバグ修正　連続3フレームモノがない場合　ｏｋ
+            //再現チェックのバグ修正　連続5フレームモノがない場合　ｏｋ
             if (CanTrace == true)
             {
                 CanTraceCount++;
-                if (CanTraceCount == 3)
+                if (CanTraceCount == 5)
                 {
                     CanTrace2 = true;
                     UI_takephoto.GetComponent<Image>().sprite = tracephoto;
