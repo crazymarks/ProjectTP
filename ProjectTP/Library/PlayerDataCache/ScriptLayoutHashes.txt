@@ -16,7 +16,7 @@ c24a21b131bfa67be1162db2cba4b52b UnityEngine.Timeline.dll:UnityEngine.Timeline.T
 d2fcb3c75ddcafb314a218d707185e08 Assembly-CSharp.dll:.Guideboard
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PlayerFoot
 b533d023c5600e3354b79fcb670ce576 Assembly-CSharp.dll:.SpriteMesh2D
-9c8ee1fb0de7426989ab196baddb1e1d Assembly-CSharp.dll:.Destroyer
+d2fe72c1f502bae2c9f7b69db873b5ae Assembly-CSharp.dll:.Destroyer
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TitleManager
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
@@ -114,7 +114,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 3f32f08a64daf40b09ed864d96fe3840 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
-0d9ccefc6b821e6f49bca426981fddc8 Assembly-CSharp.dll:.GameController
+467b30d9147dc3e4b11afaefb09b9271 Assembly-CSharp.dll:.GameController
 063dbc3a6131997b85e5f65cd9b08d3e Assembly-CSharp.dll:.Mesh2D
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.WallConnectJudge
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
@@ -129,17 +129,17 @@ f1b04b42258b96532fc34ed433d02c62 Assembly-CSharp.dll:.AttachPrefab
 f01d7f63acfa65992493c2ec3613fad5 Assembly-CSharp.dll:.MainDemoManager
 f63a5560da787d0086819f42afd0b089 Assembly-CSharp.dll:.Door2
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.FpsHelper
-3ae76244e97e1c36f4d525eb4a80e145 Assembly-CSharp.dll:.ShotLensController
+f5adce1f482937b6c9ad5689f24adc13 Assembly-CSharp.dll:.EndingController
+682f2e5d7e908e116337f12f9c90ea2d Assembly-CSharp.dll:.ShotLensController
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PolygonTriangulator2D
 64e9701d51f239671a23f650bd319035 Assembly-CSharp.dll:.ClearZone
 df2258f902d0c8c13ac4f3bdcf9b69d5 Assembly-CSharp.dll:.FadeManager
-e45c1dc9ca2b58aca52d6f00b3c1a31d Assembly-CSharp.dll:.Overlap
+32dd877d76ccb10644ba8be57904a575 Assembly-CSharp.dll:.Overlap
 eb9458882e43d10869e73260f48e346e Assembly-CSharp.dll:.CheckFrame
 5747f4035bcfd443c24e9aeff9992531 Assembly-CSharp.dll:.Slicer2DController
 f63a5560da787d0086819f42afd0b089 Assembly-CSharp.dll:.Door
 3f9b50668e4e661f241c59695b129f20 Assembly-CSharp.dll:.SwitchID
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Pauser
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.test
 d4342adc8161afbe2d3a1c41e6f89ab2 Assembly-CSharp.dll:.UIcontroller
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PointA
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
@@ -162,6 +162,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 64eb32cc721b1cc68a91ed57461e188c UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PointB
 e70d6cae41adade7c5bd5bef4f145fda Assembly-CSharp.dll:.Lever
+40a186a559c223e06374e0f25e91f14e Assembly-CSharp.dll:.ImageFading
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DemoSceneDestroyer
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
@@ -171,6 +172,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.Spa
 989677ebebc7afbf25ae04d15b4fbe03 Assembly-CSharp.dll:.Slicer2D
 20c5032b3cb491c70e275138a3c7da85 Assembly-CSharp.dll:.CameraFollow
 f63a5560da787d0086819f42afd0b089 Assembly-CSharp.dll:.Door3
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.EndingZone
 1ebc8a8a85c15683b814ab89a7a5743d Assembly-CSharp.dll:.SavePoint
 de4ecab23733249cc1f4a07d46334d74 Assembly-CSharp.dll:.Slicer2DComplexController
 e6c9219facf84848d8ab78dc2fc1de37 Assembly-CSharp.dll:.MovingItem
