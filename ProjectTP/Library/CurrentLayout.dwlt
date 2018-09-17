@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 542}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -368,28 +368,28 @@ MonoBehaviour:
     height: 435
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: dcb2ffffd4c5ffffd6c5ffffcccaffff1adbffffcaf5ffff1afcffff00000000a23300003434000074340000223e0000
+    m_SelectedIDs: e04efdff
+    m_LastClickedID: -176416
+    m_ExpandedIDs: 3e50fdff8e84feffd284feffe217ffffe417ffffd418ffff1819ffffe81bffff4a1dffffb048ffffb44cffff809bffffe09fffff02e1ffffdee3ffff76e8fffff4ecffff88f0ffff14f4ffffecf5ffff1afcffff00000000ec6a0000666b0000266c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Clounds
-      m_OriginalName: Clounds
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: -14894
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 8}
     m_SearchString: 
   m_ExpandedScenes:
-  - Stage03
+  - Title
   m_CurrenRootInstanceID: 0
   m_Locked: 0
   m_CurrentSortingName: TransformSorting
@@ -420,14 +420,14 @@ MonoBehaviour:
     width: 931
     height: 435
   m_SceneLighting: 0
-  lastFramingTime: 110.44618289231916
+  lastFramingTime: 7000.581145513539
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 33.73735, y: 11.65957, z: 10}
+    m_Target: {x: 27, y: 11, z: 1}
     speed: 2
-    m_Value: {x: 33.73735, y: 11.65957, z: 10}
+    m_Value: {x: 27, y: 11, z: 1}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -454,9 +454,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 58.905853
+    m_Target: 10.435517
     speed: 2
-    m_Value: 58.905853
+    m_Value: 10.435517
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -577,18 +577,18 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scenes
+    - Assets/Prefabs/Gimmick
   m_ViewMode: 1
   m_StartGridSize: 57
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Prefabs/Gimmick
   m_LastFoldersGridSize: 57
   m_LastProjectPath: F:\ProjectTP\ProjectTP
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 359}
-    m_SelectedIDs: 64280000
-    m_LastClickedID: 10340
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: e0290000
+    m_LastClickedID: 10720
     m_ExpandedIDs: 0000000014270000182700002c270000422700007a27000098270000162800006c2800007c290000e42900002c2a0000a02a00005c2b00006c2b00007032000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0

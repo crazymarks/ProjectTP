@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour {
             if (isClimbing == false && canClimb == true && Input.GetAxis("Vertical") < 0 && this.transform.position.y > climbPositionY)
             {
                 this.gameObject.layer = LayerMask.NameToLayer("LadderFall");
-                Invoke("LadderFall", 0.5f);
+                Invoke("LadderFall", 0.7f);
 
             }
             //梯子を登る

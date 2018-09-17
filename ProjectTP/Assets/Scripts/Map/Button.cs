@@ -53,7 +53,8 @@ public class Button : MonoBehaviour {
         if (col.gameObject.name != "ShotLens" &&
             col.gameObject.name != "Overlap"&&
             col.gameObject.tag!="Button" &&
-            col.gameObject.tag!="Trigger"
+            col.gameObject.tag!="Trigger"&&
+            col.gameObject.tag!="Guideboard"
             )
         {
             isStay = true;
@@ -65,7 +66,8 @@ public class Button : MonoBehaviour {
         if (col.gameObject.name != "ShotLens" && 
             col.gameObject.name != "Overlap" && 
             col.gameObject.tag != "Button" &&
-            col.gameObject.tag != "Trigger")
+            col.gameObject.tag != "Trigger" &&
+            col.gameObject.tag != "Guideboard")
             isStay = false;
     }
 }
