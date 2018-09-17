@@ -5,11 +5,13 @@ using UnityEngine;
 public class Overlap : MonoBehaviour {
 
     public GameObject lineDot;
+    public ShotLensController shotLensController;
 
     void Start()
     {
         this.transform.position = GameObject.Find("ShotLens").transform.position+new Vector3(0f,0.06f,0f);
         lineDot.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 0f);
+        shotLensController = GameObject.Find("ShotLens").GetComponent<ShotLensController>();
     }
     void Update()
     {
@@ -148,7 +150,7 @@ public class Overlap : MonoBehaviour {
                 }
             }
         }
-        ShotLensController.CanTrace = true;
+        shotLensController. CanTrace = true;
     }
     public void DeleteTrigger()
     {      
@@ -166,13 +168,16 @@ public class Overlap : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D col)
     {
-            ShotLensController.CanTrace = false;
+            shotLensController.CanTrace = false;
            lineDot.GetComponent<SpriteRenderer>().color=new Vector4(1,1,1,0.4f);
            
     }
     void OnTriggerExit2D(Collider2D col)
     {
-        ShotLensController.CanTrace = true;
+        if (shotLensController.IsShoted == true)
+        {
+        shotLensController.CanTrace = true;
+        }
         lineDot.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 0f);
     }
 }

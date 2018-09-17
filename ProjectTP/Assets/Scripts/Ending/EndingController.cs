@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EndingController : MonoBehaviour {
     GameObject Player;
-    public GameObject GameController;
+    GameObject[] gameController;
     public bool canInput=false;
     /// <summary>
     /// 0 ゴーグル出現
@@ -36,6 +36,7 @@ public class EndingController : MonoBehaviour {
         UI_EndingTrace.SetActive(false);
         finalphoto1.SetActive(false);
         finalphoto2.SetActive(false);
+        gameController = GameObject.FindGameObjectsWithTag("GameController");
     }
 
     private void Update()
@@ -65,8 +66,11 @@ public class EndingController : MonoBehaviour {
     {
         if (TempObject.gameObject.tag == "Player")
         {
-            Player.GetComponent<PlayerController>().EndingMove();
-            GameController.GetComponent<AudioSource>().Stop();
+            for(int i=0; i<gameController.Length; i++)
+            {
+                gameController[i].GetComponent<AudioSource>().Stop();
+            }
+            Player.GetComponent<PlayerController>().EndingMove();            
             this.GetComponent<AudioSource>().Play();
             GameObject.Find("Goggle").GetComponent<ImageFading>().startFading = true;
         }

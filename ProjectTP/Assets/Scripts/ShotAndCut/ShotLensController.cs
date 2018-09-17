@@ -15,11 +15,11 @@ public class ShotLensController : MonoBehaviour {
     static public List<ShotItem> CopyList = new List<ShotItem>();    //コピーするモノのリスト
 
     public Vector3 CameraCoordinate;      //カメラ座標
-    private bool IsShoted=false;       //写真を撮った状態かどうか
+    public bool IsShoted=false;       //写真を撮った状態かどうか
     private Vector3 PhotoCameraCoordinate; //写真を表示するカメラの座標
     private GameObject DeleteFrame;
     private GameObject checkFrame;
-    static public bool CanTrace = false;   //写真が再現できるかどうか
+    public bool CanTrace = false;   //写真が再現できるかどうか
     private bool CanTrace2 = false;
     private int CanTraceCount = 0;
     public GameObject overlap;
@@ -29,6 +29,7 @@ public class ShotLensController : MonoBehaviour {
     public GameObject UI_takephoto; //写真が取れるかを確認するUI
     public Sprite takephoto;
     public Sprite tracephoto;
+    
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void Start()

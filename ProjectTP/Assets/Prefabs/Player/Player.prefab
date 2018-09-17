@@ -171,7 +171,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1500561192505200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.527, y: 0.125, z: -2.01}
+  m_LocalPosition: {x: 22.527, y: 0.125, z: 0}
   m_LocalScale: {x: 5.2587676, y: 3.8945866, z: 1}
   m_Children: []
   m_Father: {fileID: 4587381118710332}
@@ -249,7 +249,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1007018626884216}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.45, y: 4.09, z: 0}
+  m_LocalPosition: {x: 14.33, y: 13.52, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children:
   - {fileID: 4401619839800204}
@@ -269,7 +269,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1443542535142392}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.02}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4709393603275116}
@@ -391,7 +391,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07084672, y: 0.09741211}
+  m_Offset: {x: -0.07084672, y: 0.1395464}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -402,7 +402,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.11966589, y: 2.3755074}
+  m_Size: {x: 0.11966589, y: 2.2912388}
   m_EdgeRadius: 0
 --- !u!61 &61839566228756080
 BoxCollider2D:
@@ -458,6 +458,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraCoordinate: {x: 0, y: 0, z: 0}
+  IsShoted: 0
+  CanTrace: 0
   overlap: {fileID: 1196765997800004}
   canWork: 1
   UI_takephoto: {fileID: 0}
@@ -507,6 +509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineDot: {fileID: 1500561192505200}
+  shotLensController: {fileID: 0}
 --- !u!114 &114864873322693518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -603,7 +606,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 6f8d4d652e6c2cb468ae8fc0fa70173d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -645,7 +648,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 0abedeffe7fe63f4e8813b55bf613c82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

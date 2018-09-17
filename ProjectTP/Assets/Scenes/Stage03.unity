@@ -1686,7 +1686,7 @@ Prefab:
         type: 2}
       propertyPath: Readboard
       value: 
-      objectReference: {fileID: 746795326}
+      objectReference: {fileID: 2145283489}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a935df662effc6249a1b227ed3d365d4, type: 2}
   m_IsPrefabParent: 0
@@ -3417,21 +3417,21 @@ Prefab:
     - target: {fileID: 224359915041806632, guid: 0e5f2dc2ffe604b46a3162fd8246a668,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224175201335302818, guid: 0e5f2dc2ffe604b46a3162fd8246a668,
         type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4746492078338714, guid: 0e5f2dc2ffe604b46a3162fd8246a668, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224434080946971948, guid: 0e5f2dc2ffe604b46a3162fd8246a668,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e5f2dc2ffe604b46a3162fd8246a668, type: 2}
@@ -4703,7 +4703,7 @@ Prefab:
         type: 2}
       propertyPath: Readboard
       value: 
-      objectReference: {fileID: 2145283489}
+      objectReference: {fileID: 746795326}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a935df662effc6249a1b227ed3d365d4, type: 2}
   m_IsPrefabParent: 0
@@ -4776,7 +4776,7 @@ RectTransform:
   - {fileID: 298395507}
   - {fileID: 2147004440}
   m_Father: {fileID: 1161496615}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6180,7 +6180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3856f8e6691aeae4c9da74ba89e14919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameController: {fileID: 467552000}
+  BGMPlayer: {fileID: 467552002}
   canInput: 0
   Next: {fileID: 885803234}
   finalphoto1: {fileID: 738721311}
@@ -6224,28 +6224,6 @@ Prefab:
     - target: {fileID: 4587381118710332, guid: 19c50683261431d4984f7de3d96baf81, type: 2}
       propertyPath: m_RootOrder
       value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 1500561192505200, guid: 19c50683261431d4984f7de3d96baf81, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647676713875154, guid: 19c50683261431d4984f7de3d96baf81, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 212494353675386464, guid: 19c50683261431d4984f7de3d96baf81,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 212619139975689390, guid: 19c50683261431d4984f7de3d96baf81,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4224056897526800, guid: 19c50683261431d4984f7de3d96baf81, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114062422667159540, guid: 19c50683261431d4984f7de3d96baf81,
         type: 2}
